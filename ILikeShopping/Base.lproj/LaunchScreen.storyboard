@@ -47,13 +47,13 @@
                         <constraints>
                             <constraint firstItem="On7-GF-jXD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6HA-iH-TYk"/>
                             <constraint firstItem="On7-GF-jXD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="DJC-OY-RwX"/>
-                            <constraint firstItem="ajD-nh-wEw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Gl9-gU-R2b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="On7-GF-jXD" secondAttribute="trailing" constant="16" id="K43-eI-A4E"/>
                             <constraint firstItem="ajD-nh-wEw" firstAttribute="top" secondItem="On7-GF-jXD" secondAttribute="bottom" constant="40" id="O2I-Wh-vfI"/>
                             <constraint firstItem="eC8-bu-ImU" firstAttribute="top" secondItem="ajD-nh-wEw" secondAttribute="bottom" constant="30" id="Ryz-g5-hyT"/>
                             <constraint firstItem="ajD-nh-wEw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Sau-xA-WDw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eC8-bu-ImU" secondAttribute="trailing" constant="16" id="blu-hv-GVZ"/>
                             <constraint firstItem="eC8-bu-ImU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="npq-uB-WIA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ajD-nh-wEw" secondAttribute="trailing" constant="16" id="rm2-nz-yz5"/>
                         </constraints>
                     </view>
                 </viewController>

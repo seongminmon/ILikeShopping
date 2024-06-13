@@ -9,23 +9,28 @@
 /* Begin PBXBuildFile section */
 		2426F5EC2C1AF267005350A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F5EB2C1AF267005350A9 /* AppDelegate.swift */; };
 		2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */; };
-		2426F5F02C1AF267005350A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F5EF2C1AF267005350A9 /* ViewController.swift */; };
+		2426F5F02C1AF267005350A9 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */; };
 		2426F5F52C1AF268005350A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2426F5F42C1AF268005350A9 /* Assets.xcassets */; };
 		2426F5F82C1AF268005350A9 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2426F5F72C1AF268005350A9 /* Base */; };
 		2426F6002C1AF2B9005350A9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2426F5FF2C1AF2B9005350A9 /* .gitignore */; };
 		2426F6022C1AF3FB005350A9 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6012C1AF3FB005350A9 /* APIKey.swift */; };
+		2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6042C1AF7A6005350A9 /* OrangeButton.swift */; };
+		2426F6082C1AF85A005350A9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2426F6072C1AF85A005350A9 /* SnapKit */; };
+		2426F60B2C1AF86A005350A9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2426F60A2C1AF86A005350A9 /* Alamofire */; };
+		2426F60E2C1AF87B005350A9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2426F60D2C1AF87B005350A9 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2426F5E82C1AF267005350A9 /* ILikeShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ILikeShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2426F5EB2C1AF267005350A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2426F5EF2C1AF267005350A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		2426F5F42C1AF268005350A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2426F5F72C1AF268005350A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2426F5F92C1AF268005350A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2426F5FF2C1AF2B9005350A9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		2426F6012C1AF3FB005350A9 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		2426F6042C1AF7A6005350A9 /* OrangeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2426F60E2C1AF87B005350A9 /* Kingfisher in Frameworks */,
+				2426F6082C1AF85A005350A9 /* SnapKit in Frameworks */,
+				2426F60B2C1AF86A005350A9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +70,21 @@
 				2426F5EB2C1AF267005350A9 /* AppDelegate.swift */,
 				2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */,
 				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
-				2426F5EF2C1AF267005350A9 /* ViewController.swift */,
+				2426F6032C1AF796005350A9 /* CustomView */,
+				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
 				2426F5F42C1AF268005350A9 /* Assets.xcassets */,
 				2426F5F62C1AF268005350A9 /* LaunchScreen.storyboard */,
 				2426F5F92C1AF268005350A9 /* Info.plist */,
 			);
 			path = ILikeShopping;
+			sourceTree = "<group>";
+		};
+		2426F6032C1AF796005350A9 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				2426F6042C1AF7A6005350A9 /* OrangeButton.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +103,11 @@
 			dependencies = (
 			);
 			name = ILikeShopping;
+			packageProductDependencies = (
+				2426F6072C1AF85A005350A9 /* SnapKit */,
+				2426F60A2C1AF86A005350A9 /* Alamofire */,
+				2426F60D2C1AF87B005350A9 /* Kingfisher */,
+			);
 			productName = ILikeShopping;
 			productReference = 2426F5E82C1AF267005350A9 /* ILikeShopping.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +136,11 @@
 				Base,
 			);
 			mainGroup = 2426F5DF2C1AF267005350A9;
+			packageReferences = (
+				2426F6062C1AF85A005350A9 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2426F6092C1AF86A005350A9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2426F60C2C1AF87B005350A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 2426F5E92C1AF267005350A9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -141,10 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2426F5F02C1AF267005350A9 /* ViewController.swift in Sources */,
+				2426F5F02C1AF267005350A9 /* OnBoardingViewController.swift in Sources */,
 				2426F5EC2C1AF267005350A9 /* AppDelegate.swift in Sources */,
 				2426F6022C1AF3FB005350A9 /* APIKey.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
+				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +395,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2426F6062C1AF85A005350A9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		2426F6092C1AF86A005350A9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		2426F60C2C1AF87B005350A9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2426F6072C1AF85A005350A9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2426F6062C1AF85A005350A9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		2426F60A2C1AF86A005350A9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2426F6092C1AF86A005350A9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		2426F60D2C1AF87B005350A9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2426F60C2C1AF87B005350A9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2426F5E02C1AF267005350A9 /* Project object */;
 }

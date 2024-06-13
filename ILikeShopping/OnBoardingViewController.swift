@@ -1,0 +1,60 @@
+//
+//  OnBoardingViewController.swift
+//  ILikeShopping
+//
+//  Created by 김성민 on 6/13/24.
+//
+
+import UIKit
+import SnapKit
+
+class OnBoardingViewController: UIViewController {
+    
+    let appNameLabel = UILabel()
+    let mainImageView = UIImageView()
+    let startButton = OrangeButton(title: "시작하기")
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureHierarchy()
+        configureLayout()
+        configureUI()
+    }
+    
+    func configureHierarchy() {
+        view.addSubview(appNameLabel)
+        view.addSubview(mainImageView)
+        view.addSubview(startButton)
+    }
+    
+    func configureLayout() {
+        appNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(40)
+        }
+        
+        mainImageView.snp.makeConstraints { make in
+            make.top.equalTo(appNameLabel.snp.bottom).offset(40)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(mainImageView.snp.width)
+        }
+        
+        startButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(40)
+        }
+    }
+    
+    func configureUI() {
+        appNameLabel.text = "ILikeShopping"
+        appNameLabel.font = .systemFont(ofSize: 32, weight: .black)
+        appNameLabel.textColor = .systemOrange
+        appNameLabel.textAlignment = .center
+        
+        mainImageView.image = UIImage(named: "launch")
+        mainImageView.contentMode = .scaleAspectFill
+    }
+}
