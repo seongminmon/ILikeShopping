@@ -12,7 +12,8 @@ class ProfileImageView: UIImageView {
     init(image: UIImage, isSelect: Bool) {
         super.init(frame: .zero)
         self.image = image
-
+        contentMode = .scaleAspectFit
+        
         if isSelect {
             layer.borderWidth = 3
             layer.borderColor = MyColor.orange.cgColor
@@ -27,22 +28,6 @@ class ProfileImageView: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        clipsToBounds = true
-        layer.cornerRadius = frame.width / 2
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class CameraImageView: UIImageView {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        image = MyImage.camera
-        image?.withTintColor(MyColor.white)
-        backgroundColor = MyColor.orange
         clipsToBounds = true
         layer.cornerRadius = frame.width / 2
     }

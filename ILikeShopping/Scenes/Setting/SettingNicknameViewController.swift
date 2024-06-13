@@ -13,7 +13,10 @@ class SettingNicknameViewController: UIViewController {
     // TODO: - imageview 선택시 화면이동
     
     let profileImageView = ProfileImageView(image: MyImage.profileImageList.randomElement()!, isSelect: true)
+    let profileImageButton = UIButton()
+    let cameraImageView = CameraImageView(frame: .zero)
     let nicknameTextField = UITextField()
+    let separator = UIView()
     let descriptionLabel = UILabel()
     let completeButton = OrangeButton(title: "완료")
 
@@ -31,8 +34,11 @@ class SettingNicknameViewController: UIViewController {
     
     func configureHierarchy() {
         view.addSubview(profileImageView)
+        view.addSubview(profileImageButton)
+        view.addSubview(cameraImageView)
         view.addSubview(nicknameTextField)
         view.addSubview(descriptionLabel)
+        view.addSubview(separator)
         view.addSubview(completeButton)
     }
     
@@ -41,6 +47,15 @@ class SettingNicknameViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.centerX.equalToSuperview()
             make.size.equalTo(150)
+        }
+        
+        profileImageButton.snp.makeConstraints { make in
+            make.edges.equalTo(profileImageView)
+        }
+        
+        cameraImageView.snp.makeConstraints { make in
+            make.trailing.bottom.equalTo(profileImageView)
+            make.size.equalTo(50)
         }
         
         nicknameTextField.snp.makeConstraints { make in
@@ -55,6 +70,12 @@ class SettingNicknameViewController: UIViewController {
             make.height.equalTo(24)
         }
         
+        separator.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.bottom)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(1)
+        }
+        
         completeButton.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(16)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -63,6 +84,8 @@ class SettingNicknameViewController: UIViewController {
     }
     
     func configureUI() {
+        profileImageButton.addTarget(self, action: #selector(profileImageButtonTapped), for: .touchUpInside)
+        
         nicknameTextField.placeholder = "닉네임을 입력해주세요 :)"
         nicknameTextField.font = Font.regular14
         
@@ -72,7 +95,14 @@ class SettingNicknameViewController: UIViewController {
         completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
     }
     
+    @objc func profileImageButtonTapped() {
+        let vc = SettingImageViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc func completeButtonTapped() {
-        // TODO: - 닉네임 조건 맞을 시 메인 화면으로 이동
+        // TODO: - 닉네임 조건 맞을 시 메인 화면으로 window 전환
+        let vc = MainViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
