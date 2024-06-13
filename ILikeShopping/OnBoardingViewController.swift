@@ -16,10 +16,15 @@ class OnBoardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureNavigationBar()
         configureHierarchy()
         configureLayout()
         configureUI()
+    }
+    
+    func configureNavigationBar() {
+        navigationController?.navigationBar.tintColor = MyColor.black
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {
@@ -44,17 +49,24 @@ class OnBoardingViewController: UIViewController {
         startButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(40)
+            make.height.equalTo(50)
         }
     }
     
     func configureUI() {
         appNameLabel.text = "ILikeShopping"
-        appNameLabel.font = .systemFont(ofSize: 32, weight: .black)
-        appNameLabel.textColor = .systemOrange
+        appNameLabel.font = Font.title
+        appNameLabel.textColor = MyColor.orange
         appNameLabel.textAlignment = .center
         
         mainImageView.image = UIImage(named: "launch")
         mainImageView.contentMode = .scaleAspectFill
+        
+        startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func startButtonTapped() {
+        let vc = SettingNicknameViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
