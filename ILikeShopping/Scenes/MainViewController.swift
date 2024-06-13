@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    let ud = UserDefaultsManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -18,7 +20,7 @@ class MainViewController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.title = "OOO's Shopping List" 
+        navigationItem.title = "\(ud.nickname)'s Shopping List"
     }
     
     func configureHierarchy() {

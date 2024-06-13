@@ -23,18 +23,22 @@ class UserDefaultsManager {
     
     var nickname: String {
         get {
+            print("닉네임 불러오기")
             return userDefaults.string(forKey: Key.nickname.rawValue) ?? "OOO"
         }
         set {
+            print("닉네임 저장")
             userDefaults.set(newValue, forKey: Key.nickname.rawValue)
         }
     }
     
     var profileImageIndex: Int {
         get {
+            print("프로필 이미지 인덱스 불러오기")
             return userDefaults.integer(forKey: Key.profileImageIndex.rawValue)
         }
         set {
+            print("프로필 이미지 인덱스 저장")
             userDefaults.set(newValue, forKey: Key.profileImageIndex.rawValue)
         }
     }
@@ -42,10 +46,11 @@ class UserDefaultsManager {
     var signUpDate: Date {
         get {
             let storedDate = userDefaults.object(forKey: Key.signUpDate.rawValue) as? Date
-            print(storedDate ?? "저장된 데이트 없음")
+            print("가입날짜 불러오기: \(String(describing: storedDate))")
             return storedDate ?? Date()
         }
         set {
+            print("가입 날짜 저장")
             userDefaults.set(newValue, forKey: Key.signUpDate.rawValue)
         }
     }
@@ -53,10 +58,11 @@ class UserDefaultsManager {
     var shoppingList: [Int] {
         get {
             let storedShoppingList = userDefaults.object(forKey: Key.shoppingList.rawValue) as? [Int]
-            print(storedShoppingList ?? "저장된 쇼핑리스트 없음")
+            print("쇼핑리스트 불러오기: \(storedShoppingList ?? [])")
             return storedShoppingList ?? []
         }
         set {
+            print("쇼핑리스트 저장")
             userDefaults.set(newValue, forKey: Key.shoppingList.rawValue)
         }
     }
