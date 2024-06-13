@@ -9,9 +9,6 @@ import UIKit
 
 class SettingNicknameViewController: UIViewController {
     
-    // TODO: - camera, separator 추가하기
-    // TODO: - imageview 선택시 화면이동
-    
     let profileImageView = ProfileImageView(image: MyImage.profileImageList.randomElement()!, isSelect: true)
     let profileImageButton = UIButton()
     let cameraImageView = CameraImageView(frame: .zero)

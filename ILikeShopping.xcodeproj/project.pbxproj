@@ -27,6 +27,7 @@
 		2426F61E2C1B06E3005350A9 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F61D2C1B06E3005350A9 /* Font.swift */; };
 		2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6202C1B1BD3005350A9 /* CameraImageView.swift */; };
 		2426F6232C1B1C36005350A9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6222C1B1C36005350A9 /* MainViewController.swift */; };
+		2426F6262C1B1D4D005350A9 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		2426F61D2C1B06E3005350A9 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		2426F6202C1B1BD3005350A9 /* CameraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImageView.swift; sourceTree = "<group>"; };
 		2426F6222C1B1C36005350A9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */,
 				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
 				2426F61A2C1B0268005350A9 /* Extension */,
+				2426F6272C1B2210005350A9 /* Manager */,
 				2426F6192C1B0248005350A9 /* Enum */,
 				2426F6032C1AF796005350A9 /* CustomView */,
 				2426F6242C1B1CB7005350A9 /* Scenes */,
@@ -144,6 +147,14 @@
 				2426F61F2C1B17EE005350A9 /* Setting */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		2426F6272C1B2210005350A9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +246,7 @@
 				2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */,
 				2426F5EC2C1AF267005350A9 /* AppDelegate.swift in Sources */,
 				2426F6232C1B1C36005350A9 /* MainViewController.swift in Sources */,
+				2426F6262C1B1D4D005350A9 /* UserDefaultsManager.swift in Sources */,
 				2426F6022C1AF3FB005350A9 /* APIKey.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* Font.swift in Sources */,
