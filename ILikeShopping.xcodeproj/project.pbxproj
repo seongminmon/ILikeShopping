@@ -32,6 +32,7 @@
 		2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */; };
 		2426F62D2C1BF3D5005350A9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62C2C1BF3D5005350A9 /* TabBarController.swift */; };
 		2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62E2C1BF426005350A9 /* SettingViewController.swift */; };
+		2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		2426F62C2C1BF3D5005350A9 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2426F62E2C1BF426005350A9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				2426F62E2C1BF426005350A9 /* SettingViewController.swift */,
+				2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */,
 				2426F60F2C1AFB42005350A9 /* SettingNicknameViewController.swift */,
 				2426F6112C1AFB54005350A9 /* SettingImageViewController.swift */,
 				2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */,
@@ -256,6 +259,7 @@
 				2426F62D2C1BF3D5005350A9 /* TabBarController.swift in Sources */,
 				2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */,
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
+				2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */,
 				2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */,
 				2426F5EC2C1AF267005350A9 /* AppDelegate.swift in Sources */,
 				2426F6232C1B1C36005350A9 /* MainViewController.swift in Sources */,

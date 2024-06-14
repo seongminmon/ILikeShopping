@@ -7,17 +7,26 @@
 
 import UIKit
 
+enum CellTitle: String, CaseIterable {
+    case shoppingList = "나의 장바구니 목록"
+    case question = "자주 묻는 질문"
+    case inquire = "1:1 문의"
+    case alarm = "알림 설정"
+    case delete = "탈퇴하기"
+}
+
 class SettingViewController: UIViewController {
     
     let ud = UserDefaultsManager.shared
     
     let containerView = UIView()
-    let containerButton = UIButton()
     lazy var profileImage = ProfileImageView(image: ud.profileImage, isSelect: true)
     let nameLabel = UILabel()
     let dateLabel = UILabel()
     let detailButton = UIButton()
     
+    let containerButton = UIButton()
+    let separator = UIView()
     let tableView = UITableView()
 
     override func viewDidLoad() {
@@ -26,6 +35,7 @@ class SettingViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         configureUI()
+        configureTableView()
     }
     
     func configureNavigationBar() {
@@ -44,6 +54,7 @@ class SettingViewController: UIViewController {
         view.addSubview(containerView)
         view.addSubview(containerButton)
         view.addSubview(tableView)
+        view.addSubview(separator)
     }
     
     func configureLayout() {
@@ -81,6 +92,17 @@ class SettingViewController: UIViewController {
             make.trailing.equalToSuperview().inset(16)
             make.size.equalTo(30)
         }
+        
+        separator.snp.makeConstraints { make in
+            make.top.equalTo(tableView)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(0.3)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(containerView.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     func configureUI() {
@@ -92,6 +114,8 @@ class SettingViewController: UIViewController {
         dateLabel.font = Font.regular14
         dateLabel.textColor = MyColor.gray
         
+        separator.backgroundColor = MyColor.black
+        
         // data
         nameLabel.text = ud.nickname
         dateLabel.text = ud.signUpDateString
@@ -99,9 +123,71 @@ class SettingViewController: UIViewController {
         detailButton.tintColor = MyColor.gray
     }
     
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 50
+        
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.separatorInsetReference = .fromCellEdges
+        tableView.separatorColor = MyColor.black
+        
+        tableView.isScrollEnabled = false
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
+    }
+    
     @objc func containerButtonTapped() {
         // 닉네임 설정 화면으로 이동
         let vc = SettingNicknameViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return CellTitle.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
+        let title = CellTitle.allCases[indexPath.row].rawValue
+        if indexPath.row == 0 {
+            cell.configureCell(title: title, count: 0)
+        } else {
+            cell.configureCell(title: title, count: nil)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 탈퇴하기만 선택 가능
+        if indexPath.row == 4 {
+            let alert = UIAlertController(
+                title: "탈퇴하기",
+                message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?",
+                preferredStyle: .alert
+            )
+            
+            let confirm = UIAlertAction(title: "확인", style: .default) { action in
+                // 모든 데이터 초기화
+                self.ud.removeAll()
+                
+                // 온보딩 화면으로 이동
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                
+                let vc = OnBoardingViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                sceneDelegate?.window?.rootViewController = nav
+                sceneDelegate?.window?.makeKeyAndVisible()
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            
+            alert.addAction(confirm)
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        }
     }
 }

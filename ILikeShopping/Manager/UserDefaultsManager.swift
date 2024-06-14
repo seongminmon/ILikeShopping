@@ -82,4 +82,10 @@ class UserDefaultsManager {
     var isSignIn: Bool {
         return signUpDate != nil
     }
+    
+    func removeAll() {
+        for key in userDefaults.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: key.description)
+        }
+    }
 }
