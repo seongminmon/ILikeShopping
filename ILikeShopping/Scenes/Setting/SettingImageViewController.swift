@@ -9,13 +9,10 @@ import UIKit
 
 class SettingImageViewController: UIViewController {
     
-    // TODO: - popview할때 인덱스 값 전달하기
-    
     let selectedImageView = ProfileImageView(image: nil, isSelect: true)
     let cameraImageView = CameraImageView(frame: .zero)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
-    // 기본값은 설정
     var settingOption: SettingOption = .setting
     var selectedIndex: Int = 0
     
@@ -53,7 +50,6 @@ class SettingImageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // 닉네임 화면으로 돌아가기 직전에 데이터 전달
-        print(#function)
         let popVc = navigationController?.viewControllers.last! as! SettingNicknameViewController
         popVc.imageIndex = selectedIndex
     }

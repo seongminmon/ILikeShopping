@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import Alamofire
-import Kingfisher
 import SnapKit
 
 class MainViewController: UIViewController {
+    
+    // TODO: - 최근 검색어 리스트 저장 -> ud
     
     let searchBar = UISearchBar()
     // 최근 검색어 없는 경우
@@ -31,7 +31,8 @@ class MainViewController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.title = "\(ud.nickname)'s Shopping List"
+        navigationItem.title = "\(ud.nickname)'s ILikeShopping"
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {

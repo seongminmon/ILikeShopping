@@ -24,7 +24,6 @@ enum NickNameCondition: String {
 class SettingNicknameViewController: UIViewController {
     
     // MARK: - UD에 저장하는 시점 == 완료버튼이나 저장버튼을 누를 때
-    // 이 뷰에서 가지고 있는 image는 임시적인 것
     
     let profileImageView = ProfileImageView(image: nil, isSelect: true)
     let profileImageButton = UIButton()
@@ -35,8 +34,8 @@ class SettingNicknameViewController: UIViewController {
     let completeButton = OrangeButton(title: "완료")
     
     let ud = UserDefaultsManager.shared
-    var settingOption: SettingOption = .setting // 기본값은 초기 설정
-    lazy var imageIndex: Int = ud.profileImageIndex // 옵셔널로 안주니까 값이 없어도 0임
+    var settingOption: SettingOption = .setting
+    lazy var imageIndex: Int = ud.profileImageIndex
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -35,6 +35,9 @@
 		2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */; };
 		2426F6342C1C10AB005350A9 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2426F6332C1C10AB005350A9 /* IQKeyboardManagerSwift */; };
 		2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */; };
+		2426F6382C1C356F005350A9 /* ShoppingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6372C1C356F005350A9 /* ShoppingResponse.swift */; };
+		2426F63A2C1C3707005350A9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6392C1C3707005350A9 /* SearchViewController.swift */; };
+		2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63B2C1C370F005350A9 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,9 @@
 		2426F62E2C1BF426005350A9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordTableViewCell.swift; sourceTree = "<group>"; };
+		2426F6372C1C356F005350A9 /* ShoppingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingResponse.swift; sourceTree = "<group>"; };
+		2426F6392C1C3707005350A9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		2426F63B2C1C370F005350A9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 				2426F5EB2C1AF267005350A9 /* AppDelegate.swift */,
 				2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */,
 				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
+				2426F6372C1C356F005350A9 /* ShoppingResponse.swift */,
 				2426F61A2C1B0268005350A9 /* Extension */,
 				2426F6272C1B2210005350A9 /* Manager */,
 				2426F6192C1B0248005350A9 /* Enum */,
@@ -164,6 +171,8 @@
 				2426F62C2C1BF3D5005350A9 /* TabBarController.swift */,
 				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
 				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
+				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
+				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
 				2426F61F2C1B17EE005350A9 /* Setting */,
 			);
 			path = Scenes;
@@ -268,11 +277,14 @@
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
 				2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */,
 				2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */,
+				2426F6382C1C356F005350A9 /* ShoppingResponse.swift in Sources */,
 				2426F5EC2C1AF267005350A9 /* AppDelegate.swift in Sources */,
 				2426F6232C1B1C36005350A9 /* MainViewController.swift in Sources */,
 				2426F6262C1B1D4D005350A9 /* UserDefaultsManager.swift in Sources */,
 				2426F6022C1AF3FB005350A9 /* APIKey.swift in Sources */,
+				2426F63A2C1C3707005350A9 /* SearchViewController.swift in Sources */,
 				2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */,
+				2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
 				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
