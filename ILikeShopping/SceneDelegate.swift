@@ -15,9 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let vc = OnBoardingViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        window?.rootViewController = nav
+        if UserDefaultsManager.shared.isSignIn {
+            let tab = TabBarController()
+            window?.rootViewController = tab
+        } else {
+            let vc = OnBoardingViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            window?.rootViewController = nav
+        }
         
         window?.backgroundColor = MyColor.white
         window?.makeKeyAndVisible()

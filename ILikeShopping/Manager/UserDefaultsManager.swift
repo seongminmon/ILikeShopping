@@ -43,11 +43,11 @@ class UserDefaultsManager {
         }
     }
     
-    var signUpDate: Date {
+    var signUpDate: Date? {
         get {
             let storedDate = userDefaults.object(forKey: Key.signUpDate.rawValue) as? Date
             print("가입날짜 불러오기: \(String(describing: storedDate))")
-            return storedDate ?? Date()
+            return storedDate
         }
         set {
             print("가입 날짜 저장")
@@ -71,10 +71,15 @@ class UserDefaultsManager {
         return MyImage.profileImageList[profileImageIndex]
     }
     
-    var signUpDateString: String {
+    var signUpDateString: String? {
+        guard let signUpDate else { return nil }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy. MM. dd"
         let str = formatter.string(from: signUpDate)
         return "\(str) 가입"
+    }
+    
+    var isSignIn: Bool {
+        return signUpDate != nil
     }
 }

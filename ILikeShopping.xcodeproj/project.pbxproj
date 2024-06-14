@@ -28,6 +28,10 @@
 		2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6202C1B1BD3005350A9 /* CameraImageView.swift */; };
 		2426F6232C1B1C36005350A9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6222C1B1C36005350A9 /* MainViewController.swift */; };
 		2426F6262C1B1D4D005350A9 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */; };
+		2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */; };
+		2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */; };
+		2426F62D2C1BF3D5005350A9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62C2C1BF3D5005350A9 /* TabBarController.swift */; };
+		2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62E2C1BF426005350A9 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +55,10 @@
 		2426F6202C1B1BD3005350A9 /* CameraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImageView.swift; sourceTree = "<group>"; };
 		2426F6222C1B1C36005350A9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
+		2426F62C2C1BF3D5005350A9 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		2426F62E2C1BF426005350A9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				2426F6152C1AFEAA005350A9 /* UIColor+.swift */,
+				2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -133,8 +142,10 @@
 		2426F61F2C1B17EE005350A9 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				2426F62E2C1BF426005350A9 /* SettingViewController.swift */,
 				2426F60F2C1AFB42005350A9 /* SettingNicknameViewController.swift */,
 				2426F6112C1AFB54005350A9 /* SettingImageViewController.swift */,
+				2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -143,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
+				2426F62C2C1BF3D5005350A9 /* TabBarController.swift */,
 				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
 				2426F61F2C1B17EE005350A9 /* Setting */,
 			);
@@ -241,6 +253,7 @@
 				2426F5F02C1AF267005350A9 /* OnBoardingViewController.swift in Sources */,
 				2426F6142C1AFDDF005350A9 /* MyImage.swift in Sources */,
 				2426F6182C1B011D005350A9 /* ProfileImageView.swift in Sources */,
+				2426F62D2C1BF3D5005350A9 /* TabBarController.swift in Sources */,
 				2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */,
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
 				2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */,
@@ -248,9 +261,12 @@
 				2426F6232C1B1C36005350A9 /* MainViewController.swift in Sources */,
 				2426F6262C1B1D4D005350A9 /* UserDefaultsManager.swift in Sources */,
 				2426F6022C1AF3FB005350A9 /* APIKey.swift in Sources */,
+				2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */,
+				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* Font.swift in Sources */,
 				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
+				2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */,
 				2426F6102C1AFB42005350A9 /* SettingNicknameViewController.swift in Sources */,
 				2426F6122C1AFB54005350A9 /* SettingImageViewController.swift in Sources */,
 			);

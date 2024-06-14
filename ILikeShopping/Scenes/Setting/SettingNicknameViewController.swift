@@ -16,13 +16,17 @@ enum NickNameCondition: String {
 
 class SettingNicknameViewController: UIViewController {
     
-    let profileImageView = ProfileImageView(image: MyImage.profileImageList.randomElement()!, isSelect: true)
+    // TODO: - 닉네임 설정 화면, 닉네임 수정 화면 2개로 활용하기
+    
+    let profileImageView = ProfileImageView(image: nil, isSelect: true)
     let profileImageButton = UIButton()
     let cameraImageView = CameraImageView(frame: .zero)
     let nicknameTextField = UITextField()
     let separator = UIView()
     let descriptionLabel = UILabel()
     let completeButton = OrangeButton(title: "완료")
+    
+    let ud = UserDefaultsManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,12 @@ class SettingNicknameViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 이미지 설정 화면에서 선택한 이미지 적용하기
+        profileImageView.image = ud.profileImage
     }
     
     func configureNavigationBar() {
@@ -88,6 +98,11 @@ class SettingNicknameViewController: UIViewController {
     }
     
     func configureUI() {
+        // random Index 뽑기
+        ud.profileImageIndex = Int.random(in: 0..<MyImage.profileImageList.count)
+        // 이미지뷰에 이미지 세팅하기
+        profileImageView.image = ud.profileImage
+        
         profileImageButton.addTarget(self, action: #selector(profileImageButtonTapped), for: .touchUpInside)
         
         nicknameTextField.placeholder = "닉네임을 입력해주세요 :)"
@@ -105,14 +120,19 @@ class SettingNicknameViewController: UIViewController {
     }
     
     @objc func completeButtonTapped() {
-        // 닉네임 조건 맞을 시 메인 화면으로 window 전환
+        // 닉네임 조건 검사
         if descriptionLabel.text == NickNameCondition.possible.rawValue {
+            // 값 저장
+            ud.nickname = nicknameTextField.text ?? "OOO"
+//            ud.profileImageIndex = 0
+            ud.signUpDate = Date()
+            
+            // 메인 화면으로 window 전환
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
             
-            let vc = MainViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            sceneDelegate?.window?.rootViewController = nav
+            let tab = TabBarController()
+            sceneDelegate?.window?.rootViewController = tab
             sceneDelegate?.window?.makeKeyAndVisible()
         }
     }

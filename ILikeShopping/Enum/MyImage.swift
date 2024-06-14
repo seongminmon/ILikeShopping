@@ -8,6 +8,7 @@
 import UIKit
 
 enum MyImage {
+
     static let profileImageList: [UIImage] = [
         UIImage(named: "profile_0")!,
         UIImage(named: "profile_1")!,
@@ -22,6 +23,25 @@ enum MyImage {
         UIImage(named: "profile_10")!,
         UIImage(named: "profile_11")!,
     ]
+    
+//    static let profileImageNameList: [String] = [
+//        "profile_0",
+//        "profile_1",
+//        "profile_2",
+//        "profile_3",
+//        "profile_4",
+//        "profile_5",
+//        "profile_6",
+//        "profile_7",
+//        "profile_8",
+//        "profile_9",
+//        "profile_10",
+//        "profile_11",
+//    ]
+    
+//    static var profileImageList: [UIImage] {
+//        return MyImage.profileImageNameList.map { UIImage(named: $0)! }
+//    }
     
     static let magnifyingglass = UIImage(systemName: "magnifyingglass")!
     static let person = UIImage(systemName: "person")!

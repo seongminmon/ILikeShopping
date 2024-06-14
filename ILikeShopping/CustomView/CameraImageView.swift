@@ -27,13 +27,13 @@ class CameraImageView: UIView {
         backgroundColor = MyColor.orange
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         clipsToBounds = true
         layer.cornerRadius = frame.width / 2
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
