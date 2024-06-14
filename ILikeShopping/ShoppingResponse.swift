@@ -5,7 +5,7 @@
 //  Created by 김성민 on 6/14/24.
 //
 
-import Foundation
+import UIKit
 
 struct ShoppingResponse: Codable {
     let total: Int
@@ -24,6 +24,18 @@ struct Shopping: Codable {
     let link: String
     // 좋아요 관리
     let productId: String
+    
+    var imageUrl: URL? {
+        return URL(string: image)
+    }
+    
+    var encodedString: String {
+        return String(htmlEncodedString: title) ?? title
+    }
+    
+    var price: String {
+        return "\(Int(lprice)?.formatted() ?? "n/a")원"
+    }
     
 //    let hprice: String
 //    let productType: String

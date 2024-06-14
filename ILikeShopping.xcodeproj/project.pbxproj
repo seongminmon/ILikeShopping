@@ -41,6 +41,7 @@
 		2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63D2C1C4937005350A9 /* Sequence+.swift */; };
 		2426F6402C1C4A7F005350A9 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */; };
 		2426F6422C1C4B1B005350A9 /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6412C1C4B1B005350A9 /* SortButton.swift */; };
+		2426F6442C1C5BB5005350A9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6432C1C5BB5005350A9 /* String+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		2426F63D2C1C4937005350A9 /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
 		2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		2426F6412C1C4B1B005350A9 /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
+		2426F6432C1C5BB5005350A9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */,
 				2426F6152C1AFEAA005350A9 /* UIColor+.swift */,
 				2426F63D2C1C4937005350A9 /* Sequence+.swift */,
+				2426F6432C1C5BB5005350A9 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */,
 				2426F6102C1AFB42005350A9 /* SettingNicknameViewController.swift in Sources */,
 				2426F6422C1C4B1B005350A9 /* SortButton.swift in Sources */,
+				2426F6442C1C5BB5005350A9 /* String+.swift in Sources */,
 				2426F6122C1AFB54005350A9 /* SettingImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ import Alamofire
 import Kingfisher
 import SnapKit
 
-enum SortOption: String {
+enum SortOption: String, CaseIterable {
     case sim
     case date
     case dsc
@@ -28,8 +28,7 @@ enum SortOption: String {
 
 class SearchViewController: UIViewController {
 
-    // TODO: - 네트워크, 페이지네이션, 테이블뷰에 데이터 전달...
-    // TODO: - 좋아요 저장 -> ud
+    // TODO: - 네트워크, 페이지네이션, 테이블뷰에 데이터 전달
     
     let totalCountLabel = UILabel()
     let simButton = SortButton(option: .sim, isSelect: true)
@@ -47,16 +46,11 @@ class SearchViewController: UIViewController {
         let cellSpacing: CGFloat = 10
         let cellCount: CGFloat = 2
         
-        // 셀 사이즈
         let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
         layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.5)
-        // 스크롤 방향
         layout.scrollDirection = .vertical
-        // 셀 사이 거리 (가로)
         layout.minimumInteritemSpacing = cellSpacing
-        // 셀 사이 거리 (세로)
         layout.minimumLineSpacing = cellSpacing
-        // 섹션 인셋
         layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
         
         return layout
@@ -118,7 +112,7 @@ class SearchViewController: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(buttonStackView.snp.bottom)
+            make.top.equalTo(buttonStackView.snp.bottom).offset(16)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -132,6 +126,33 @@ class SearchViewController: UIViewController {
         buttonStackView.alignment = .leading
         buttonStackView.spacing = 8
         
+        simButton.tag = 0
+        dateButton.tag = 1
+        dscButton.tag = 2
+        ascButton.tag = 3
+        
+        simButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+        dateButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+        dscButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+        ascButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func sortButtonTapped(sender: UIButton) {
+        // 1. 선택된 정렬 기준으로 재검색
+        // TODO: - 페이지네이션 구현시 확인 필요
+//        sortOption = SortOption.allCases[sender.tag]
+//        callRequest(query: query ?? "")
+        
+        // 2. 선택된 버튼 UI 변경
+        [simButton, dateButton, dscButton, ascButton].forEach { button in
+            if button == sender {
+                button.setTitleColor(MyColor.white, for: .normal)
+                button.backgroundColor = MyColor.darkgray
+            } else {
+                button.setTitleColor(MyColor.black, for: .normal)
+                button.backgroundColor = MyColor.white
+            }
+        }
     }
     
     func configureCollectionView() {
@@ -181,9 +202,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
-        cell.backgroundColor = .purple
+        let data = shoppingData?.items[indexPath.row]
+        cell.configureCell(data: data)
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+    }
 }
