@@ -39,6 +39,8 @@
 		2426F63A2C1C3707005350A9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6392C1C3707005350A9 /* SearchViewController.swift */; };
 		2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63B2C1C370F005350A9 /* DetailViewController.swift */; };
 		2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63D2C1C4937005350A9 /* Sequence+.swift */; };
+		2426F6402C1C4A7F005350A9 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */; };
+		2426F6422C1C4B1B005350A9 /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6412C1C4B1B005350A9 /* SortButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		2426F6392C1C3707005350A9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2426F63B2C1C370F005350A9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2426F63D2C1C4937005350A9 /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
+		2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		2426F6412C1C4B1B005350A9 /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 				2426F6042C1AF7A6005350A9 /* OrangeButton.swift */,
 				2426F6172C1B011D005350A9 /* ProfileImageView.swift */,
 				2426F6202C1B1BD3005350A9 /* CameraImageView.swift */,
+				2426F6412C1C4B1B005350A9 /* SortButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
 				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
 				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
+				2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */,
 				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
 				2426F61F2C1B17EE005350A9 /* Setting */,
 			);
@@ -294,8 +300,10 @@
 				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* Font.swift in Sources */,
 				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
+				2426F6402C1C4A7F005350A9 /* SearchCollectionViewCell.swift in Sources */,
 				2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */,
 				2426F6102C1AFB42005350A9 /* SettingNicknameViewController.swift in Sources */,
+				2426F6422C1C4B1B005350A9 /* SortButton.swift in Sources */,
 				2426F6122C1AFB54005350A9 /* SettingImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
