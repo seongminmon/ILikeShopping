@@ -22,6 +22,8 @@ class SearchViewController: UIViewController {
     // TODO: - 네트워크, 페이지네이션, 테이블뷰에 데이터 전달...
     // TODO: - 좋아요 저장 -> ud
     
+    
+    
     var query: String?  // 이전 화면에서 전달
     var shoppingData: ShoppingResponse? // 네트워크
     
@@ -31,16 +33,15 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        callRequest(query: query ?? "")
         configureNavigationBar()
         configureHierarchy()
         configureLayout()
         configureUI()
-        
-        callRequest(query: "매트리스")
     }
     
     func configureNavigationBar() {
-        
+        navigationItem.title = query
     }
     
     func configureHierarchy() {

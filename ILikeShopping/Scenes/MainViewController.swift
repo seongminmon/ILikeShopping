@@ -17,10 +17,11 @@ class MainViewController: UIViewController {
     let emptyImageView = UIImageView()
     let emptyLabel = UILabel()
     // 최근 검색어 있는 경우
+    let recentLabel = UILabel()
+    let deleteAllButton = UIButton()
     let tableView = UITableView()
     
     let ud = UserDefaultsManager.shared
-    var isEmpty: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,11 @@ class MainViewController: UIViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     func configureNavigationBar() {
         navigationItem.title = "\(ud.nickname)'s ILikeShopping"
         navigationItem.backButtonDisplayMode = .minimal
@@ -37,22 +43,23 @@ class MainViewController: UIViewController {
     
     func configureHierarchy() {
         view.addSubview(searchBar)
-        if isEmpty {
+        if ud.searchWordList.isEmpty {
             view.addSubview(emptyImageView)
             view.addSubview(emptyLabel)
         } else {
+            view.addSubview(recentLabel)
+            view.addSubview(deleteAllButton)
             view.addSubview(tableView)
         }
     }
     
     func configureLayout() {
         searchBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(8)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(44)
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(60)
         }
         
-        if isEmpty {
+        if ud.searchWordList.isEmpty {
             emptyImageView.snp.makeConstraints { make in
                 make.top.equalTo(searchBar.snp.bottom).offset(8)
                 make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
@@ -65,8 +72,22 @@ class MainViewController: UIViewController {
                 make.height.equalTo(30)
             }
         } else {
-            tableView.snp.makeConstraints { make in
+            recentLabel.snp.makeConstraints { make in
                 make.top.equalTo(searchBar.snp.bottom).offset(8)
+                make.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
+                make.trailing.equalTo(deleteAllButton.snp.leading)
+                make.height.equalTo(30)
+            }
+            
+            deleteAllButton.snp.makeConstraints { make in
+                make.top.equalTo(searchBar.snp.bottom).offset(8)
+                make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+                make.width.equalTo(80)
+                make.height.equalTo(30)
+            }
+            
+            tableView.snp.makeConstraints { make in
+                make.top.equalTo(recentLabel.snp.bottom).offset(8)
                 make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
             }
         }
@@ -74,8 +95,9 @@ class MainViewController: UIViewController {
     
     func configureUI() {
         searchBar.placeholder = "브랜드, 상품 등을 입력하세요."
+        searchBar.delegate = self
         
-        if isEmpty {
+        if ud.searchWordList.isEmpty {
             emptyImageView.image = UIImage(named: "empty")
             emptyImageView.contentMode = .scaleAspectFit
             
@@ -84,6 +106,14 @@ class MainViewController: UIViewController {
             emptyLabel.textColor = MyColor.black
             emptyLabel.textAlignment = .center
         } else {
+            recentLabel.text = "최근 검색"
+            recentLabel.font = Font.bold15
+            
+            deleteAllButton.setTitle("전체 삭제", for: .normal)
+            deleteAllButton.titleLabel?.font = Font.regular14
+            deleteAllButton.setTitleColor(MyColor.orange, for: .normal)
+            deleteAllButton.addTarget(self, action: #selector(deleteAllButtonTapped), for: .touchUpInside)
+            
             tableView.delegate = self
             tableView.dataSource = self
             tableView.rowHeight = 44
@@ -91,16 +121,54 @@ class MainViewController: UIViewController {
         }
     }
     
+    @objc func deleteAllButtonTapped() {
+        ud.searchWordList.removeAll()
+        tableView.reloadData()
+    }
+    
+    func search(_ query: String) {
+        // 검색 화면으로 이동, 데이터 전달
+        let vc = SearchViewController()
+        vc.query = query
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return ud.searchWordList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchWordTableViewCell.identifier, for: indexPath) as! SearchWordTableViewCell
-        cell.backgroundColor = .brown
+        let data = ud.searchWordList[indexPath.row]
+        cell.configureCell(text: data)
+        cell.deleteButton.tag = indexPath.row
+        cell.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func deleteButtonTapped(sender: UIButton) {
+        // 선택한 row 지우기
+        ud.searchWordList.remove(at: sender.tag)
+        tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let query = ud.searchWordList[indexPath.row]
+        // 최근 검색어 앞에 오도록 순서 변경하기
+        ud.searchWordList.remove(at: indexPath.row)
+        ud.searchWordList.insert(query, at: 0)
+        search(query)
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print(#function)
+        guard let query = searchBar.text, query != "" else { return }
+        ud.searchWordList.insert(query, at: 0)
+        search(query)
     }
 }

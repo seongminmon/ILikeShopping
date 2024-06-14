@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import IQKeyboardManagerSwift
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // IQKeyboardManager 세팅
-//        IQKeyboardManager.shared.enable = true
-//        IQKeyboardManager.shared.enableAutoToolbar = false
-//        IQKeyboardManager.shared.resignOnTouchOutside = true
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.resignOnTouchOutside = true
         
         // LaunchScreen 2초간 보이기
 //        sleep(2)

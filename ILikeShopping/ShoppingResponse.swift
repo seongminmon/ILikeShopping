@@ -18,11 +18,11 @@ struct Shopping: Codable {
     // 셀에 표시
     let image: String
     let mallName: String
-    let title: String   // 2줄까지 표시
+    let title: String
     let lprice: String
-    // 웹뷰 띄울 때 필요
+    // 웹뷰
     let link: String
-    // 고유한 값이므로 좋아요 관리
+    // 좋아요 관리
     let productId: String
     
 //    let hprice: String

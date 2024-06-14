@@ -14,12 +14,22 @@ class UserDefaultsManager {
     
     let userDefaults = UserDefaults.standard
     
+    func removeAll() {
+        for key in userDefaults.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: key.description)
+        }
+    }
+    
     enum Key: String {
         case nickname
         case profileImageIndex
         case signUpDate
-        case shoppingList
+        
+        case searchWordList
+        case starList
     }
+    
+    // MARK: - SignIn
     
     var nickname: String {
         get {
@@ -55,18 +65,6 @@ class UserDefaultsManager {
         }
     }
     
-    var shoppingList: [Int] {
-        get {
-            let storedShoppingList = userDefaults.object(forKey: Key.shoppingList.rawValue) as? [Int]
-            print("쇼핑리스트 불러오기: \(storedShoppingList ?? [])")
-            return storedShoppingList ?? []
-        }
-        set {
-            print("쇼핑리스트 저장")
-            userDefaults.set(newValue, forKey: Key.shoppingList.rawValue)
-        }
-    }
-    
     var profileImage: UIImage {
         return MyImage.profileImageList[profileImageIndex]
     }
@@ -83,9 +81,32 @@ class UserDefaultsManager {
         return signUpDate != nil
     }
     
-    func removeAll() {
-        for key in userDefaults.dictionaryRepresentation().keys {
-            UserDefaults.standard.removeObject(forKey: key.description)
+    // MARK: - Shopping
+    
+    var searchWordList: [String] {
+        get {
+            let storedSearchWordList = userDefaults.object(forKey: Key.searchWordList.rawValue) as? [String]
+            print("검색어리스트 불러오기: \(storedSearchWordList ?? [])")
+            return storedSearchWordList ?? []
+        }
+        set {
+            print("검색어리스트 저장")
+            // 중복 데이터 제거 (순서 보장)
+            userDefaults.set(newValue.uniqued(), forKey: Key.searchWordList.rawValue)
         }
     }
+    
+    // id값들을 저장해서 일치하면 like
+    var starList: Set<Int> {
+        get {
+            let storedStarList = userDefaults.object(forKey: Key.starList.rawValue) as? Set<Int>
+            print("즐겨찾기 리스트 불러오기: \(storedStarList ?? [])")
+            return storedStarList ?? []
+        }
+        set {
+            print("즐겨찾기 리스트 저장")
+            userDefaults.set(newValue, forKey: Key.starList.rawValue)
+        }
+    }
+    
 }

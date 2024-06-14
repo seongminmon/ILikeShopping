@@ -38,6 +38,7 @@
 		2426F6382C1C356F005350A9 /* ShoppingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6372C1C356F005350A9 /* ShoppingResponse.swift */; };
 		2426F63A2C1C3707005350A9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6392C1C3707005350A9 /* SearchViewController.swift */; };
 		2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63B2C1C370F005350A9 /* DetailViewController.swift */; };
+		2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63D2C1C4937005350A9 /* Sequence+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		2426F6372C1C356F005350A9 /* ShoppingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingResponse.swift; sourceTree = "<group>"; };
 		2426F6392C1C3707005350A9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2426F63B2C1C370F005350A9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2426F63D2C1C4937005350A9 /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,8 +148,9 @@
 		2426F61A2C1B0268005350A9 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				2426F6152C1AFEAA005350A9 /* UIColor+.swift */,
 				2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */,
+				2426F6152C1AFEAA005350A9 /* UIColor+.swift */,
+				2426F63D2C1C4937005350A9 /* Sequence+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
+				2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */,
 				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* Font.swift in Sources */,
 				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
