@@ -23,7 +23,6 @@ class OnBoardingViewController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationController?.navigationBar.tintColor = MyColor.black
         navigationItem.backButtonDisplayMode = .minimal
     }
     

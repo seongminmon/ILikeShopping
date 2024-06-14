@@ -33,7 +33,6 @@ class ProfileImageCollectionViewCell: UICollectionViewCell {
             profileImageView.layer.borderColor = MyColor.orange.cgColor
             profileImageView.alpha = 1
         } else {
-            image.withTintColor(MyColor.lightgray, renderingMode: .alwaysTemplate)
             profileImageView.layer.borderWidth = 1
             profileImageView.layer.borderColor = MyColor.lightgray.cgColor
             profileImageView.alpha = 0.5

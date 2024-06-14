@@ -19,7 +19,6 @@ class ProfileImageView: UIImageView {
             layer.borderColor = MyColor.orange.cgColor
             alpha = 1
         } else {
-            self.image?.withTintColor(MyColor.lightgray, renderingMode: .alwaysTemplate)
             layer.borderWidth = 1
             layer.borderColor = MyColor.lightgray.cgColor
             alpha = 0.5

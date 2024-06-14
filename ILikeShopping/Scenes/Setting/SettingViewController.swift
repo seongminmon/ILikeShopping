@@ -20,7 +20,7 @@ class SettingViewController: UIViewController {
     let ud = UserDefaultsManager.shared
     
     let containerView = UIView()
-    lazy var profileImage = ProfileImageView(image: ud.profileImage, isSelect: true)
+    lazy var profileImageView = ProfileImageView(image: ud.profileImage, isSelect: true)
     let nameLabel = UILabel()
     let dateLabel = UILabel()
     let detailButton = UIButton()
@@ -36,6 +36,13 @@ class SettingViewController: UIViewController {
         configureLayout()
         configureUI()
         configureTableView()
+        configureView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureView()
+        tableView.reloadData()
     }
     
     func configureNavigationBar() {
@@ -46,7 +53,7 @@ class SettingViewController: UIViewController {
     }
     
     func configureHierarchy() {
-        containerView.addSubview(profileImage)
+        containerView.addSubview(profileImageView)
         containerView.addSubview(nameLabel)
         containerView.addSubview(dateLabel)
         containerView.addSubview(detailButton)
@@ -67,7 +74,7 @@ class SettingViewController: UIViewController {
             make.edges.equalTo(containerView)
         }
         
-        profileImage.snp.makeConstraints { make in
+        profileImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(16)
             make.size.equalTo(100)
@@ -75,14 +82,14 @@ class SettingViewController: UIViewController {
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
-            make.leading.equalTo(profileImage.snp.trailing).offset(16)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
             make.trailing.equalTo(detailButton.snp.leading)
             make.height.equalTo(30)
         }
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
-            make.leading.equalTo(profileImage.snp.trailing).offset(16)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
             make.trailing.equalTo(detailButton.snp.leading)
             make.height.equalTo(30)
         }
@@ -115,8 +122,10 @@ class SettingViewController: UIViewController {
         dateLabel.textColor = MyColor.gray
         
         separator.backgroundColor = MyColor.black
-        
-        // data
+    }
+    
+    func configureView() {
+        profileImageView.image = ud.profileImage
         nameLabel.text = ud.nickname
         dateLabel.text = ud.signUpDateString
         detailButton.setImage(MyImage.right, for: .normal)
@@ -140,6 +149,8 @@ class SettingViewController: UIViewController {
     @objc func containerButtonTapped() {
         // 닉네임 설정 화면으로 이동
         let vc = SettingNicknameViewController()
+        // 수정으로 설정
+        vc.settingOption = .edit
         navigationController?.pushViewController(vc, animated: true)
     }
 }

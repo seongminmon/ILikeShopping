@@ -9,13 +9,15 @@ import UIKit
 
 class SettingImageViewController: UIViewController {
     
-    // TODO: - 이미지 설정 화면, 이미지 수정 화면 2개로 활용하기
+    // TODO: - popview할때 인덱스 값 전달하기
     
     let selectedImageView = ProfileImageView(image: nil, isSelect: true)
     let cameraImageView = CameraImageView(frame: .zero)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
-    let ud = UserDefaultsManager.shared
+    // 기본값은 설정
+    var settingOption: SettingOption = .setting
+    var selectedIndex: Int = 0
     
     func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -48,8 +50,16 @@ class SettingImageViewController: UIViewController {
         configureCollectionView()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 닉네임 화면으로 돌아가기 직전에 데이터 전달
+        print(#function)
+        let popVc = navigationController?.viewControllers.last! as! SettingNicknameViewController
+        popVc.imageIndex = selectedIndex
+    }
+    
     func configureNavigationBar() {
-        navigationItem.title = "PROFILE SETTING"
+        navigationItem.title = settingOption.rawValue
     }
     
     func configureHierarchy() {
@@ -77,7 +87,7 @@ class SettingImageViewController: UIViewController {
     }
     
     func configureUI() {
-        selectedImageView.image = ud.profileImage
+        selectedImageView.image = MyImage.profileImageList[selectedIndex]
     }
     
     func configureCollectionView() {
@@ -95,13 +105,13 @@ extension SettingImageViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileImageCollectionViewCell.identifier, for: indexPath) as! ProfileImageCollectionViewCell
-        cell.configureCell(index: indexPath.item, selectedIndex: ud.profileImageIndex)
+        cell.configureCell(index: indexPath.item, selectedIndex: selectedIndex)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        ud.profileImageIndex = indexPath.item
-        selectedImageView.image = ud.profileImage
+        selectedIndex = indexPath.item
+        configureUI()
         collectionView.reloadData()
     }
 }

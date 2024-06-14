@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             let vc = OnBoardingViewController()
             let nav = UINavigationController(rootViewController: vc)
+            nav.navigationBar.tintColor = MyColor.black
             window?.rootViewController = nav
         }
         
