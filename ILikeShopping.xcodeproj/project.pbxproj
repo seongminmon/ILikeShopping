@@ -34,6 +34,7 @@
 		2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62E2C1BF426005350A9 /* SettingViewController.swift */; };
 		2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */; };
 		2426F6342C1C10AB005350A9 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2426F6332C1C10AB005350A9 /* IQKeyboardManagerSwift */; };
+		2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		2426F62C2C1BF3D5005350A9 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2426F62E2C1BF426005350A9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
 				2426F62C2C1BF3D5005350A9 /* TabBarController.swift */,
 				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
+				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
 				2426F61F2C1B17EE005350A9 /* Setting */,
 			);
 			path = Scenes;
@@ -272,6 +275,7 @@
 				2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
+				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* Font.swift in Sources */,
 				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
 				2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */,
