@@ -33,6 +33,7 @@
 		2426F62D2C1BF3D5005350A9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62C2C1BF3D5005350A9 /* TabBarController.swift */; };
 		2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62E2C1BF426005350A9 /* SettingViewController.swift */; };
 		2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */; };
+		2426F6342C1C10AB005350A9 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2426F6332C1C10AB005350A9 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2426F60E2C1AF87B005350A9 /* Kingfisher in Frameworks */,
+				2426F6342C1C10AB005350A9 /* IQKeyboardManagerSwift in Frameworks */,
 				2426F6082C1AF85A005350A9 /* SnapKit in Frameworks */,
 				2426F60B2C1AF86A005350A9 /* Alamofire in Frameworks */,
 			);
@@ -192,6 +194,7 @@
 				2426F6072C1AF85A005350A9 /* SnapKit */,
 				2426F60A2C1AF86A005350A9 /* Alamofire */,
 				2426F60D2C1AF87B005350A9 /* Kingfisher */,
+				2426F6332C1C10AB005350A9 /* IQKeyboardManagerSwift */,
 			);
 			productName = ILikeShopping;
 			productReference = 2426F5E82C1AF267005350A9 /* ILikeShopping.app */;
@@ -225,6 +228,7 @@
 				2426F6062C1AF85A005350A9 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				2426F6092C1AF86A005350A9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2426F60C2C1AF87B005350A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2426F6322C1C10AB005350A9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 2426F5E92C1AF267005350A9 /* Products */;
 			projectDirPath = "";
@@ -523,6 +527,14 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		2426F6322C1C10AB005350A9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -540,6 +552,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2426F60C2C1AF87B005350A9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		2426F6332C1C10AB005350A9 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2426F6322C1C10AB005350A9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
