@@ -53,13 +53,15 @@ class SettingNicknameViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.title = settingOption.rawValue
+        
+        // TODO: - 7개나 있는 중복코드 -> 한번에 해결할 수 없을까?
         navigationItem.backButtonDisplayMode = .minimal
         
         switch settingOption {
         case .setting:
             break
         case .edit:
-            // 수정 일땐 완료 버튼 대신 저장 버튼
+            // 수정 일땐 완료 버튼 대신 저장 버튼 사용
             completeButton.isHidden = true
             
             let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonTapped))

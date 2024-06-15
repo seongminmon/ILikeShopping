@@ -51,6 +51,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(20)
+            make.bottom.equalToSuperview().inset(8)
         }
         
         mainImageView.clipsToBounds = true

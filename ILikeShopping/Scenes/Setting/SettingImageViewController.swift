@@ -23,16 +23,11 @@ class SettingImageViewController: UIViewController {
         let cellSpacing: CGFloat = 10
         let cellCount: CGFloat = 4
         
-        // 셀 사이즈
         let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
         layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount)
-        // 스크롤 방향
         layout.scrollDirection = .vertical
-        // 셀 사이 거리 (가로)
         layout.minimumInteritemSpacing = cellSpacing
-        // 셀 사이 거리 (세로)
         layout.minimumLineSpacing = cellSpacing
-        // 섹션 인셋
         layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
         
         return layout
@@ -49,7 +44,7 @@ class SettingImageViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // 닉네임 화면으로 돌아가기 직전에 데이터 전달
+        // 이전 화면(닉네임 화면)에 데이터 전달
         let popVc = navigationController?.viewControllers.last! as! SettingNicknameViewController
         popVc.imageIndex = selectedIndex
     }

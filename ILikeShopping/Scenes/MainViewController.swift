@@ -10,11 +10,12 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
+    // TODO: - 최근 검색어로 눌러서 검색 결과화면으로 이동했다가 돌아왔을때 검색어가 바뀌어야 함
     let searchBar = UISearchBar()
-    // 최근 검색어 없는 경우
+    
     let emptyImageView = UIImageView()
     let emptyLabel = UILabel()
-    // 최근 검색어 있는 경우
+    
     let recentLabel = UILabel()
     let deleteAllButton = UIButton()
     let tableView = UITableView()
@@ -31,6 +32,8 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        toggleHideView()
+        
         tableView.reloadData()
     }
     
@@ -41,14 +44,13 @@ class MainViewController: UIViewController {
     
     func configureHierarchy() {
         view.addSubview(searchBar)
-        if ud.searchWordList.isEmpty {
-            view.addSubview(emptyImageView)
-            view.addSubview(emptyLabel)
-        } else {
-            view.addSubview(recentLabel)
-            view.addSubview(deleteAllButton)
-            view.addSubview(tableView)
-        }
+        
+        view.addSubview(emptyImageView)
+        view.addSubview(emptyLabel)
+        
+        view.addSubview(recentLabel)
+        view.addSubview(deleteAllButton)
+        view.addSubview(tableView)
     }
     
     func configureLayout() {
@@ -57,37 +59,35 @@ class MainViewController: UIViewController {
             make.height.equalTo(60)
         }
         
-        if ud.searchWordList.isEmpty {
-            emptyImageView.snp.makeConstraints { make in
-                make.top.equalTo(searchBar.snp.bottom).offset(8)
-                make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-                make.height.equalTo(emptyImageView.snp.width)
-            }
-            
-            emptyLabel.snp.makeConstraints { make in
-                make.top.equalTo(emptyImageView.snp.bottom)
-                make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
-                make.height.equalTo(30)
-            }
-        } else {
-            recentLabel.snp.makeConstraints { make in
-                make.top.equalTo(searchBar.snp.bottom).offset(8)
-                make.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
-                make.trailing.equalTo(deleteAllButton.snp.leading)
-                make.height.equalTo(30)
-            }
-            
-            deleteAllButton.snp.makeConstraints { make in
-                make.top.equalTo(searchBar.snp.bottom).offset(8)
-                make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
-                make.width.equalTo(80)
-                make.height.equalTo(30)
-            }
-            
-            tableView.snp.makeConstraints { make in
-                make.top.equalTo(recentLabel.snp.bottom).offset(8)
-                make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
-            }
+        emptyImageView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(emptyImageView.snp.width)
+        }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyImageView.snp.bottom)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(30)
+        }
+        
+        recentLabel.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom).offset(8)
+            make.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.trailing.equalTo(deleteAllButton.snp.leading)
+            make.height.equalTo(30)
+        }
+        
+        deleteAllButton.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom).offset(8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.width.equalTo(80)
+            make.height.equalTo(30)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(recentLabel.snp.bottom).offset(8)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -95,27 +95,41 @@ class MainViewController: UIViewController {
         searchBar.placeholder = "브랜드, 상품 등을 입력하세요."
         searchBar.delegate = self
         
+        emptyImageView.image = UIImage(named: "empty")
+        emptyImageView.contentMode = .scaleAspectFit
+        
+        emptyLabel.text = "최근 검색어가 없어요"
+        emptyLabel.font = Font.bold16
+        emptyLabel.textColor = MyColor.black
+        emptyLabel.textAlignment = .center
+        
+        recentLabel.text = "최근 검색"
+        recentLabel.font = Font.bold15
+        
+        deleteAllButton.setTitle("전체 삭제", for: .normal)
+        deleteAllButton.titleLabel?.font = Font.regular14
+        deleteAllButton.setTitleColor(MyColor.orange, for: .normal)
+        deleteAllButton.addTarget(self, action: #selector(deleteAllButtonTapped), for: .touchUpInside)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 44
+        tableView.register(SearchWordTableViewCell.self, forCellReuseIdentifier: SearchWordTableViewCell.identifier)
+    }
+    
+    func toggleHideView() {
         if ud.searchWordList.isEmpty {
-            emptyImageView.image = UIImage(named: "empty")
-            emptyImageView.contentMode = .scaleAspectFit
-            
-            emptyLabel.text = "최근 검색어가 없어요"
-            emptyLabel.font = Font.bold16
-            emptyLabel.textColor = MyColor.black
-            emptyLabel.textAlignment = .center
+            emptyImageView.isHidden = false
+            emptyLabel.isHidden = false
+            recentLabel.isHidden = true
+            deleteAllButton.isHidden = true
+            tableView.isHidden = true
         } else {
-            recentLabel.text = "최근 검색"
-            recentLabel.font = Font.bold15
-            
-            deleteAllButton.setTitle("전체 삭제", for: .normal)
-            deleteAllButton.titleLabel?.font = Font.regular14
-            deleteAllButton.setTitleColor(MyColor.orange, for: .normal)
-            deleteAllButton.addTarget(self, action: #selector(deleteAllButtonTapped), for: .touchUpInside)
-            
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.rowHeight = 44
-            tableView.register(SearchWordTableViewCell.self, forCellReuseIdentifier: SearchWordTableViewCell.identifier)
+            emptyImageView.isHidden = true
+            emptyLabel.isHidden = true
+            recentLabel.isHidden = false
+            deleteAllButton.isHidden = false
+            tableView.isHidden = false
         }
     }
     

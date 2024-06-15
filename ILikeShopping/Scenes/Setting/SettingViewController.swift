@@ -17,17 +17,17 @@ enum CellTitle: String, CaseIterable {
 
 class SettingViewController: UIViewController {
     
-    let ud = UserDefaultsManager.shared
-    
-    let containerView = UIView()
     lazy var profileImageView = ProfileImageView(image: ud.profileImage, isSelect: true)
     let nameLabel = UILabel()
     let dateLabel = UILabel()
     let detailButton = UIButton()
-    
+    let containerView = UIView()
     let containerButton = UIButton()
+    
     let separator = UIView()
     let tableView = UITableView()
+    
+    let ud = UserDefaultsManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +60,8 @@ class SettingViewController: UIViewController {
         
         view.addSubview(containerView)
         view.addSubview(containerButton)
-        view.addSubview(tableView)
         view.addSubview(separator)
+        view.addSubview(tableView)
     }
     
     func configureLayout() {
@@ -135,15 +135,15 @@ class SettingViewController: UIViewController {
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
+        
         tableView.rowHeight = 50
+        tableView.isScrollEnabled = false
         
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.separatorInsetReference = .fromCellEdges
         tableView.separatorColor = MyColor.black
-        
-        tableView.isScrollEnabled = false
-        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
     }
     
     @objc func containerButtonTapped() {
@@ -162,7 +162,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
+        
         let title = CellTitle.allCases[indexPath.row].rawValue
+        
+        // TODO: - allCases 사용해서 리팩토링 하기
         if indexPath.row == 0 {
             cell.configureCell(title: title, count: ud.starList.count)
         } else {
@@ -172,6 +175,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: - allCases 사용해서 리팩토링 하기
         // 탈퇴하기만 선택 가능
         if indexPath.row == 4 {
             let alert = UIAlertController(
@@ -184,7 +188,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 // 모든 데이터 초기화
                 self.ud.removeAll()
                 
-                // 온보딩 화면으로 이동
+                // 온보딩 화면으로 window 전환
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 let sceneDelegate = windowScene?.delegate as? SceneDelegate
                 

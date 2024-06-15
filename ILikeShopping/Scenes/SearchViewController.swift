@@ -28,19 +28,6 @@ enum SortOption: String, CaseIterable {
 
 class SearchViewController: UIViewController {
 
-    // TODO: - 좋아요 리스트 관리
-    // Set<Int>형으로 id값들을 저장한다
-    // 하나의 쇼핑을 봤을때 id가 list에 있으면 selected 이미지 사용
-    
-    // 좋아요를 누를 수 있는 화면
-    // 1. 검색 결과 화면
-    // 2. 상세페이지 웹뷰 화면
-    
-    // 좋아요 표시가 되는 화면
-    // 1. 검색 결과 화면 셀
-    // 2. 상세페이지 화면 네비게이션 아이템
-    // 3. 설정 화면 셀
-    
     let totalCountLabel = UILabel()
     let simButton = SortButton(option: .sim, isSelect: true)
     let dateButton = SortButton(option: .date, isSelect: false)
@@ -58,7 +45,7 @@ class SearchViewController: UIViewController {
         let cellCount: CGFloat = 2
         
         let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
-        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.5)
+        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.6)
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = cellSpacing
         layout.minimumLineSpacing = cellSpacing
@@ -88,6 +75,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureNavigationBar()
         collectionView.reloadData()
     }
     
@@ -244,8 +232,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     
     @objc func likeButtonTapped(sender: UIButton) {
-        print(#function, sender)
-        
         guard let shoppingData else { return }
         let id = shoppingData.items[sender.tag].productId
         
@@ -266,7 +252,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
         let vc = DetailViewController()
         let data = shoppingData?.items[indexPath.item]
         vc.data = data

@@ -28,9 +28,13 @@ class DetailViewController: UIViewController {
     func configureNavigationBar() {
         guard let data else { return }
         navigationItem.title = data.encodedString
-        let image = ud.starList.contains(data.productId) ? MyImage.selected : MyImage.unselected
-        let likeButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(likeButtonTapped))
+        let buttonImage = ud.starList.contains(data.productId) ? MyImage.selected : MyImage.unselected
+        let likeButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(likeButtonTapped))
         navigationItem.rightBarButtonItem = likeButton
+        
+        // MARK: didFinish 이전에 pop 제스처로 되돌아가면 생기는 문제
+        // -> pop 제스처 막기
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     @objc func likeButtonTapped(sender: UIBarButtonItem) {
@@ -56,16 +60,18 @@ class DetailViewController: UIViewController {
         }
         
         indicator.snp.makeConstraints { make in
-            make.center.equalTo(view.safeAreaLayoutGuide)
+            make.center.equalToSuperview()
             make.size.equalTo(40)
         }
     }
     
     func configureUI() {
         webView.navigationDelegate = self
-        guard let url = data?.linkUrl else { return }
-        let request = URLRequest(url: url)
-        webView.load(request)
+        
+        if let url = data?.linkUrl {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
 }
 

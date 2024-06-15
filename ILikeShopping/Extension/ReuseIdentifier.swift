@@ -22,3 +22,7 @@ extension UITableViewCell: ReuseIdentifierProtocol {
         return String(describing: self)
     }
 }
+
+//extension UIViewController {
+//    navigationItem.backButtonDisplayMode = .minimal
+//}
