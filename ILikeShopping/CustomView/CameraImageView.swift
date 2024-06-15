@@ -21,7 +21,7 @@ class CameraImageView: UIView {
         }
         
         camera.contentMode = .scaleAspectFit
-        camera.image = MyImage.camera.withRenderingMode(.alwaysTemplate)
+        camera.image = MyImage.camera
         camera.tintColor = MyColor.white
         
         backgroundColor = MyColor.orange

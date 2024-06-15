@@ -24,8 +24,8 @@ enum MyImage {
         UIImage(named: "profile_11")!,
     ]
     
-    static let unselected = UIImage(named: "like_unselected")!
-    static let selected = UIImage(named: "like_selected")!
+    static let unselected = UIImage(named: "like_unselected")!.withRenderingMode(.alwaysOriginal)
+    static let selected = UIImage(named: "like_selected")!.withRenderingMode(.alwaysOriginal)
     
     static let magnifyingglass = UIImage(systemName: "magnifyingglass")!
     static let person = UIImage(systemName: "person")!

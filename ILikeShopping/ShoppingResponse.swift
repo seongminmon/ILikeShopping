@@ -37,6 +37,10 @@ struct Shopping: Codable {
         return "\(Int(lprice)?.formatted() ?? "n/a")원"
     }
     
+    var linkUrl: URL? {
+        return URL(string: link)
+    }
+    
 //    let hprice: String
 //    let productType: String
 //    let brand: String

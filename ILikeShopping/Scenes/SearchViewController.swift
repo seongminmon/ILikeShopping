@@ -86,8 +86,14 @@ class SearchViewController: UIViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
     func configureNavigationBar() {
         navigationItem.title = query
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {
@@ -261,6 +267,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
+        let vc = DetailViewController()
+        let data = shoppingData?.items[indexPath.item]
+        vc.data = data
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
