@@ -56,11 +56,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
         mainImageView.clipsToBounds = true
         mainImageView.layer.cornerRadius = 20
         
-        // TODO: - like 동기화 시키기
-        likeButton.setImage(MyImage.unselected, for: .normal)
-        likeButton.backgroundColor = MyColor.black
-        likeButton.layer.opacity = 0.5
-        
         likeButton.clipsToBounds = true
         likeButton.layer.cornerRadius = 10
         
@@ -79,11 +74,29 @@ class SearchCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(data: Shopping?) {
+    func configureCell(data: Shopping?, query: String, isSelected: Bool) {
         guard let data else { return }
         mainImageView.kf.setImage(with: data.imageUrl)
         mallLabel.text = data.mallName
+        
         titleLabel.text = data.encodedString
+        let fullText = titleLabel.text ?? ""
+        let attribtuedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: query)
+        attribtuedString.addAttribute(.backgroundColor, value: MyColor.orange, range: range)
+        titleLabel.attributedText = attribtuedString
+        
         priceLabel.text = data.price
+        
+        if isSelected {
+            likeButton.setImage(MyImage.selected, for: .normal)
+            likeButton.backgroundColor = MyColor.white
+            likeButton.layer.opacity = 1
+        } else {
+            likeButton.setImage(MyImage.unselected, for: .normal)
+            likeButton.backgroundColor = MyColor.black
+            likeButton.layer.opacity = 0.5
+        }
+        
     }
 }

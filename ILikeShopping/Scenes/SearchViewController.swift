@@ -31,9 +31,15 @@ class SearchViewController: UIViewController {
     // TODO: - 좋아요 리스트 관리
     // Set<Int>형으로 id값들을 저장한다
     // 하나의 쇼핑을 봤을때 id가 list에 있으면 selected 이미지 사용
+    
     // 좋아요를 누를 수 있는 화면
     // 1. 검색 결과 화면
     // 2. 상세페이지 웹뷰 화면
+    
+    // 좋아요 표시가 되는 화면
+    // 1. 검색 결과 화면 셀
+    // 2. 상세페이지 화면 네비게이션 아이템
+    // 3. 설정 화면 셀
     
     let totalCountLabel = UILabel()
     let simButton = SortButton(option: .sim, isSelect: true)
@@ -60,6 +66,8 @@ class SearchViewController: UIViewController {
         
         return layout
     }
+    
+    let ud = UserDefaultsManager.shared
     
     var query: String?  // 이전 화면에서 전달
     var shoppingData: ShoppingResponse? // 네트워크
@@ -221,9 +229,34 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
-        let data = shoppingData?.items[indexPath.row]
-        cell.configureCell(data: data)
+        let data = shoppingData?.items[indexPath.item]
+        cell.configureCell(data: data, query: query ?? "", isSelected: ud.starList.contains(data?.productId ?? ""))
+        cell.likeButton.tag = indexPath.item
+        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return cell
+    }
+    
+    
+    @objc func likeButtonTapped(sender: UIButton) {
+        print(#function, sender)
+        
+        guard let shoppingData else { return }
+        let id = shoppingData.items[sender.tag].productId
+        
+        if let index = ud.starList.firstIndex(of: id) {
+            ud.starList.remove(at: index)
+            
+            sender.setImage(MyImage.unselected, for: .normal)
+            sender.backgroundColor = MyColor.black
+            sender.layer.opacity = 0.5
+        } else {
+            ud.starList.append(id)
+            
+            sender.setImage(MyImage.selected, for: .normal)
+            sender.backgroundColor = MyColor.white
+            sender.layer.opacity = 1
+        }
+//        collectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -238,7 +271,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
               let query else { return }
         
         indexPaths.forEach { indexPath in
-            if indexPath.item == shoppingData.items.count - 4 && 
+            if indexPath.item == shoppingData.items.count - 8 &&
                 shoppingData.items.count < shoppingData.total &&
                 start <= 1000 {
                 start += display

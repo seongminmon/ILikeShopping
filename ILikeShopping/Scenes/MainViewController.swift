@@ -150,7 +150,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     @objc func deleteButtonTapped(sender: UIButton) {
         // 선택한 row 지우기
         ud.searchWordList.remove(at: sender.tag)
-        tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
+        tableView.reloadData()
+//        tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -12,15 +12,16 @@ class UserDefaultsManager {
     private init() {}
     static let shared = UserDefaultsManager()
     
-    let userDefaults = UserDefaults.standard
+    let ud = UserDefaults.standard
     
     func removeAll() {
-        for key in userDefaults.dictionaryRepresentation().keys {
-            UserDefaults.standard.removeObject(forKey: key.description)
-        }
+        Key.allCases.forEach { ud.removeObject(forKey: $0.rawValue) }
+//        for key in userDefaults.dictionaryRepresentation().keys {
+//            UserDefaults.standard.removeObject(forKey: key.description)
+//        }
     }
     
-    enum Key: String {
+    enum Key: String, CaseIterable {
         case nickname
         case profileImageIndex
         case signUpDate
@@ -34,34 +35,34 @@ class UserDefaultsManager {
     var nickname: String {
         get {
 //            print("닉네임 불러오기")
-            return userDefaults.string(forKey: Key.nickname.rawValue) ?? "OOO"
+            return ud.string(forKey: Key.nickname.rawValue) ?? "OOO"
         }
         set {
 //            print("닉네임 저장")
-            userDefaults.set(newValue, forKey: Key.nickname.rawValue)
+            ud.set(newValue, forKey: Key.nickname.rawValue)
         }
     }
     
     var profileImageIndex: Int {
         get {
 //            print("프로필 이미지 인덱스 불러오기")
-            return userDefaults.integer(forKey: Key.profileImageIndex.rawValue)
+            return ud.integer(forKey: Key.profileImageIndex.rawValue)
         }
         set {
 //            print("프로필 이미지 인덱스 저장")
-            userDefaults.set(newValue, forKey: Key.profileImageIndex.rawValue)
+            ud.set(newValue, forKey: Key.profileImageIndex.rawValue)
         }
     }
     
     var signUpDate: Date? {
         get {
-            let storedDate = userDefaults.object(forKey: Key.signUpDate.rawValue) as? Date
+            let storedDate = ud.object(forKey: Key.signUpDate.rawValue) as? Date
 //            print("가입날짜 불러오기: \(String(describing: storedDate))")
             return storedDate
         }
         set {
 //            print("가입 날짜 저장")
-            userDefaults.set(newValue, forKey: Key.signUpDate.rawValue)
+            ud.set(newValue, forKey: Key.signUpDate.rawValue)
         }
     }
     
@@ -85,27 +86,27 @@ class UserDefaultsManager {
     
     var searchWordList: [String] {
         get {
-            let storedSearchWordList = userDefaults.object(forKey: Key.searchWordList.rawValue) as? [String]
+            let storedSearchWordList = ud.object(forKey: Key.searchWordList.rawValue) as? [String]
 //            print("검색어리스트 불러오기: \(storedSearchWordList ?? [])")
             return storedSearchWordList ?? []
         }
         set {
 //            print("검색어리스트 저장")
             // 중복 데이터 제거 (순서 보장)
-            userDefaults.set(newValue.uniqued(), forKey: Key.searchWordList.rawValue)
+            ud.set(newValue.uniqued(), forKey: Key.searchWordList.rawValue)
         }
     }
     
     // id값들을 저장해서 일치하면 like
-    var starList: Set<Int> {
+    var starList: [String] {
         get {
-            let storedStarList = userDefaults.object(forKey: Key.starList.rawValue) as? Set<Int>
-//            print("즐겨찾기 리스트 불러오기: \(storedStarList ?? [])")
+            let storedStarList = ud.object(forKey: Key.starList.rawValue) as? [String]
+            print("즐겨찾기 리스트 불러오기: \(storedStarList ?? [])")
             return storedStarList ?? []
         }
         set {
-//            print("즐겨찾기 리스트 저장")
-            userDefaults.set(newValue, forKey: Key.starList.rawValue)
+            print("즐겨찾기 리스트 저장")
+            ud.set(newValue.uniqued(), forKey: Key.starList.rawValue)
         }
     }
     
