@@ -10,8 +10,6 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
-    // TODO: - 최근 검색어 리스트 저장 -> ud
-    
     let searchBar = UISearchBar()
     // 최근 검색어 없는 경우
     let emptyImageView = UIImageView()
@@ -166,7 +164,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(#function)
         guard let query = searchBar.text, query != "" else { return }
         ud.searchWordList.insert(query, at: 0)
         search(query)

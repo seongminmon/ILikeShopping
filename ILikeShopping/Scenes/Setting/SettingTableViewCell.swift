@@ -52,7 +52,7 @@ class SettingTableViewCell: UITableViewCell {
     func configureCell(title: String, count: Int?) {
         titleLabel.text = title
         if let count {
-            shoppingImageView.image = UIImage(named: "like_selected")!
+            shoppingImageView.image = MyImage.selected
             shoppingCountLabel.text = "\(count)개의 상품"
             let fullText = shoppingCountLabel.text ?? ""
             let attribtuedString = NSMutableAttributedString(string: fullText)

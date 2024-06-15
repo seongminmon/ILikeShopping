@@ -11,7 +11,7 @@ struct ShoppingResponse: Codable {
     let total: Int
     let start: Int
     let display: Int
-    let items: [Shopping]
+    var items: [Shopping]
 }
 
 struct Shopping: Codable {

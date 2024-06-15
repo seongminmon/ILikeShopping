@@ -115,9 +115,9 @@
 		2426F5EA2C1AF267005350A9 /* ILikeShopping */ = {
 			isa = PBXGroup;
 			children = (
+				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
 				2426F5EB2C1AF267005350A9 /* AppDelegate.swift */,
 				2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */,
-				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
 				2426F6372C1C356F005350A9 /* ShoppingResponse.swift */,
 				2426F61A2C1B0268005350A9 /* Extension */,
 				2426F6272C1B2210005350A9 /* Manager */,

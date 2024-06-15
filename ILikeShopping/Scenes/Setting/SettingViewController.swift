@@ -164,7 +164,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
         let title = CellTitle.allCases[indexPath.row].rawValue
         if indexPath.row == 0 {
-            cell.configureCell(title: title, count: 0)
+            cell.configureCell(title: title, count: ud.starList.count)
         } else {
             cell.configureCell(title: title, count: nil)
         }

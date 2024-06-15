@@ -28,7 +28,12 @@ enum SortOption: String, CaseIterable {
 
 class SearchViewController: UIViewController {
 
-    // TODO: - 네트워크, 페이지네이션, 테이블뷰에 데이터 전달
+    // TODO: - 좋아요 리스트 관리
+    // Set<Int>형으로 id값들을 저장한다
+    // 하나의 쇼핑을 봤을때 id가 list에 있으면 selected 이미지 사용
+    // 좋아요를 누를 수 있는 화면
+    // 1. 검색 결과 화면
+    // 2. 상세페이지 웹뷰 화면
     
     let totalCountLabel = UILabel()
     let simButton = SortButton(option: .sim, isSelect: true)
@@ -61,7 +66,7 @@ class SearchViewController: UIViewController {
     
     let display = 30    // 30으로 고정
     var start = 1       // 페이지네이션 위한 변수
-    var sortOption: SortOption = .sim // 기본값 정확도 순
+    var sortOption: SortOption = .sim
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,9 +144,9 @@ class SearchViewController: UIViewController {
     
     @objc func sortButtonTapped(sender: UIButton) {
         // 1. 선택된 정렬 기준으로 재검색
-        // TODO: - 페이지네이션 구현시 확인 필요
-//        sortOption = SortOption.allCases[sender.tag]
-//        callRequest(query: query ?? "")
+        sortOption = SortOption.allCases[sender.tag]
+        start = 1
+        callRequest(query: query ?? "")
         
         // 2. 선택된 버튼 UI 변경
         [simButton, dateButton, dscButton, ascButton].forEach { button in
@@ -158,6 +163,7 @@ class SearchViewController: UIViewController {
     func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
         collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
     }
     
@@ -183,9 +189,22 @@ class SearchViewController: UIViewController {
             switch response.result {
             case .success(let value):
                 print("SUCCESS")
-                self.shoppingData = value
+                
+                if self.start == 1 {
+                    // 첫 검색이라면 데이터 교체
+                    self.shoppingData = value
+                } else {
+                    // 페이지네이션이라면 데이터 추가
+                    self.shoppingData?.items.append(contentsOf: value.items)
+                }
+                
                 self.totalCountLabel.text = "\((self.shoppingData?.total ?? 0).formatted())개의 검색 결과"
                 self.collectionView.reloadData()
+                
+                if self.start == 1 && value.total > 0 {
+                    // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
+                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                }
                 
             case .failure(let error):
                 print(error)
@@ -209,5 +228,22 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
+    }
+}
+
+extension SearchViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        // 페이지 네이션
+        guard let shoppingData,
+              let query else { return }
+        
+        indexPaths.forEach { indexPath in
+            if indexPath.item == shoppingData.items.count - 4 && 
+                shoppingData.items.count < shoppingData.total &&
+                start <= 1000 {
+                start += display
+                callRequest(query: query)
+            }
+        }
     }
 }
