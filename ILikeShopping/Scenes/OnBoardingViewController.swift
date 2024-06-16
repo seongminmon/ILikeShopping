@@ -57,7 +57,7 @@ class OnBoardingViewController: UIViewController {
         appNameLabel.textColor = MyColor.orange
         appNameLabel.textAlignment = .center
         
-        mainImageView.image = UIImage(named: "launch")
+        mainImageView.image = MyImage.launch
         mainImageView.contentMode = .scaleAspectFill
         
         startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)

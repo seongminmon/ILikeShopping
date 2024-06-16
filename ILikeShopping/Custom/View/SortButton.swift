@@ -9,17 +9,11 @@ import UIKit
 
 class SortButton: UIButton {
     
-    init(option: SortOption, isSelect: Bool) {
+    init(option: SortOption) {
         super.init(frame: .zero)
         setTitle(option.buttonTitle, for: .normal)
         titleLabel?.font = MyFont.regular14
-        if isSelect {
-            setTitleColor(MyColor.white, for: .normal)
-            backgroundColor = MyColor.darkgray
-        } else {
-            setTitleColor(MyColor.black, for: .normal)
-            backgroundColor = MyColor.white
-        }
+
         clipsToBounds = true
         layer.cornerRadius = 15
         layer.borderColor = MyColor.darkgray.cgColor
@@ -28,5 +22,15 @@ class SortButton: UIButton {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureButton(isSelect: Bool) {
+        if isSelect {
+            setTitleColor(MyColor.white, for: .normal)
+            backgroundColor = MyColor.darkgray
+        } else {
+            setTitleColor(MyColor.black, for: .normal)
+            backgroundColor = MyColor.white
+        }
     }
 }

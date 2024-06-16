@@ -29,10 +29,11 @@ enum SortOption: String, CaseIterable {
 class SearchViewController: UIViewController {
 
     let totalCountLabel = UILabel()
-    let simButton = SortButton(option: .sim, isSelect: true)
-    let dateButton = SortButton(option: .date, isSelect: false)
-    let dscButton = SortButton(option: .dsc, isSelect: false)
-    let ascButton = SortButton(option: .asc, isSelect: false)
+    let simButton = SortButton(option: .sim)
+    let dateButton = SortButton(option: .date)
+    let dscButton = SortButton(option: .dsc)
+    let ascButton = SortButton(option: .asc)
+    lazy var buttons = [simButton, dateButton, dscButton, ascButton]
     lazy var buttonStackView = UIStackView(arrangedSubviews: [simButton, dateButton, dscButton, ascButton, UIView()])
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -66,6 +67,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         callRequest(query: query ?? "")
+        
         configureNavigationBar()
         configureHierarchy()
         configureLayout()
@@ -75,7 +77,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavigationBar()
+        // 좋아요 동기화
         collectionView.reloadData()
     }
     
@@ -138,10 +140,11 @@ class SearchViewController: UIViewController {
         dscButton.tag = 2
         ascButton.tag = 3
         
-        simButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
-        dateButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
-        dscButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
-        ascButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+        buttons.forEach { button in
+            let buttonOption = SortOption.allCases[button.tag]
+            button.configureButton(isSelect: buttonOption == sortOption)
+            button.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+        }
     }
     
     @objc func sortButtonTapped(sender: UIButton) {
@@ -151,14 +154,8 @@ class SearchViewController: UIViewController {
         callRequest(query: query ?? "")
         
         // 2. 선택된 버튼 UI 변경
-        [simButton, dateButton, dscButton, ascButton].forEach { button in
-            if button == sender {
-                button.setTitleColor(MyColor.white, for: .normal)
-                button.backgroundColor = MyColor.darkgray
-            } else {
-                button.setTitleColor(MyColor.black, for: .normal)
-                button.backgroundColor = MyColor.white
-            }
+        buttons.forEach { button in
+            button.configureButton(isSelect: button == sender)
         }
     }
     
@@ -229,7 +226,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return cell
     }
-    
     
     @objc func likeButtonTapped(sender: UIButton) {
         guard let shoppingData else { return }

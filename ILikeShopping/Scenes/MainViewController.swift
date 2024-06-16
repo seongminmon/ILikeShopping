@@ -38,7 +38,6 @@ class MainViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.title = "\(ud.nickname)'s ILikeShopping"
-//        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {

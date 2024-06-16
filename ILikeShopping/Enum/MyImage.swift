@@ -23,6 +23,7 @@ enum MyImage {
         UIImage(named: "profile_11")!,
     ]
     
+    static let launch = UIImage(named: "launch")
     static let unselected = UIImage(named: "like_unselected")!.withRenderingMode(.alwaysOriginal)
     static let selected = UIImage(named: "like_selected")!.withRenderingMode(.alwaysOriginal)
     

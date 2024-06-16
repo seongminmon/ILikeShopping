@@ -1,5 +1,5 @@
 //
-//  TabBarController.swift
+//  BaseTabBarController.swift
 //  ILikeShopping
 //
 //  Created by 김성민 on 6/14/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class BaseTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,5 +25,4 @@ class TabBarController: UITabBarController {
         
         setViewControllers([nav1, nav2], animated: true)
     }
-    
 }

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // 가입 여부에 따른 분기 처리
         if UserDefaultsManager.shared.isSignIn {
-            let tab = TabBarController()
+            let tab = BaseTabBarController()
             window?.rootViewController = tab
         } else {
             let vc = OnBoardingViewController()

@@ -30,7 +30,7 @@
 		2426F6262C1B1D4D005350A9 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */; };
 		2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */; };
 		2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */; };
-		2426F62D2C1BF3D5005350A9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62C2C1BF3D5005350A9 /* TabBarController.swift */; };
+		2426F62D2C1BF3D5005350A9 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62C2C1BF3D5005350A9 /* BaseTabBarController.swift */; };
 		2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F62E2C1BF426005350A9 /* SettingViewController.swift */; };
 		2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */; };
 		2426F6342C1C10AB005350A9 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2426F6332C1C10AB005350A9 /* IQKeyboardManagerSwift */; };
@@ -68,7 +68,7 @@
 		2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2426F62A2C1BE92E005350A9 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
-		2426F62C2C1BF3D5005350A9 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		2426F62C2C1BF3D5005350A9 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		2426F62E2C1BF426005350A9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordTableViewCell.swift; sourceTree = "<group>"; };
@@ -136,11 +136,9 @@
 		2426F6032C1AF796005350A9 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				2426F62C2C1BF3D5005350A9 /* BaseTabBarController.swift */,
 				2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */,
-				2426F6042C1AF7A6005350A9 /* OrangeButton.swift */,
-				2426F6172C1B011D005350A9 /* ProfileImageView.swift */,
-				2426F6202C1B1BD3005350A9 /* CameraImageView.swift */,
-				2426F6412C1C4B1B005350A9 /* SortButton.swift */,
+				2426F64A2C1EE33D005350A9 /* View */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -149,8 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				2426F61B2C1B0299005350A9 /* MyColor.swift */,
-				2426F6132C1AFDDF005350A9 /* MyImage.swift */,
 				2426F61D2C1B06E3005350A9 /* MyFont.swift */,
+				2426F6132C1AFDDF005350A9 /* MyImage.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -182,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
-				2426F62C2C1BF3D5005350A9 /* TabBarController.swift */,
 				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
 				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
 				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
@@ -207,6 +204,17 @@
 				2426F6372C1C356F005350A9 /* ShoppingResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2426F64A2C1EE33D005350A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2426F6042C1AF7A6005350A9 /* OrangeButton.swift */,
+				2426F6172C1B011D005350A9 /* ProfileImageView.swift */,
+				2426F6202C1B1BD3005350A9 /* CameraImageView.swift */,
+				2426F6412C1C4B1B005350A9 /* SortButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,7 +303,7 @@
 				2426F5F02C1AF267005350A9 /* OnBoardingViewController.swift in Sources */,
 				2426F6142C1AFDDF005350A9 /* MyImage.swift in Sources */,
 				2426F6182C1B011D005350A9 /* ProfileImageView.swift in Sources */,
-				2426F62D2C1BF3D5005350A9 /* TabBarController.swift in Sources */,
+				2426F62D2C1BF3D5005350A9 /* BaseTabBarController.swift in Sources */,
 				2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */,
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
 				2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */,

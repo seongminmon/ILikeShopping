@@ -169,7 +169,7 @@ class SettingNicknameViewController: UIViewController {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
             
-            let tab = TabBarController()
+            let tab = BaseTabBarController()
             sceneDelegate?.window?.rootViewController = tab
             sceneDelegate?.window?.makeKeyAndVisible()
         }
