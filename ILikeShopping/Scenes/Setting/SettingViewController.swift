@@ -161,13 +161,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
         
-        let title = SettingCellTitle.allCases[indexPath.row].rawValue
-        
-        // TODO: - allCases 사용해서 리팩토링 하기
-        if indexPath.row == 0 {
-            cell.configureCell(title: title, count: ud.starList.count)
+        let option = SettingCellTitle.allCases[indexPath.row]
+        if option == .shoppingList {
+            cell.configureCell(title: option.rawValue, count: ud.starList.count)
         } else {
-            cell.configureCell(title: title, count: nil)
+            cell.configureCell(title: option.rawValue, count: nil)
         }
         return cell
     }
@@ -175,7 +173,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: - allCases 사용해서 리팩토링 하기
         // 탈퇴하기만 선택 가능
-        if indexPath.row == 4 {
+        if SettingCellTitle.allCases[indexPath.row] == .delete {
             let alert = UIAlertController(
                 title: "탈퇴하기",
                 message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?",
