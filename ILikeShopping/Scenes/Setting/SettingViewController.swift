@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum CellTitle: String, CaseIterable {
+enum SettingCellTitle: String, CaseIterable {
     case shoppingList = "나의 장바구니 목록"
     case question = "자주 묻는 질문"
     case inquire = "1:1 문의"
@@ -47,9 +47,6 @@ class SettingViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.title = "SETTING"
-        
-        navigationController?.navigationBar.tintColor = MyColor.black
-        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {
@@ -139,6 +136,7 @@ class SettingViewController: UIViewController {
         
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
+//        tableView.backgroundColor = .blue
         
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -157,13 +155,13 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CellTitle.allCases.count
+        return SettingCellTitle.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
         
-        let title = CellTitle.allCases[indexPath.row].rawValue
+        let title = SettingCellTitle.allCases[indexPath.row].rawValue
         
         // TODO: - allCases 사용해서 리팩토링 하기
         if indexPath.row == 0 {
@@ -193,7 +191,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 let sceneDelegate = windowScene?.delegate as? SceneDelegate
                 
                 let vc = OnBoardingViewController()
-                let nav = UINavigationController(rootViewController: vc)
+                let nav = BaseNavigationController(rootViewController: vc)
                 sceneDelegate?.window?.rootViewController = nav
                 sceneDelegate?.window?.makeKeyAndVisible()
             }

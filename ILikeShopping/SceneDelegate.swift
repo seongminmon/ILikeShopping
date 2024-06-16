@@ -15,13 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
+        // 가입 여부에 따른 분기 처리
         if UserDefaultsManager.shared.isSignIn {
             let tab = TabBarController()
             window?.rootViewController = tab
         } else {
             let vc = OnBoardingViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            nav.navigationBar.tintColor = MyColor.black
+            let nav = BaseNavigationController(rootViewController: vc)
             window?.rootViewController = nav
         }
         

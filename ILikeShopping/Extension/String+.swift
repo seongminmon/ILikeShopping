@@ -8,7 +8,6 @@
 import Foundation
 
 extension String {
-    
     // HTML 태그 지우기
     init?(htmlEncodedString: String) {
         guard let data = htmlEncodedString.data(using: .utf8) else { return nil }

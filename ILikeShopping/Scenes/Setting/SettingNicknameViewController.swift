@@ -53,8 +53,6 @@ class SettingNicknameViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.title = settingOption.rawValue
-        
-        // TODO: - 7개나 있는 중복코드 -> 한번에 해결할 수 없을까?
         navigationItem.backButtonDisplayMode = .minimal
         
         switch settingOption {

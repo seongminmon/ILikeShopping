@@ -42,6 +42,7 @@
 		2426F6402C1C4A7F005350A9 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */; };
 		2426F6422C1C4B1B005350A9 /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6412C1C4B1B005350A9 /* SortButton.swift */; };
 		2426F6442C1C5BB5005350A9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6432C1C5BB5005350A9 /* String+.swift */; };
+		2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		2426F6412C1C4B1B005350A9 /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
 		2426F6432C1C5BB5005350A9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,14 +117,14 @@
 		2426F5EA2C1AF267005350A9 /* ILikeShopping */ = {
 			isa = PBXGroup;
 			children = (
-				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
 				2426F5EB2C1AF267005350A9 /* AppDelegate.swift */,
 				2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */,
+				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
 				2426F6472C1D6640005350A9 /* Model */,
-				2426F61A2C1B0268005350A9 /* Extension */,
 				2426F6272C1B2210005350A9 /* Manager */,
+				2426F61A2C1B0268005350A9 /* Extension */,
 				2426F6192C1B0248005350A9 /* Enum */,
-				2426F6032C1AF796005350A9 /* CustomView */,
+				2426F6032C1AF796005350A9 /* Custom */,
 				2426F6242C1B1CB7005350A9 /* Scenes */,
 				2426F5F42C1AF268005350A9 /* Assets.xcassets */,
 				2426F5F62C1AF268005350A9 /* LaunchScreen.storyboard */,
@@ -131,15 +133,16 @@
 			path = ILikeShopping;
 			sourceTree = "<group>";
 		};
-		2426F6032C1AF796005350A9 /* CustomView */ = {
+		2426F6032C1AF796005350A9 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */,
 				2426F6042C1AF7A6005350A9 /* OrangeButton.swift */,
 				2426F6172C1B011D005350A9 /* ProfileImageView.swift */,
 				2426F6202C1B1BD3005350A9 /* CameraImageView.swift */,
 				2426F6412C1C4B1B005350A9 /* SortButton.swift */,
 			);
-			path = CustomView;
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		2426F6192C1B0248005350A9 /* Enum */ = {
@@ -307,6 +310,7 @@
 				2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
+				2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */,
 				2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */,
 				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* Font.swift in Sources */,

@@ -10,7 +10,7 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
-    // TODO: - 최근 검색어로 눌러서 검색 결과화면으로 이동했다가 돌아왔을때 검색어가 바뀌어야 함
+    // TODO: - 최근 검색어로 눌러서 검색 결과화면으로 이동했다가 돌아왔을때 서치바 텍스트 바꾸기
     let searchBar = UISearchBar()
     
     let emptyImageView = UIImageView()
@@ -39,7 +39,7 @@ class MainViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.title = "\(ud.nickname)'s ILikeShopping"
-        navigationItem.backButtonDisplayMode = .minimal
+//        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {

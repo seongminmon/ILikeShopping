@@ -23,7 +23,6 @@ class OnBoardingViewController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {
