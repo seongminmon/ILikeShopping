@@ -57,8 +57,8 @@ class SettingViewController: UIViewController {
         
         view.addSubview(containerView)
         view.addSubview(containerButton)
-        view.addSubview(separator)
         view.addSubview(tableView)
+        view.addSubview(separator)
     }
     
     func configureLayout() {
@@ -136,7 +136,6 @@ class SettingViewController: UIViewController {
         
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
-//        tableView.backgroundColor = .blue
         
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -171,7 +170,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: - allCases 사용해서 리팩토링 하기
         // 탈퇴하기만 선택 가능
         if SettingCellTitle.allCases[indexPath.row] == .delete {
             let alert = UIAlertController(
