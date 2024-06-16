@@ -9,7 +9,7 @@ import UIKit
 
 class SettingImageViewController: UIViewController {
     
-    let selectedImageView = ProfileImageView(image: nil, isSelect: true)
+    let selectedImageView = ProfileImageView(frame: .zero)
     let cameraImageView = CameraImageView(frame: .zero)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
@@ -78,7 +78,8 @@ class SettingImageViewController: UIViewController {
     }
     
     func configureUI() {
-        selectedImageView.image = MyImage.profileImageList[selectedIndex]
+        selectedImageView.configureImageView(image: MyImage.profileImageList[selectedIndex], isSelect: true)
+//        selectedImageView.image = MyImage.profileImageList[selectedIndex]
     }
     
     func configureCollectionView() {

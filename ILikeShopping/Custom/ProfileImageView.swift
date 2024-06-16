@@ -9,8 +9,21 @@ import UIKit
 
 class ProfileImageView: UIImageView {
     
-    init(image: UIImage?, isSelect: Bool) {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        clipsToBounds = true
+        layer.cornerRadius = frame.width / 2
+    }
+    
+    func configureImageView(image: UIImage?, isSelect: Bool) {
         self.image = image
         contentMode = .scaleAspectFit
         
@@ -23,15 +36,5 @@ class ProfileImageView: UIImageView {
             layer.borderColor = MyColor.lightgray.cgColor
             alpha = 0.5
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        clipsToBounds = true
-        layer.cornerRadius = frame.width / 2
     }
 }

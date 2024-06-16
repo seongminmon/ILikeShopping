@@ -10,7 +10,7 @@ import SnapKit
 
 class ProfileImageCollectionViewCell: UICollectionViewCell {
     
-    let profileImageView =  ProfileImageView(image: nil, isSelect: false)
+    let profileImageView = ProfileImageView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,17 +25,6 @@ class ProfileImageCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(index: Int, selectedIndex: Int) {
-        let image = MyImage.profileImageList[index]
-        profileImageView.image = image
-        
-        if index == selectedIndex {
-            profileImageView.layer.borderWidth = 3
-            profileImageView.layer.borderColor = MyColor.orange.cgColor
-            profileImageView.alpha = 1
-        } else {
-            profileImageView.layer.borderWidth = 1
-            profileImageView.layer.borderColor = MyColor.lightgray.cgColor
-            profileImageView.alpha = 0.5
-        }
+        profileImageView.configureImageView(image: MyImage.profileImageList[index], isSelect: index == selectedIndex)
     }
 }

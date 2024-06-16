@@ -23,7 +23,7 @@ enum NickNameCondition: String {
 
 class SettingNicknameViewController: UIViewController {
     
-    let profileImageView = ProfileImageView(image: nil, isSelect: true)
+    let profileImageView = ProfileImageView(frame: .zero)
     let profileImageButton = UIButton()
     let cameraImageView = CameraImageView(frame: .zero)
     let nicknameTextField = UITextField()
@@ -59,7 +59,6 @@ class SettingNicknameViewController: UIViewController {
         case .edit:
             // 수정 일땐 완료 버튼 대신 저장 버튼 사용
             completeButton.isHidden = true
-            
             let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonTapped))
             navigationItem.rightBarButtonItem = saveButton
         }
@@ -120,12 +119,12 @@ class SettingNicknameViewController: UIViewController {
         case .setting:
             // 초기 설정일 땐 랜덤으로 설정
             imageIndex = Int.random(in: 0..<MyImage.profileImageList.count)
-            profileImageView.image = MyImage.profileImageList[imageIndex]
+            profileImageView.configureImageView(image: MyImage.profileImageList[imageIndex], isSelect: true)
             
             descriptionLabel.textColor = MyColor.orange
         case .edit:
             // 수정일 땐 기존 선택된 이미지로 설정
-            profileImageView.image = ud.profileImage
+            profileImageView.configureImageView(image: ud.profileImage, isSelect: true)
             
             nicknameTextField.text = ud.nickname
             nicknameTextField.becomeFirstResponder()

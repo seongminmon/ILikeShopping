@@ -17,7 +17,7 @@ enum SettingCellTitle: String, CaseIterable {
 
 class SettingViewController: UIViewController {
     
-    lazy var profileImageView = ProfileImageView(image: ud.profileImage, isSelect: true)
+    let profileImageView = ProfileImageView(frame: .zero)
     let nameLabel = UILabel()
     let dateLabel = UILabel()
     let detailButton = UIButton()
@@ -122,7 +122,7 @@ class SettingViewController: UIViewController {
     }
     
     func configureView() {
-        profileImageView.image = ud.profileImage
+        profileImageView.configureImageView(image: ud.profileImage, isSelect: true)
         nameLabel.text = ud.nickname
         dateLabel.text = ud.signUpDateString
         detailButton.setImage(MyImage.right, for: .normal)
