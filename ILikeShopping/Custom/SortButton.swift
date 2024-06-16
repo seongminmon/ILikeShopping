@@ -12,7 +12,7 @@ class SortButton: UIButton {
     init(option: SortOption, isSelect: Bool) {
         super.init(frame: .zero)
         setTitle(option.buttonTitle, for: .normal)
-        titleLabel?.font = Font.regular14
+        titleLabel?.font = MyFont.regular14
         if isSelect {
             setTitleColor(MyColor.white, for: .normal)
             backgroundColor = MyColor.darkgray

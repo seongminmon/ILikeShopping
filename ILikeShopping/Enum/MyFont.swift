@@ -1,5 +1,5 @@
 //
-//  Font.swift
+//  MyFont.swift
 //  ILikeShopping
 //
 //  Created by 김성민 on 6/13/24.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-enum Font {
+enum MyFont {
     static let title = UIFont.systemFont(ofSize: 32, weight: .black)
+    
     static let bold16 = UIFont.boldSystemFont(ofSize: 16)
     static let bold15 = UIFont.boldSystemFont(ofSize: 15)
     static let bold14 = UIFont.boldSystemFont(ofSize: 14)

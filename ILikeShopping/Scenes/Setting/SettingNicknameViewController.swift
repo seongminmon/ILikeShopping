@@ -23,8 +23,6 @@ enum NickNameCondition: String {
 
 class SettingNicknameViewController: UIViewController {
     
-    // MARK: - UD에 저장하는 시점 == 완료버튼이나 저장버튼을 누를 때
-    
     let profileImageView = ProfileImageView(image: nil, isSelect: true)
     let profileImageButton = UIButton()
     let cameraImageView = CameraImageView(frame: .zero)
@@ -139,12 +137,12 @@ class SettingNicknameViewController: UIViewController {
         profileImageButton.addTarget(self, action: #selector(profileImageButtonTapped), for: .touchUpInside)
         
         nicknameTextField.placeholder = "닉네임을 입력해주세요 :)"
-        nicknameTextField.font = Font.regular14
+        nicknameTextField.font = MyFont.regular14
         nicknameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         separator.backgroundColor = MyColor.black
         
-        descriptionLabel.font = Font.regular13
+        descriptionLabel.font = MyFont.regular13
         
         completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
     }
@@ -157,6 +155,8 @@ class SettingNicknameViewController: UIViewController {
         vc.selectedIndex = imageIndex
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    // MARK: - UD에 저장하는 시점 == 완료버튼이나 저장버튼을 누를 때
     
     @objc func completeButtonTapped() {
         // 닉네임 조건 검사

@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // IQKeyboardManager 세팅
         IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.resignOnTouchOutside = true
         
         // LaunchScreen 2초간 보이기

@@ -53,7 +53,7 @@ class OnBoardingViewController: UIViewController {
     
     func configureUI() {
         appNameLabel.text = "ILikeShopping"
-        appNameLabel.font = Font.title
+        appNameLabel.font = MyFont.title
         appNameLabel.textColor = MyColor.orange
         appNameLabel.textAlignment = .center
         

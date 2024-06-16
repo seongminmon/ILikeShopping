@@ -41,7 +41,7 @@ class SearchWordTableViewCell: UITableViewCell {
         
         clockImageView.image = MyImage.clock
         clockImageView.tintColor = MyColor.black
-        mainLabel.font = Font.regular14
+        mainLabel.font = MyFont.regular14
         deleteButton.setImage(MyImage.xmark, for: .normal)
         deleteButton.tintColor = MyColor.black
     }

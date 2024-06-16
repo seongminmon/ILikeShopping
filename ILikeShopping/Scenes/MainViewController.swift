@@ -98,15 +98,15 @@ class MainViewController: UIViewController {
         emptyImageView.contentMode = .scaleAspectFit
         
         emptyLabel.text = "최근 검색어가 없어요"
-        emptyLabel.font = Font.bold16
+        emptyLabel.font = MyFont.bold16
         emptyLabel.textColor = MyColor.black
         emptyLabel.textAlignment = .center
         
         recentLabel.text = "최근 검색"
-        recentLabel.font = Font.bold15
+        recentLabel.font = MyFont.bold15
         
         deleteAllButton.setTitle("전체 삭제", for: .normal)
-        deleteAllButton.titleLabel?.font = Font.regular14
+        deleteAllButton.titleLabel?.font = MyFont.regular14
         deleteAllButton.setTitleColor(MyColor.orange, for: .normal)
         deleteAllButton.addTarget(self, action: #selector(deleteAllButtonTapped), for: .touchUpInside)
         

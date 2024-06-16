@@ -24,7 +24,7 @@
 		2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6152C1AFEAA005350A9 /* UIColor+.swift */; };
 		2426F6182C1B011D005350A9 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6172C1B011D005350A9 /* ProfileImageView.swift */; };
 		2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F61B2C1B0299005350A9 /* MyColor.swift */; };
-		2426F61E2C1B06E3005350A9 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F61D2C1B06E3005350A9 /* Font.swift */; };
+		2426F61E2C1B06E3005350A9 /* MyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F61D2C1B06E3005350A9 /* MyFont.swift */; };
 		2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6202C1B1BD3005350A9 /* CameraImageView.swift */; };
 		2426F6232C1B1C36005350A9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6222C1B1C36005350A9 /* MainViewController.swift */; };
 		2426F6262C1B1D4D005350A9 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */; };
@@ -62,7 +62,7 @@
 		2426F6152C1AFEAA005350A9 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		2426F6172C1B011D005350A9 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		2426F61B2C1B0299005350A9 /* MyColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyColor.swift; sourceTree = "<group>"; };
-		2426F61D2C1B06E3005350A9 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		2426F61D2C1B06E3005350A9 /* MyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFont.swift; sourceTree = "<group>"; };
 		2426F6202C1B1BD3005350A9 /* CameraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImageView.swift; sourceTree = "<group>"; };
 		2426F6222C1B1C36005350A9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 			children = (
 				2426F61B2C1B0299005350A9 /* MyColor.swift */,
 				2426F6132C1AFDDF005350A9 /* MyImage.swift */,
-				2426F61D2C1B06E3005350A9 /* Font.swift */,
+				2426F61D2C1B06E3005350A9 /* MyFont.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 				2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */,
 				2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */,
 				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
-				2426F61E2C1B06E3005350A9 /* Font.swift in Sources */,
+				2426F61E2C1B06E3005350A9 /* MyFont.swift in Sources */,
 				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
 				2426F6402C1C4A7F005350A9 /* SearchCollectionViewCell.swift in Sources */,
 				2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */,

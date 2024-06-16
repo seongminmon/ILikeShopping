@@ -125,7 +125,7 @@ class SearchViewController: UIViewController {
     }
     
     func configureUI() {
-        totalCountLabel.font = Font.bold15
+        totalCountLabel.font = MyFont.bold15
         totalCountLabel.textColor = MyColor.orange
         
         buttonStackView.axis = .horizontal

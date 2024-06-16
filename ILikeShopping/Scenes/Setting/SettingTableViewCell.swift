@@ -40,8 +40,8 @@ class SettingTableViewCell: UITableViewCell {
             make.height.equalTo(30)
         }
         
-        titleLabel.font = Font.regular14
-        shoppingCountLabel.font = Font.regular14
+        titleLabel.font = MyFont.regular14
+        shoppingCountLabel.font = MyFont.regular14
         
     }
     
@@ -57,7 +57,7 @@ class SettingTableViewCell: UITableViewCell {
             let fullText = shoppingCountLabel.text ?? ""
             let attribtuedString = NSMutableAttributedString(string: fullText)
             let range = (fullText as NSString).range(of: "\(count)개")
-            attribtuedString.addAttribute(.font, value: Font.bold14, range: range)
+            attribtuedString.addAttribute(.font, value: MyFont.bold14, range: range)
             shoppingCountLabel.attributedText = attribtuedString
         } else {
             shoppingImageView.image = nil

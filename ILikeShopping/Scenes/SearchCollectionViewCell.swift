@@ -60,14 +60,14 @@ class SearchCollectionViewCell: UICollectionViewCell {
         likeButton.clipsToBounds = true
         likeButton.layer.cornerRadius = 10
         
-        mallLabel.font = Font.regular13
+        mallLabel.font = MyFont.regular13
         mallLabel.textColor = MyColor.gray
         
-        titleLabel.font = Font.regular14
+        titleLabel.font = MyFont.regular14
         titleLabel.textColor = MyColor.black
         titleLabel.numberOfLines = 2
         
-        priceLabel.font = Font.bold15
+        priceLabel.font = MyFont.bold15
         priceLabel.textColor = MyColor.black
     }
     

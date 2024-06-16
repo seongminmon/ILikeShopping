@@ -8,7 +8,6 @@
 import UIKit
 
 enum MyImage {
-
     static let profileImageList: [UIImage] = [
         UIImage(named: "profile_0")!,
         UIImage(named: "profile_1")!,

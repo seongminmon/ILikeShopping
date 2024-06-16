@@ -12,7 +12,7 @@ class OrangeButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
-        titleLabel?.font = Font.bold16
+        titleLabel?.font = MyFont.bold16
         setTitleColor(MyColor.white, for: .normal)
         backgroundColor = MyColor.orange
         clipsToBounds = true

@@ -112,10 +112,10 @@ class SettingViewController: UIViewController {
     func configureUI() {
         containerButton.addTarget(self, action: #selector(containerButtonTapped), for: .touchUpInside)
         
-        nameLabel.font = Font.bold16
+        nameLabel.font = MyFont.bold16
         nameLabel.textColor = MyColor.black
         
-        dateLabel.font = Font.regular14
+        dateLabel.font = MyFont.regular14
         dateLabel.textColor = MyColor.gray
         
         separator.backgroundColor = MyColor.black
