@@ -63,6 +63,7 @@ class DetailViewController: UIViewController {
     
     func configureUI() {
         webView.navigationDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
         
         if let url = data?.linkUrl {
             let request = URLRequest(url: url)

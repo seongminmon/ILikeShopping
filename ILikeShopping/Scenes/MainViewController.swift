@@ -133,7 +133,7 @@ class MainViewController: UIViewController {
     
     @objc func deleteAllButtonTapped() {
         ud.searchWordList.removeAll()
-        tableView.reloadData()
+        toggleHideView()
     }
     
     func search(_ query: String) {
@@ -163,7 +163,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         // 선택한 row 지우기
         ud.searchWordList.remove(at: sender.tag)
         tableView.reloadData()
-//        tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
