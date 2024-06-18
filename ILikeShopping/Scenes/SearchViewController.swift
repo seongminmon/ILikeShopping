@@ -207,6 +207,14 @@ class SearchViewController: UIViewController {
                 
             case .failure(let error):
                 print(error)
+                let alert = UIAlertController(
+                    title: "네트워크 에러",
+                    message: "\(error.localizedDescription)",
+                    preferredStyle: .alert
+                )
+                let cancel = UIAlertAction(title: "확인", style: .cancel)
+                alert.addAction(cancel)
+                self.present(alert, animated: true)
             }
         }
     }

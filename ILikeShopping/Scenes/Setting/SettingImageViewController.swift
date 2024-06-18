@@ -79,7 +79,6 @@ class SettingImageViewController: UIViewController {
     
     func configureUI() {
         selectedImageView.configureImageView(image: MyImage.profileImageList[selectedIndex], isSelect: true)
-//        selectedImageView.image = MyImage.profileImageList[selectedIndex]
     }
     
     func configureCollectionView() {

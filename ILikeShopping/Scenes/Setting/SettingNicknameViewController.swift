@@ -9,7 +9,7 @@ import UIKit
 
 enum SettingOption: String {
     // 설정 : title = "PROFILE SETTING", completButton
-    // 수정 : title = "EDIT PROFILE", rightbarbutton = "저장"
+    // 수정 : title = "EDIT PROFILE", rightbarbutton
     case setting = "PROFILE SETTING"
     case edit = "EDIT PROFILE"
 }
@@ -107,6 +107,7 @@ class SettingNicknameViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(24)
         }
+        
         completeButton.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(16)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
