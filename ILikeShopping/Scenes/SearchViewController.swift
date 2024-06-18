@@ -226,7 +226,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
         let data = shoppingData?.items[indexPath.item]
-        cell.configureCell(data: data, query: query ?? "", isSelected: ud.starList.contains(data?.productId ?? ""))
+        cell.configureCell(
+            data: data,
+            query: query ?? ""
+        )
+        cell.configureButton(isSelected: ud.starList.contains(data?.productId ?? ""))
+                             
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return cell
@@ -235,19 +240,14 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     @objc func likeButtonTapped(sender: UIButton) {
         guard let shoppingData else { return }
         let id = shoppingData.items[sender.tag].productId
+        let cell = collectionView.cellForItem(at: IndexPath(item: sender.tag, section: 0)) as! SearchCollectionViewCell
         
         if let index = ud.starList.firstIndex(of: id) {
             ud.starList.remove(at: index)
-            
-            sender.setImage(MyImage.unselected, for: .normal)
-            sender.backgroundColor = MyColor.black
-            sender.layer.opacity = 0.5
+            cell.configureButton(isSelected: false)
         } else {
             ud.starList.append(id)
-            
-            sender.setImage(MyImage.selected, for: .normal)
-            sender.backgroundColor = MyColor.white
-            sender.layer.opacity = 1
+            cell.configureButton(isSelected: true)
         }
     }
     

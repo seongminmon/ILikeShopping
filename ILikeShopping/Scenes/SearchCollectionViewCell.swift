@@ -75,7 +75,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(data: Shopping?, query: String, isSelected: Bool) {
+    func configureCell(data: Shopping?, query: String) {
         guard let data else { return }
         mainImageView.kf.setImage(with: data.imageUrl)
         mallLabel.text = data.mallName
@@ -88,7 +88,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
         titleLabel.attributedText = attribtuedString
         
         priceLabel.text = data.price
-        
+    }
+    
+    func configureButton(isSelected: Bool) {
         if isSelected {
             likeButton.setImage(MyImage.selected, for: .normal)
             likeButton.backgroundColor = MyColor.white
