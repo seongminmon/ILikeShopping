@@ -97,6 +97,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2408B8A42C217DC0001D96A3 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
+				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
+				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
+				2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */,
+				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		2426F5DF2C1AF267005350A9 = {
 			isa = PBXGroup;
 			children = (
@@ -180,11 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
-				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
-				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
-				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
-				2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */,
-				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
+				2408B8A42C217DC0001D96A3 /* Search */,
 				2426F61F2C1B17EE005350A9 /* Setting */,
 			);
 			path = Scenes;

@@ -27,12 +27,12 @@ class MainViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         configureUI()
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         toggleHideView()
-        
         tableView.reloadData()
     }
     
@@ -108,7 +108,9 @@ class MainViewController: UIViewController {
         deleteAllButton.titleLabel?.font = MyFont.regular14
         deleteAllButton.setTitleColor(MyColor.orange, for: .normal)
         deleteAllButton.addTarget(self, action: #selector(deleteAllButtonTapped), for: .touchUpInside)
-        
+    }
+    
+    func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 44

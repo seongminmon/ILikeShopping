@@ -54,8 +54,8 @@ class SearchViewController: UIViewController {
         configureNavigationBar()
         configureHierarchy()
         configureLayout()
-        configureCollectionView()
         configureUI()
+        configureCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -205,11 +205,13 @@ class SearchViewController: UIViewController {
             case .failure(let error):
                 print(error)
                 let alert = UIAlertController(
-                    title: "네트워크 에러",
+                    title: "오류",
                     message: "\(error.localizedDescription)",
                     preferredStyle: .alert
                 )
-                let cancel = UIAlertAction(title: "확인", style: .cancel)
+                let cancel = UIAlertAction(title: "확인", style: .cancel) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                }
                 alert.addAction(cancel)
                 self.present(alert, animated: true)
             }
