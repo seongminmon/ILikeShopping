@@ -9,16 +9,23 @@ import UIKit
 
 enum SettingOption: String {
     // 설정 : title = "PROFILE SETTING", completButton
-    // 수정 : title = "EDIT PROFILE", rightbarbutton
     case setting = "PROFILE SETTING"
+    // 수정 : title = "EDIT PROFILE", rightbarbutton
     case edit = "EDIT PROFILE"
 }
 
-enum NickNameCondition: String {
-    case lengthError = "2글자 이상 10글자 미만으로 설정해주세요"
-    case specialCharacterError = "닉네임에 @, #, $, % 는 포함할 수 없어요"
-    case numberError = "닉네임에 숫자는 포함할 수 없어요"
-    case possible = "사용할 수 있는 닉네임이에요"
+enum ValidationError: Error, LocalizedError {
+    case length
+    case invalidCharacter
+    case number
+    
+    var errorDescription: String? {
+        switch self {
+        case .length: "2글자 이상 10글자 미만으로 설정해주세요"
+        case .invalidCharacter: "닉네임에 @, #, $, % 는 포함할 수 없어요"
+        case .number: "닉네임에 숫자는 포함할 수 없어요"
+        }
+    }
 }
 
 class SettingNicknameViewController: UIViewController {
@@ -33,6 +40,7 @@ class SettingNicknameViewController: UIViewController {
     
     let ud = UserDefaultsManager.shared
     var settingOption: SettingOption = .setting
+    var nicknameValidation: ValidationError?
     lazy var imageIndex: Int = ud.profileImageIndex
 
     override func viewDidLoad() {
@@ -129,7 +137,6 @@ class SettingNicknameViewController: UIViewController {
             
             nicknameTextField.text = ud.nickname
             nicknameTextField.becomeFirstResponder()
-            textFieldDidChange()
             
             descriptionLabel.textColor = MyColor.black
         }
@@ -142,6 +149,7 @@ class SettingNicknameViewController: UIViewController {
         
         separator.backgroundColor = MyColor.black
         
+        textFieldDidChange()
         descriptionLabel.font = MyFont.regular13
         
         completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
@@ -160,7 +168,7 @@ class SettingNicknameViewController: UIViewController {
     
     @objc func completeButtonTapped() {
         // 닉네임 조건 검사
-        if descriptionLabel.text == NickNameCondition.possible.rawValue {
+        if nicknameValidation == nil {
             // 값 저장
             ud.nickname = nicknameTextField.text ?? ""
             ud.profileImageIndex = imageIndex
@@ -178,7 +186,7 @@ class SettingNicknameViewController: UIViewController {
     
     @objc func saveButtonTapped() {
         // 닉네임 조건 검사
-        if descriptionLabel.text == NickNameCondition.possible.rawValue {
+        if nicknameValidation == nil {
             // 값 저장
             ud.nickname = nicknameTextField.text ?? ""
             ud.profileImageIndex = imageIndex
@@ -190,21 +198,35 @@ class SettingNicknameViewController: UIViewController {
     
     // textField text 값이 변할 때마다 유효성 검사
     @objc func textFieldDidChange() {
-        descriptionLabel.text = checkNickname(nicknameTextField.text ?? "")
-    }
-    
-    func checkNickname(_ str: String) -> String {
-        // 1) 2글자 이상 10글자 미만
-        // 2) "@, #, $, % 사용 불가
-        // 3) 숫자 사용 불가
-        if str.count < 2 || str.count >= 10 {
-            return NickNameCondition.lengthError.rawValue
-        } else if str.contains("@") || str.contains("#") || str.contains("$") || str.contains("%") {
-            return NickNameCondition.specialCharacterError.rawValue
-        } else if str.filter({ $0.isNumber }).count > 0 {
-            return NickNameCondition.numberError.rawValue
-        } else {
-            return NickNameCondition.possible.rawValue
+        do {
+            descriptionLabel.text = try checkNickname(nicknameTextField.text ?? "")
+            nicknameValidation = nil
+        } catch let error as ValidationError {
+            nicknameValidation = error
+            descriptionLabel.text = nicknameValidation?.errorDescription
+        } catch {
+            print("알 수 없는 에러!")
         }
     }
+    
+    func checkNickname(_ text: String) throws -> String {
+        // 1) 2글자 이상 10글자 미만
+        guard text.count >= 2 && text.count < 10 else {
+            throw ValidationError.length
+        }
+        // 2) @, #, $, % 사용 불가
+        let invalidCharacters = "@#$%"
+        for character in text {
+            if invalidCharacters.contains(character) {
+                throw ValidationError.invalidCharacter
+            }
+        }
+        // 3) 숫자 사용 불가
+        guard text.filter({ $0.isNumber }).isEmpty else {
+            throw ValidationError.number
+        }
+        
+        return "사용할 수 있는 닉네임이에요"
+    }
+    
 }
