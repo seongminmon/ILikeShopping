@@ -16,13 +16,9 @@ class OnBoardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
         configureHierarchy()
         configureLayout()
         configureUI()
-    }
-    
-    func configureNavigationBar() {
     }
     
     func configureHierarchy() {

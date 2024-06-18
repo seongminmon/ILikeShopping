@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.resignOnTouchOutside = true
         
         // LaunchScreen 2초간 보이기
-//        sleep(2)
+        sleep(2)
         
         return true
     }
