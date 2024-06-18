@@ -93,7 +93,7 @@ class MainViewController: UIViewController {
         searchBar.placeholder = "브랜드, 상품 등을 입력하세요."
         searchBar.delegate = self
         
-        emptyImageView.image = UIImage(named: "empty")
+        emptyImageView.image = MyImage.empty
         emptyImageView.contentMode = .scaleAspectFit
         
         emptyLabel.text = "최근 검색어가 없어요"
