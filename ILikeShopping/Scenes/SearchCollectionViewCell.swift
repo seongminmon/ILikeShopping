@@ -98,6 +98,5 @@ class SearchCollectionViewCell: UICollectionViewCell {
             likeButton.backgroundColor = MyColor.black
             likeButton.layer.opacity = 0.5
         }
-        
     }
 }

@@ -38,23 +38,6 @@ class SearchViewController: UIViewController {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
-    func collectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        
-        let sectionSpacing: CGFloat = 10
-        let cellSpacing: CGFloat = 10
-        let cellCount: CGFloat = 2
-        
-        let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
-        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.6)
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = cellSpacing
-        layout.minimumLineSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
-        
-        return layout
-    }
-    
     let ud = UserDefaultsManager.shared
     
     var query: String?  // 이전 화면에서 전달
@@ -126,6 +109,23 @@ class SearchViewController: UIViewController {
         }
     }
     
+    func collectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        
+        let sectionSpacing: CGFloat = 10
+        let cellSpacing: CGFloat = 10
+        let cellCount: CGFloat = 2
+        
+        let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
+        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.6)
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = cellSpacing
+        layout.minimumLineSpacing = cellSpacing
+        layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
+        
+        return layout
+    }
+    
     func configureUI() {
         totalCountLabel.font = MyFont.bold15
         totalCountLabel.textColor = MyColor.orange
@@ -135,12 +135,9 @@ class SearchViewController: UIViewController {
         buttonStackView.alignment = .leading
         buttonStackView.spacing = 8
         
-        simButton.tag = 0
-        dateButton.tag = 1
-        dscButton.tag = 2
-        ascButton.tag = 3
-        
-        buttons.forEach { button in
+        for i in 0..<buttons.count {
+            let button = buttons[i]
+            button.tag = i
             let buttonOption = SortOption.allCases[button.tag]
             button.configureButton(isSelect: buttonOption == sortOption)
             button.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
@@ -252,7 +249,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             sender.backgroundColor = MyColor.white
             sender.layer.opacity = 1
         }
-//        collectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
