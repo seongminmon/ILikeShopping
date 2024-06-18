@@ -216,10 +216,8 @@ class SettingNicknameViewController: UIViewController {
         }
         // 2) @, #, $, % 사용 불가
         let invalidCharacters = "@#$%"
-        for character in text {
-            if invalidCharacters.contains(character) {
-                throw ValidationError.invalidCharacter
-            }
+        guard text.filter({ invalidCharacters.contains($0) }).isEmpty else {
+            throw ValidationError.invalidCharacter
         }
         // 3) 숫자 사용 불가
         guard text.filter({ $0.isNumber }).isEmpty else {
