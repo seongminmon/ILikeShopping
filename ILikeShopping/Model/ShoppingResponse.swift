@@ -12,6 +12,10 @@ struct ShoppingResponse: Codable {
     let start: Int
     let display: Int
     var items: [Shopping]
+    
+    var totalCountText: String {
+        return "\(total.formatted())개의 검색 결과"
+    }
 }
 
 struct Shopping: Codable {

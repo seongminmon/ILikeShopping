@@ -48,12 +48,16 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkManager.callRequest(query: query ?? "", start: start, sortOption: sortOption) { result in
+        networkManager.callRequest(
+            query: query ?? "",
+            start: start,
+            sortOption: sortOption
+        ) { result in
             switch result {
             case .success(let value):
-                self.handleSearchSuccess(value: value)
+                self.setSuccessData(value: value)
             case .failure(let error):
-                self.presentSearchFailureAlert()
+                self.presentFailureAlert(message: error.localizedDescription)
             }
         }
         
@@ -154,36 +158,18 @@ class SearchViewController: UIViewController {
         // 1. 선택된 정렬 기준으로 재검색
         sortOption = SortOption.allCases[sender.tag]
         start = 1
-        networkManager.callRequest(query: query ?? "", start: start, sortOption: sortOption) { result in
+        networkManager.callRequest(
+            query: query ?? "",
+            start: start,
+            sortOption: sortOption
+        ) { result in
             switch result {
             case .success(let value):
-                self.handleSearchSuccess(value: value)
+                self.setSuccessData(value: value)
             case .failure(let error):
-                self.presentSearchFailureAlert()
+                self.presentFailureAlert(message: error.localizedDescription)
             }
         }
-//        networkManager.callRequest(query: query ?? "", start: start, sortOption: sortOption) { value in
-//            if let value {
-//                if self.start == 1 {
-//                    // 첫 검색이라면 데이터 교체
-//                    self.shoppingData = value
-//                } else {
-//                    // 페이지네이션이라면 데이터 추가
-//                    self.shoppingData?.items.append(contentsOf: value.items)
-//                }
-//                
-//                self.totalCountLabel.text = "\((self.shoppingData?.total ?? 0).formatted())개의 검색 결과"
-//                self.collectionView.reloadData()
-//                
-//                if self.start == 1 && value.total > 0 {
-//                    // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
-//                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-//                }
-//                
-//            } else {
-//                self.showFailureAlert()
-//            }
-//        }
         
         // 2. 선택된 버튼 UI 변경
         buttons.forEach { button in
@@ -198,7 +184,9 @@ class SearchViewController: UIViewController {
         collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
     }
     
-    func handleSearchSuccess(value: ShoppingResponse) {
+    // MARK: - 네트워크 성공/실패 시 실행할 함수
+    
+    func setSuccessData(value: ShoppingResponse) {
         if start == 1 {
             // 첫 검색이라면 데이터 교체
             shoppingData = value
@@ -207,7 +195,7 @@ class SearchViewController: UIViewController {
             shoppingData?.items.append(contentsOf: value.items)
         }
         
-        totalCountLabel.text = "\((self.shoppingData?.total ?? 0).formatted())개의 검색 결과"
+        totalCountLabel.text = shoppingData?.totalCountText
         collectionView.reloadData()
         
         if start == 1 && value.total > 0 {
@@ -216,10 +204,10 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func presentSearchFailureAlert() {
+    func presentFailureAlert(message: String) {
         let alert = UIAlertController(
             title: "오류",
-            message: "네트워크 통신에 실패했습니다.",
+            message: message,
             preferredStyle: .alert
         )
         let cancel = UIAlertAction(title: "확인", style: .cancel) { _ in
@@ -282,12 +270,16 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
                 shoppingData.items.count < shoppingData.total &&
                 start <= 1000 {
                 start += networkManager.display
-                networkManager.callRequest(query: query, start: start, sortOption: sortOption) { result in
+                networkManager.callRequest(
+                    query: query,
+                    start: start,
+                    sortOption: sortOption
+                ) { result in
                     switch result {
                     case .success(let value):
-                        self.handleSearchSuccess(value: value)
+                        self.setSuccessData(value: value)
                     case .failure(let error):
-                        self.presentSearchFailureAlert()
+                        self.presentFailureAlert(message: error.localizedDescription)
                     }
                 }
             }
