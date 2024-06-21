@@ -87,4 +87,17 @@ extension DetailViewController: WKNavigationDelegate {
         indicator.stopAnimating()
         indicator.isHidden = true
     }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error) {
+        let alert = UIAlertController(
+            title: "에러",
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        let cancel = UIAlertAction(title: "확인", style: .cancel) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
 }
