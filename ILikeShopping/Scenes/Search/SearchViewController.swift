@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 import SnapKit
 
 enum SortOption: String, CaseIterable {
@@ -38,17 +37,25 @@ class SearchViewController: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
     let ud = UserDefaultsManager.shared
+    let networkManager = NetworkManager.shared
     
     var query: String?  // 이전 화면에서 전달
     var shoppingData: ShoppingResponse? // 네트워크
     
-    let display = 30    // 30으로 고정
     var start = 1       // 페이지네이션 위한 변수
     var sortOption: SortOption = .sim
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        callRequest(query: query ?? "")
+        
+        networkManager.callRequest(query: query ?? "", start: start, sortOption: sortOption) { result in
+            switch result {
+            case .success(let value):
+                self.handleSearchSuccess(value: value)
+            case .failure(let error):
+                self.presentSearchFailureAlert()
+            }
+        }
         
         configureNavigationBar()
         configureHierarchy()
@@ -147,7 +154,36 @@ class SearchViewController: UIViewController {
         // 1. 선택된 정렬 기준으로 재검색
         sortOption = SortOption.allCases[sender.tag]
         start = 1
-        callRequest(query: query ?? "")
+        networkManager.callRequest(query: query ?? "", start: start, sortOption: sortOption) { result in
+            switch result {
+            case .success(let value):
+                self.handleSearchSuccess(value: value)
+            case .failure(let error):
+                self.presentSearchFailureAlert()
+            }
+        }
+//        networkManager.callRequest(query: query ?? "", start: start, sortOption: sortOption) { value in
+//            if let value {
+//                if self.start == 1 {
+//                    // 첫 검색이라면 데이터 교체
+//                    self.shoppingData = value
+//                } else {
+//                    // 페이지네이션이라면 데이터 추가
+//                    self.shoppingData?.items.append(contentsOf: value.items)
+//                }
+//                
+//                self.totalCountLabel.text = "\((self.shoppingData?.total ?? 0).formatted())개의 검색 결과"
+//                self.collectionView.reloadData()
+//                
+//                if self.start == 1 && value.total > 0 {
+//                    // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
+//                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+//                }
+//                
+//            } else {
+//                self.showFailureAlert()
+//            }
+//        }
         
         // 2. 선택된 버튼 UI 변경
         buttons.forEach { button in
@@ -162,61 +198,36 @@ class SearchViewController: UIViewController {
         collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
     }
     
-    func callRequest(query: String) {
-        let url = APIURL.shoppingURL
-        let param: Parameters = [
-            "query" : query,
-            "display" : display,
-            "start" : start,
-            "sort" : sortOption,
-        ]
-        let headers: HTTPHeaders = [
-            "X-Naver-Client-Id" : APIKey.clientID,
-            "X-Naver-Client-Secret" : APIKey.clientSecret,
-        ]
+    func handleSearchSuccess(value: ShoppingResponse) {
+        if start == 1 {
+            // 첫 검색이라면 데이터 교체
+            shoppingData = value
+        } else {
+            // 페이지네이션이라면 데이터 추가
+            shoppingData?.items.append(contentsOf: value.items)
+        }
         
-        AF.request(
-            url,
-            method: .get,
-            parameters: param,
-            headers: headers
-        ).responseDecodable(of: ShoppingResponse.self) { response in
-            switch response.result {
-            case .success(let value):
-                print("SUCCESS")
-                
-                if self.start == 1 {
-                    // 첫 검색이라면 데이터 교체
-                    self.shoppingData = value
-                } else {
-                    // 페이지네이션이라면 데이터 추가
-                    self.shoppingData?.items.append(contentsOf: value.items)
-                }
-                
-                self.totalCountLabel.text = "\((self.shoppingData?.total ?? 0).formatted())개의 검색 결과"
-                self.collectionView.reloadData()
-                
-                if self.start == 1 && value.total > 0 {
-                    // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
-                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                }
-                
-            case .failure(let error):
-                print(error)
-                let alert = UIAlertController(
-                    title: "오류",
-                    message: "\(error.localizedDescription)",
-                    preferredStyle: .alert
-                )
-                let cancel = UIAlertAction(title: "확인", style: .cancel) { _ in
-                    self.navigationController?.popViewController(animated: true)
-                }
-                alert.addAction(cancel)
-                self.present(alert, animated: true)
-            }
+        totalCountLabel.text = "\((self.shoppingData?.total ?? 0).formatted())개의 검색 결과"
+        collectionView.reloadData()
+        
+        if start == 1 && value.total > 0 {
+            // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
     }
     
+    func presentSearchFailureAlert() {
+        let alert = UIAlertController(
+            title: "오류",
+            message: "네트워크 통신에 실패했습니다.",
+            preferredStyle: .alert
+        )
+        let cancel = UIAlertAction(title: "확인", style: .cancel) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -270,9 +281,17 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
             if indexPath.item == shoppingData.items.count - 8 &&
                 shoppingData.items.count < shoppingData.total &&
                 start <= 1000 {
-                start += display
-                callRequest(query: query)
+                start += networkManager.display
+                networkManager.callRequest(query: query, start: start, sortOption: sortOption) { result in
+                    switch result {
+                    case .success(let value):
+                        self.handleSearchSuccess(value: value)
+                    case .failure(let error):
+                        self.presentSearchFailureAlert()
+                    }
+                }
             }
         }
     }
+    
 }
