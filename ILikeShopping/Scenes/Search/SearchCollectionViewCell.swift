@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Kingfisher
+//import Kingfisher
 import SnapKit
 
 class SearchCollectionViewCell: UICollectionViewCell {
@@ -77,7 +77,21 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     func configureCell(data: Shopping?, query: String) {
         guard let data else { return }
-        mainImageView.kf.setImage(with: data.imageUrl)
+        
+        // MARK: - Kingfisher -> Data(contentsOf) 방식으로 교체해보기
+//        mainImageView.kf.setImage(with: data.imageUrl)
+        
+        DispatchQueue.global().async {
+            do {
+                let imageData = try Data(contentsOf: data.imageUrl!)
+                DispatchQueue.main.async {
+                    self.mainImageView.image = UIImage(data: imageData)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
         mallLabel.text = data.mallName
         
         titleLabel.text = data.encodedString

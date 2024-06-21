@@ -225,10 +225,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
         let data = shoppingData?.items[indexPath.item]
-        cell.configureCell(
-            data: data,
-            query: query ?? ""
-        )
+        cell.configureCell(data: data, query: query ?? "")
         cell.configureButton(isSelected: ud.starList.contains(data?.productId ?? ""))
                              
         cell.likeButton.tag = indexPath.item
