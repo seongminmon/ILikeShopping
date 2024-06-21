@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingImageViewController: UIViewController {
+class SettingImageViewController: BaseViewController {
     
     let selectedImageView = ProfileImageView(frame: .zero)
     let cameraImageView = CameraImageView(frame: .zero)

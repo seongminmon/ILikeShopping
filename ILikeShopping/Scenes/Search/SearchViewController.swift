@@ -24,7 +24,7 @@ enum SortOption: String, CaseIterable {
     }
 }
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
 
     let totalCountLabel = UILabel()
     let simButton = SortButton(option: .sim)
@@ -76,7 +76,6 @@ class SearchViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.title = query
-        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func configureHierarchy() {

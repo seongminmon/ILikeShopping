@@ -15,7 +15,7 @@ enum SettingCellTitle: String, CaseIterable {
     case delete = "탈퇴하기"
 }
 
-class SettingViewController: UIViewController {
+class SettingViewController: BaseViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
     let nameLabel = UILabel()

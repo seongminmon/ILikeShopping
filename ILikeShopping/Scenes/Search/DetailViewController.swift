@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 import SnapKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: BaseViewController {
     
     let webView = WKWebView()
     let indicator = UIActivityIndicatorView()

@@ -33,7 +33,7 @@ enum NicknameValidationError: Error, LocalizedError {
 //    case none = "사용 가능한 닉네임이에요"
 //}
 
-class SettingNicknameViewController: UIViewController {
+class SettingNicknameViewController: BaseViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
     let profileImageButton = UIButton()
@@ -64,7 +64,6 @@ class SettingNicknameViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.title = settingOption.rawValue
-        navigationItem.backButtonDisplayMode = .minimal
         
         switch settingOption {
         case .setting:

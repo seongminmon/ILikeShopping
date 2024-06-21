@@ -44,6 +44,7 @@
 		2426F6442C1C5BB5005350A9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6432C1C5BB5005350A9 /* String+.swift */; };
 		2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */; };
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
+		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		2426F6432C1C5BB5005350A9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			children = (
 				2426F62C2C1BF3D5005350A9 /* BaseTabBarController.swift */,
 				2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */,
+				2435E6D32C25ADD600B5393A /* BaseViewController.swift */,
 				2426F64A2C1EE33D005350A9 /* View */,
 			);
 			path = Custom;
@@ -315,6 +318,7 @@
 				2426F6142C1AFDDF005350A9 /* MyImage.swift in Sources */,
 				2426F6182C1B011D005350A9 /* ProfileImageView.swift in Sources */,
 				2426F62D2C1BF3D5005350A9 /* BaseTabBarController.swift in Sources */,
+				2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */,
 				2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */,
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
 				2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */,
