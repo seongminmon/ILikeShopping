@@ -8,13 +8,11 @@
 import UIKit
 
 enum SettingOption: String {
-    // 설정 : title = "PROFILE SETTING", completButton
     case setting = "PROFILE SETTING"
-    // 수정 : title = "EDIT PROFILE", rightbarbutton
     case edit = "EDIT PROFILE"
 }
 
-enum ValidationError: Error, LocalizedError {
+enum NicknameValidationError: Error, LocalizedError {
     case length
     case invalidCharacter
     case number
@@ -28,6 +26,13 @@ enum ValidationError: Error, LocalizedError {
     }
 }
 
+//enum NicknameState: String {
+//    case length = "2글자 이상 10글자 미만으로 설정해주세요"
+//    case invalidCharacter = "닉네임에 @, #, $, % 는 포함할 수 없어요"
+//    case number = "닉네임에 숫자는 포함할 수 없어요"
+//    case none = "사용 가능한 닉네임이에요"
+//}
+
 class SettingNicknameViewController: UIViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
@@ -40,7 +45,7 @@ class SettingNicknameViewController: UIViewController {
     
     let ud = UserDefaultsManager.shared
     var settingOption: SettingOption = .setting
-    var nicknameValidation: ValidationError?
+    var nicknameValidation: NicknameValidationError?
     lazy var imageIndex: Int = ud.profileImageIndex
 
     override func viewDidLoad() {
@@ -201,7 +206,7 @@ class SettingNicknameViewController: UIViewController {
         do {
             descriptionLabel.text = try checkNickname(nicknameTextField.text ?? "")
             nicknameValidation = nil
-        } catch let error as ValidationError {
+        } catch let error as NicknameValidationError {
             nicknameValidation = error
             descriptionLabel.text = nicknameValidation?.errorDescription
         } catch {
@@ -212,16 +217,16 @@ class SettingNicknameViewController: UIViewController {
     func checkNickname(_ text: String) throws -> String {
         // 1) 2글자 이상 10글자 미만
         guard text.count >= 2 && text.count < 10 else {
-            throw ValidationError.length
+            throw NicknameValidationError.length
         }
         // 2) @, #, $, % 사용 불가
         let invalidCharacters = "@#$%"
         guard text.filter({ invalidCharacters.contains($0) }).isEmpty else {
-            throw ValidationError.invalidCharacter
+            throw NicknameValidationError.invalidCharacter
         }
         // 3) 숫자 사용 불가
         guard text.filter({ $0.isNumber }).isEmpty else {
-            throw ValidationError.number
+            throw NicknameValidationError.number
         }
         
         return "사용할 수 있는 닉네임이에요"
