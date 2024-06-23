@@ -26,13 +26,6 @@ enum NicknameValidationError: Error, LocalizedError {
     }
 }
 
-//enum NicknameState: String {
-//    case length = "2글자 이상 10글자 미만으로 설정해주세요"
-//    case invalidCharacter = "닉네임에 @, #, $, % 는 포함할 수 없어요"
-//    case number = "닉네임에 숫자는 포함할 수 없어요"
-//    case none = "사용 가능한 닉네임이에요"
-//}
-
 class SettingNicknameViewController: BaseViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
@@ -200,11 +193,16 @@ class SettingNicknameViewController: BaseViewController {
         }
     }
     
+    // MARK: - 닉네임 조건 검사
+    
+    // 1. Error Handling - throw
     // textField text 값이 변할 때마다 유효성 검사
     @objc func textFieldDidChange() {
         do {
-            descriptionLabel.text = try checkNickname(nicknameTextField.text ?? "")
-            nicknameValidation = nil
+            if try checkNickname(nicknameTextField.text ?? "") {
+                nicknameValidation = nil
+                descriptionLabel.text = "사용할 수 있는 닉네임이에요"
+            }
         } catch let error as NicknameValidationError {
             nicknameValidation = error
             descriptionLabel.text = nicknameValidation?.errorDescription
@@ -213,7 +211,7 @@ class SettingNicknameViewController: BaseViewController {
         }
     }
     
-    func checkNickname(_ text: String) throws -> String {
+    func checkNickname(_ text: String) throws -> Bool {
         // 1) 2글자 이상 10글자 미만
         guard text.count >= 2 && text.count < 10 else {
             throw NicknameValidationError.length
@@ -227,8 +225,38 @@ class SettingNicknameViewController: BaseViewController {
         guard text.filter({ $0.isNumber }).isEmpty else {
             throw NicknameValidationError.number
         }
-        
-        return "사용할 수 있는 닉네임이에요"
+        return true
     }
+    
+    // 2.
+//    @objc func textFieldDidChange() {
+//        checkNickname(nicknameTextField.text ?? "")
+//        switch nicknameValidation {
+//        case nil:
+//            descriptionLabel.text = "사용할 수 있는 닉네임이에요"
+//        default:
+//            descriptionLabel.text = nicknameValidation?.errorDescription
+//        }
+//    }
+    
+//    func checkNickname(_ text: String) {
+//        // 1) 2글자 이상 10글자 미만
+//        guard text.count >= 2 && text.count < 10 else {
+//            nicknameValidation = .length
+//            return
+//        }
+//        // 2) @, #, $, % 사용 불가
+//        let invalidCharacters = "@#$%"
+//        guard text.filter({ invalidCharacters.contains($0) }).isEmpty else {
+//            nicknameValidation = .invalidCharacter
+//            return
+//        }
+//        // 3) 숫자 사용 불가
+//        guard text.filter({ $0.isNumber }).isEmpty else {
+//            nicknameValidation = .number
+//            return
+//        }
+//        nicknameValidation = nil
+//    }
     
 }
