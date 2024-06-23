@@ -26,6 +26,7 @@ class UserDefaultsManager {
         case signUpDate
         
         case searchWordList
+        case starIdList
         case starList
     }
     
@@ -88,13 +89,27 @@ class UserDefaultsManager {
     }
     
     // productId 저장하여 관리
-    var starList: [String] {
+    var starIdList: [String] {
         get {
-            let storedStarList = ud.object(forKey: Key.starList.rawValue) as? [String]
-            return storedStarList ?? []
+            let storedStarIdList = ud.object(forKey: Key.starIdList.rawValue) as? [String]
+            return storedStarIdList ?? []
         }
         set {
-            ud.set(newValue.uniqued(), forKey: Key.starList.rawValue)
+            ud.set(newValue.uniqued(), forKey: Key.starIdList.rawValue)
+        }
+    }
+    
+    var starList: [Shopping] {
+        get {
+            guard let data = ud.object(forKey: Key.starList.rawValue) as? Data,
+                  let value = try? JSONDecoder().decode([Shopping].self, from: data) else {
+                return []
+            }
+            return value
+        }
+        set {
+            let data = try? JSONEncoder().encode(newValue)
+            ud.set(data, forKey: Key.starList.rawValue)
         }
     }
     

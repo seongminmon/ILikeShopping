@@ -162,7 +162,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         let option = SettingCellTitle.allCases[indexPath.row]
         if option == .shoppingList {
-            cell.configureCell(title: option.rawValue, count: ud.starList.count)
+            cell.configureCell(title: option.rawValue, count: ud.starIdList.count)
         } else {
             cell.configureCell(title: option.rawValue, count: nil)
         }
@@ -170,8 +170,13 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 탈퇴하기만 선택 가능
-        if SettingCellTitle.allCases[indexPath.row] == .delete {
+        let cellTitle = SettingCellTitle.allCases[indexPath.row]
+        switch cellTitle {
+        case .shoppingList: // 나의 장바구니 목록
+            let vc = StarViewConroller()
+            navigationController?.pushViewController(vc, animated: true)
+            
+        case .delete: // 탈퇴하기
             let alert = UIAlertController(
                 title: "탈퇴하기",
                 message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?",
@@ -197,6 +202,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(cancel)
             
             present(alert, animated: true)
+            
+        default:
+            break
         }
     }
 }

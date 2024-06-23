@@ -45,6 +45,7 @@
 		2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */; };
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
 		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
+		2435E6E02C27FF9E00B5393A /* StarViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewConroller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			children = (
 				2426F62E2C1BF426005350A9 /* SettingViewController.swift */,
 				2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */,
+				2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */,
 				2426F60F2C1AFB42005350A9 /* SettingNicknameViewController.swift */,
 				2426F6112C1AFB54005350A9 /* SettingImageViewController.swift */,
 				2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */,
@@ -337,6 +340,7 @@
 				2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */,
 				2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */,
 				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
+				2435E6E02C27FF9E00B5393A /* StarViewConroller.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* MyFont.swift in Sources */,
 				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
 				2426F6402C1C4A7F005350A9 /* SearchCollectionViewCell.swift in Sources */,

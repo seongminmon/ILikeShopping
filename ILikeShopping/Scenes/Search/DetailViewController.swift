@@ -28,7 +28,7 @@ class DetailViewController: BaseViewController {
     func configureNavigationBar() {
         guard let data else { return }
         navigationItem.title = data.encodedString
-        let buttonImage = ud.starList.contains(data.productId) ? MyImage.selected : MyImage.unselected
+        let buttonImage = ud.starIdList.contains(data.productId) ? MyImage.selected : MyImage.unselected
         let likeButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(likeButtonTapped))
         navigationItem.rightBarButtonItem = likeButton
     }
@@ -36,11 +36,13 @@ class DetailViewController: BaseViewController {
     @objc func likeButtonTapped(sender: UIBarButtonItem) {
         // 좋아요 토글
         guard let data else { return }
-        if let index = ud.starList.firstIndex(of: data.productId) {
+        if let index = ud.starIdList.firstIndex(of: data.productId) {
+            ud.starIdList.remove(at: index)
             ud.starList.remove(at: index)
             sender.image = MyImage.unselected
         } else {
-            ud.starList.append(data.productId)
+            ud.starIdList.append(data.productId)
+            ud.starList.append(data)
             sender.image = MyImage.selected
         }
     }

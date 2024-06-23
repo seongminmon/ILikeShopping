@@ -226,7 +226,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
         let data = shoppingData?.items[indexPath.item]
         cell.configureCell(data: data, query: query ?? "")
-        cell.configureButton(isSelected: ud.starList.contains(data?.productId ?? ""))
+        cell.configureButton(isSelected: ud.starIdList.contains(data?.productId ?? ""))
                              
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
@@ -238,11 +238,14 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let id = shoppingData.items[sender.tag].productId
         let cell = collectionView.cellForItem(at: IndexPath(item: sender.tag, section: 0)) as! SearchCollectionViewCell
         
-        if let index = ud.starList.firstIndex(of: id) {
+        let data = shoppingData.items[sender.tag]
+        if let index = ud.starIdList.firstIndex(of: id) {
+            ud.starIdList.remove(at: index)
             ud.starList.remove(at: index)
             cell.configureButton(isSelected: false)
         } else {
-            ud.starList.append(id)
+            ud.starIdList.append(id)
+            ud.starList.append(data)
             cell.configureButton(isSelected: true)
         }
     }
