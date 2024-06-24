@@ -177,13 +177,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
             
         case .delete: // 탈퇴하기
-            let alert = UIAlertController(
-                title: "탈퇴하기",
-                message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?",
-                preferredStyle: .alert
-            )
-            
-            let confirm = UIAlertAction(title: "확인", style: .default) { action in
+            showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?", actionTitle: "확인") { _ in
                 // 모든 데이터 초기화
                 self.ud.removeAll()
                 
@@ -196,12 +190,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 sceneDelegate?.window?.rootViewController = nav
                 sceneDelegate?.window?.makeKeyAndVisible()
             }
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
-            
-            alert.addAction(confirm)
-            alert.addAction(cancel)
-            
-            present(alert, animated: true)
             
         default:
             break

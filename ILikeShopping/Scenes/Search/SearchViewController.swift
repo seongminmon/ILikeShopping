@@ -57,7 +57,7 @@ class SearchViewController: BaseViewController {
             case .success(let value):
                 self.setSuccessData(value: value)
             case .failure(let error):
-                self.presentFailureAlert(message: error.localizedDescription)
+                self.failureAction(message: error.localizedDescription)
             }
         }
         
@@ -166,7 +166,7 @@ class SearchViewController: BaseViewController {
             case .success(let value):
                 self.setSuccessData(value: value)
             case .failure(let error):
-                self.presentFailureAlert(message: error.localizedDescription)
+                self.failureAction(message: error.localizedDescription)
             }
         }
         
@@ -203,17 +203,10 @@ class SearchViewController: BaseViewController {
         }
     }
     
-    func presentFailureAlert(message: String) {
-        let alert = UIAlertController(
-            title: "오류",
-            message: message,
-            preferredStyle: .alert
-        )
-        let cancel = UIAlertAction(title: "확인", style: .cancel) { _ in
+    func failureAction(message: String) {
+        showAlert(title: "오류", message: message, actionTitle: "확인") { _ in
             self.navigationController?.popViewController(animated: true)
         }
-        alert.addAction(cancel)
-        present(alert, animated: true)
     }
 }
 
@@ -278,7 +271,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
                     case .success(let value):
                         self.setSuccessData(value: value)
                     case .failure(let error):
-                        self.presentFailureAlert(message: error.localizedDescription)
+                        self.failureAction(message: error.localizedDescription)
                     }
                 }
             }
