@@ -55,7 +55,7 @@ class SearchViewController: BaseViewController {
         ) { result in
             switch result {
             case .success(let value):
-                self.setSuccessData(value: value)
+                self.successAction(value: value)
             case .failure(let error):
                 self.failureAction(message: error.localizedDescription)
             }
@@ -164,7 +164,7 @@ class SearchViewController: BaseViewController {
         ) { result in
             switch result {
             case .success(let value):
-                self.setSuccessData(value: value)
+                self.successAction(value: value)
             case .failure(let error):
                 self.failureAction(message: error.localizedDescription)
             }
@@ -185,7 +185,7 @@ class SearchViewController: BaseViewController {
     
     // MARK: - 네트워크 성공/실패 시 실행할 함수
     
-    func setSuccessData(value: ShoppingResponse) {
+    func successAction(value: ShoppingResponse) {
         if start == 1 {
             // 첫 검색이라면 데이터 교체
             shoppingData = value
@@ -220,7 +220,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let data = shoppingData?.items[indexPath.item]
         cell.configureCell(data: data, query: query ?? "")
         cell.configureButton(isSelected: ud.starIdList.contains(data?.productId ?? ""))
-                             
+        
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return cell
@@ -269,7 +269,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
                 ) { result in
                     switch result {
                     case .success(let value):
-                        self.setSuccessData(value: value)
+                        self.successAction(value: value)
                     case .failure(let error):
                         self.failureAction(message: error.localizedDescription)
                     }
