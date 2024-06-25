@@ -8,18 +8,19 @@
 import UIKit
 import SnapKit
 
-class SearchWordTableViewCell: UITableViewCell {
+class SearchWordTableViewCell: BaseTableViewCell {
 
     let clockImageView = UIImageView()
     let mainLabel = UILabel()
     let deleteButton = UIButton()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func addSubviews() {
         contentView.addSubview(clockImageView)
         contentView.addSubview(mainLabel)
         contentView.addSubview(deleteButton)
-        
+    }
+    
+    override func configureLayout() {
         clockImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
@@ -38,16 +39,14 @@ class SearchWordTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.size.equalTo(20)
         }
-        
+    }
+    
+    override func configureView() {
         clockImageView.image = MyImage.clock
         clockImageView.tintColor = MyColor.black
         mainLabel.font = MyFont.regular14
         deleteButton.setImage(MyImage.xmark, for: .normal)
         deleteButton.tintColor = MyColor.black
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func configureCell(text: String) {

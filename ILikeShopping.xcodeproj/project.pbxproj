@@ -43,6 +43,7 @@
 		2426F6422C1C4B1B005350A9 /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6412C1C4B1B005350A9 /* SortButton.swift */; };
 		2426F6442C1C5BB5005350A9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6432C1C5BB5005350A9 /* String+.swift */; };
 		2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */; };
+		24356B092C2AC280000D2DF1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */; };
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
 		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
 		2435E6E02C27FF9E00B5393A /* StarViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */; };
@@ -83,6 +84,7 @@
 		2426F6412C1C4B1B005350A9 /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
 		2426F6432C1C5BB5005350A9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewConroller.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				2426F62C2C1BF3D5005350A9 /* BaseTabBarController.swift */,
 				2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */,
 				2435E6D32C25ADD600B5393A /* BaseViewController.swift */,
+				24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */,
 				2426F64A2C1EE33D005350A9 /* View */,
 			);
 			path = Custom;
@@ -333,6 +336,7 @@
 				2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */,
 				2426F6022C1AF3FB005350A9 /* APIKey.swift in Sources */,
 				2426F63A2C1C3707005350A9 /* SearchViewController.swift in Sources */,
+				24356B092C2AC280000D2DF1 /* BaseTableViewCell.swift in Sources */,
 				2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */,
 				2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,

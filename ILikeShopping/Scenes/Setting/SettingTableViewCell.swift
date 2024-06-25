@@ -8,19 +8,19 @@
 import UIKit
 import SnapKit
 
-class SettingTableViewCell: UITableViewCell {
+class SettingTableViewCell: BaseTableViewCell {
 
     let titleLabel = UILabel()
     let shoppingImageView = UIImageView()
     let shoppingCountLabel = UILabel()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+    override func addSubviews() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(shoppingImageView)
         contentView.addSubview(shoppingCountLabel)
-        
+    }
+    
+    override func configureLayout() {
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.trailing.equalTo(shoppingImageView)
@@ -39,14 +39,11 @@ class SettingTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.height.equalTo(30)
         }
-        
-        titleLabel.font = MyFont.regular14
-        shoppingCountLabel.font = MyFont.regular14
-        
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func configureView() {
+        titleLabel.font = MyFont.regular14
+        shoppingCountLabel.font = MyFont.regular14
     }
     
     func configureCell(title: String, count: Int?) {
