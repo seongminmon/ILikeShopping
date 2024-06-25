@@ -8,20 +8,18 @@
 import UIKit
 import SnapKit
 
-class ProfileImageCollectionViewCell: UICollectionViewCell {
+class ProfileImageCollectionViewCell: BaseCollectionViewCell {
     
     let profileImageView = ProfileImageView(frame: .zero)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func addSubviews() {
         contentView.addSubview(profileImageView)
+    }
+    
+    override func configureLayout() {
         profileImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func configureCell(index: Int, selectedIndex: Int) {

@@ -44,6 +44,7 @@
 		2426F6442C1C5BB5005350A9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6432C1C5BB5005350A9 /* String+.swift */; };
 		2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */; };
 		24356B092C2AC280000D2DF1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */; };
+		24356B0B2C2AC391000D2DF1 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356B0A2C2AC391000D2DF1 /* BaseCollectionViewCell.swift */; };
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
 		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
 		2435E6E02C27FF9E00B5393A /* StarViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */; };
@@ -85,6 +86,7 @@
 		2426F6432C1C5BB5005350A9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		24356B0A2C2AC391000D2DF1 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewConroller.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */,
 				2435E6D32C25ADD600B5393A /* BaseViewController.swift */,
 				24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */,
+				24356B0A2C2AC391000D2DF1 /* BaseCollectionViewCell.swift */,
 				2426F64A2C1EE33D005350A9 /* View */,
 			);
 			path = Custom;
@@ -327,6 +330,7 @@
 				2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */,
 				2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */,
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
+				24356B0B2C2AC391000D2DF1 /* BaseCollectionViewCell.swift in Sources */,
 				2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */,
 				2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */,
 				2426F6382C1C356F005350A9 /* ShoppingResponse.swift in Sources */,

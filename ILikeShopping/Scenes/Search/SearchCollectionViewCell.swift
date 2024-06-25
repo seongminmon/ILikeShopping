@@ -9,7 +9,7 @@ import UIKit
 //import Kingfisher
 import SnapKit
 
-class SearchCollectionViewCell: UICollectionViewCell {
+class SearchCollectionViewCell: BaseCollectionViewCell {
     
     let mainImageView = UIImageView()
     let likeButton = UIButton()
@@ -17,15 +17,15 @@ class SearchCollectionViewCell: UICollectionViewCell {
     let titleLabel = UILabel()
     let priceLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    override func addSubviews() {
         contentView.addSubview(mainImageView)
         contentView.addSubview(likeButton)
         contentView.addSubview(mallLabel)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
-        
+    }
+    
+    override func configureLayout() {
         mainImageView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
             make.height.equalTo(mainImageView.snp.width).multipliedBy(1.1)
@@ -53,7 +53,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(20)
             make.bottom.equalToSuperview().inset(8)
         }
-        
+    }
+    
+    override func configureView() {
         mainImageView.clipsToBounds = true
         mainImageView.layer.cornerRadius = 20
         
@@ -69,10 +71,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
         
         priceLabel.font = MyFont.bold15
         priceLabel.textColor = MyColor.black
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func configureCell(data: Shopping?, query: String) {
