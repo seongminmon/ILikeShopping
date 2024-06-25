@@ -43,10 +43,6 @@ class SettingNicknameViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +51,7 @@ class SettingNicknameViewController: BaseViewController {
         profileImageView.image = MyImage.profileImageList[imageIndex]
     }
     
-    func configureNavigationBar() {
+    override func configureNavigationBar() {
         navigationItem.title = settingOption.rawValue
         
         switch settingOption {
@@ -69,7 +65,7 @@ class SettingNicknameViewController: BaseViewController {
         }
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         view.addSubview(profileImageView)
         view.addSubview(profileImageButton)
         view.addSubview(cameraImageView)
@@ -79,7 +75,7 @@ class SettingNicknameViewController: BaseViewController {
         view.addSubview(completeButton)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         profileImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.centerX.equalToSuperview()
@@ -120,7 +116,7 @@ class SettingNicknameViewController: BaseViewController {
         }
     }
     
-    func configureUI() {
+    override func configureView() {
         switch settingOption {
         case .setting:
             // 초기 설정일 땐 랜덤으로 설정

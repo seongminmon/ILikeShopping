@@ -60,11 +60,7 @@ class SearchViewController: BaseViewController {
                 self.failureAction(message: error.localizedDescription)
             }
         }
-        
-        configureNavigationBar()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
+
         configureCollectionView()
     }
     
@@ -74,17 +70,17 @@ class SearchViewController: BaseViewController {
         collectionView.reloadData()
     }
     
-    func configureNavigationBar() {
+    override func configureNavigationBar() {
         navigationItem.title = query
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         view.addSubview(totalCountLabel)
         view.addSubview(buttonStackView)
         view.addSubview(collectionView)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         totalCountLabel.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(30)
@@ -135,7 +131,7 @@ class SearchViewController: BaseViewController {
         return layout
     }
     
-    func configureUI() {
+    override func configureView() {
         totalCountLabel.font = MyFont.bold15
         totalCountLabel.textColor = MyColor.orange
         

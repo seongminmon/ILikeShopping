@@ -23,10 +23,6 @@ class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
         configureTableView()
     }
     
@@ -36,11 +32,11 @@ class MainViewController: BaseViewController {
         tableView.reloadData()
     }
     
-    func configureNavigationBar() {
+    override func configureNavigationBar() {
         navigationItem.title = "\(ud.nickname)'s ILikeShopping"
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         view.addSubview(searchBar)
         
         view.addSubview(emptyImageView)
@@ -51,7 +47,7 @@ class MainViewController: BaseViewController {
         view.addSubview(tableView)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         searchBar.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(60)
@@ -89,7 +85,7 @@ class MainViewController: BaseViewController {
         }
     }
     
-    func configureUI() {
+    override func configureView() {
         searchBar.placeholder = "브랜드, 상품 등을 입력하세요."
         searchBar.delegate = self
         

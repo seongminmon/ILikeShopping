@@ -17,10 +17,6 @@ class StarViewConroller: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
         configureCollectionView()
     }
     
@@ -30,16 +26,16 @@ class StarViewConroller: BaseViewController {
         collectionView.reloadData()
     }
     
-    func configureNavigationBar() {
+    override func configureNavigationBar() {
         navigationItem.title = "\(ud.nickname)'s Shopping List"
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         view.addSubview(totalCountLabel)
         view.addSubview(collectionView)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         totalCountLabel.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(30)
@@ -68,7 +64,7 @@ class StarViewConroller: BaseViewController {
         return layout
     }
     
-    func configureUI() {
+    override func configureView() {
         totalCountLabel.font = MyFont.bold15
         totalCountLabel.textColor = MyColor.orange
     }
@@ -89,26 +85,9 @@ extension StarViewConroller: UICollectionViewDelegate, UICollectionViewDataSourc
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
         let data = ud.starList[indexPath.item]
         cell.configureCell(data: data, query: "")
-//        cell.configureButton(isSelected: true)
         cell.likeButton.isHidden = true
-        
-//        cell.likeButton.tag = indexPath.item
-//        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return cell
     }
-    
-    // 선택한 셀 삭제
-//    @objc func likeButtonTapped(sender: UIButton) {
-//        let cell = collectionView.cellForItem(at: IndexPath(item: sender.tag, section: 0)) as! SearchCollectionViewCell
-//        let data = ud.starList[sender.tag]
-//        let id = data.productId
-//        
-//        if let index = ud.starIdList.firstIndex(of: id) {
-//            ud.starIdList.remove(at: index)
-//            ud.starList.remove(at: index)
-//            cell.configureButton(isSelected: false)
-//        }
-//    }
     
     // 웹뷰로 이동
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

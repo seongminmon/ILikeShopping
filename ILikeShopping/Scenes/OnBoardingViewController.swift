@@ -16,18 +16,15 @@ class OnBoardingViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         view.addSubview(appNameLabel)
         view.addSubview(mainImageView)
         view.addSubview(startButton)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         appNameLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -47,7 +44,7 @@ class OnBoardingViewController: BaseViewController {
         }
     }
     
-    func configureUI() {
+    override func configureView() {
         appNameLabel.text = "ILikeShopping"
         appNameLabel.font = MyFont.title
         appNameLabel.textColor = MyColor.orange

@@ -19,13 +19,9 @@ class DetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
     }
     
-    func configureNavigationBar() {
+    override func configureNavigationBar() {
         guard let data else { return }
         navigationItem.title = data.encodedString
         let buttonImage = ud.starIdList.contains(data.productId) ? MyImage.selected : MyImage.unselected
@@ -47,12 +43,12 @@ class DetailViewController: BaseViewController {
         }
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         view.addSubview(webView)
         view.addSubview(indicator)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         webView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -63,7 +59,7 @@ class DetailViewController: BaseViewController {
         }
     }
     
-    func configureUI() {
+    override func configureView() {
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
         

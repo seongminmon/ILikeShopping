@@ -18,10 +18,6 @@ class SettingImageViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
         configureCollectionView()
     }
     
@@ -32,17 +28,17 @@ class SettingImageViewController: BaseViewController {
         popVc?.imageIndex = selectedIndex
     }
     
-    func configureNavigationBar() {
+    override func configureNavigationBar() {
         navigationItem.title = settingOption.rawValue
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         view.addSubview(selectedImageView)
         view.addSubview(cameraImageView)
         view.addSubview(collectionView)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         selectedImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.centerX.equalToSuperview()
@@ -77,7 +73,7 @@ class SettingImageViewController: BaseViewController {
         return layout
     }
     
-    func configureUI() {
+    override func configureView() {
         selectedImageView.configureImageView(image: MyImage.profileImageList[selectedIndex], isSelect: true)
     }
     
@@ -101,7 +97,7 @@ extension SettingImageViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
-        configureUI()
+        configureView()
         collectionView.reloadData()
     }
 }

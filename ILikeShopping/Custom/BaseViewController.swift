@@ -10,8 +10,19 @@ import UIKit
 class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         navigationItem.backButtonDisplayMode = .minimal
+        
+        configureNavigationBar()
+        addSubviews()
+        configureLayout()
+        configureView()
     }
+    
+    func configureNavigationBar() {}
+    func addSubviews() {}
+    func configureLayout() {}
+    func configureView() {}
     
     func showAlert(
         title: String,

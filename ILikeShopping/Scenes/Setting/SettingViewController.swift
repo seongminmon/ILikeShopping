@@ -31,25 +31,21 @@ class SettingViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
         configureTableView()
-        configureView()
+//        reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureView()
+        reloadData()
         tableView.reloadData()
     }
     
-    func configureNavigationBar() {
+    override func configureNavigationBar() {
         navigationItem.title = "SETTING"
     }
     
-    func configureHierarchy() {
+    override func addSubviews() {
         containerView.addSubview(profileImageView)
         containerView.addSubview(nameLabel)
         containerView.addSubview(dateLabel)
@@ -61,7 +57,7 @@ class SettingViewController: BaseViewController {
         view.addSubview(separator)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         containerView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(150)
@@ -109,7 +105,7 @@ class SettingViewController: BaseViewController {
         }
     }
     
-    func configureUI() {
+    override func configureView() {
         containerButton.addTarget(self, action: #selector(containerButtonTapped), for: .touchUpInside)
         
         nameLabel.font = MyFont.bold16
@@ -119,13 +115,7 @@ class SettingViewController: BaseViewController {
         dateLabel.textColor = MyColor.gray
         
         separator.backgroundColor = MyColor.black
-    }
-    
-    func configureView() {
-        profileImageView.configureImageView(image: ud.profileImage, isSelect: true)
-        nameLabel.text = ud.nickname
-        dateLabel.text = ud.signUpDateString
-        detailButton.setImage(MyImage.right, for: .normal)
+        
         detailButton.tintColor = MyColor.gray
     }
     
@@ -141,6 +131,13 @@ class SettingViewController: BaseViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.separatorInsetReference = .fromCellEdges
         tableView.separatorColor = MyColor.black
+    }
+    
+    func reloadData() {
+        profileImageView.configureImageView(image: ud.profileImage, isSelect: true)
+        nameLabel.text = ud.nickname
+        dateLabel.text = ud.signUpDateString
+        detailButton.setImage(MyImage.right, for: .normal)
     }
     
     @objc func containerButtonTapped() {
