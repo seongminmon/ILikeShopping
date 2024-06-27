@@ -14,10 +14,16 @@ class UserDefaultsManager {
     
     let ud = UserDefaults.standard
     
+    // UserDefaults 전체 삭제
     func removeAll() {
         Key.allCases.forEach {
             ud.removeObject(forKey: $0.rawValue)
         }
+        
+        // (다른 방법)
+//        ud.dictionaryRepresentation().keys.forEach {
+//            ud.removeObject(forKey: $0)
+//        }
     }
     
     enum Key: String, CaseIterable {
@@ -59,6 +65,8 @@ class UserDefaultsManager {
             ud.set(newValue, forKey: Key.signUpDate.rawValue)
         }
     }
+    
+    // TODO: - 적절한 위치로 옮기기
     
     var profileImage: UIImage {
         return MyImage.profileImageList[profileImageIndex]
