@@ -110,6 +110,7 @@ class SearchViewController: BaseViewController {
         }
     }
     
+    // TODO: - 어디로 옮길까?
     func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
@@ -145,6 +146,7 @@ class SearchViewController: BaseViewController {
         }
     }
     
+    // TODO: - 이미 선택된 버튼 눌렀을 때 네트워크 통신 안하도록 개선
     @objc func sortButtonTapped(sender: UIButton) {
         // 1. 선택된 정렬 기준으로 재검색
         sortOption = SortOption.allCases[sender.tag]
@@ -204,7 +206,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: SearchCollectionViewCell.identifier,
+            for: indexPath
+        ) as? SearchCollectionViewCell else {
             return UICollectionViewCell()
         }
         let data = shoppingData?.items[indexPath.item]

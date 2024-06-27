@@ -82,7 +82,10 @@ extension StarViewConroller: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: SearchCollectionViewCell.identifier,
+            for: indexPath
+        ) as? SearchCollectionViewCell else {
             return UICollectionViewCell()
         }
         let data = ud.starList[indexPath.item]

@@ -147,6 +147,7 @@
 				2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */,
 				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
 				2426F6472C1D6640005350A9 /* Model */,
+				24356B1F2C2D4AA4000D2DF1 /* Network */,
 				2426F6272C1B2210005350A9 /* Manager */,
 				2426F61A2C1B0268005350A9 /* Extension */,
 				2426F6192C1B0248005350A9 /* Enum */,
@@ -221,8 +222,6 @@
 			isa = PBXGroup;
 			children = (
 				2426F6252C1B1D4D005350A9 /* UserDefaultsManager.swift */,
-				24356B192C2CEB50000D2DF1 /* NetworkRequest.swift */,
-				2435E6A72C25669300B5393A /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -244,6 +243,15 @@
 				2426F6412C1C4B1B005350A9 /* SortButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		24356B1F2C2D4AA4000D2DF1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				24356B192C2CEB50000D2DF1 /* NetworkRequest.swift */,
+				2435E6A72C25669300B5393A /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

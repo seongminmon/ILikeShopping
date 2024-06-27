@@ -149,7 +149,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchWordTableViewCell.identifier, for: indexPath) as? SearchWordTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: SearchWordTableViewCell.identifier,
+            for: indexPath
+        ) as? SearchWordTableViewCell else {
             return UITableViewCell()
         }
         let data = ud.searchWordList[indexPath.row]
