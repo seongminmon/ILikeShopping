@@ -146,8 +146,10 @@ class SearchViewController: BaseViewController {
         }
     }
     
-    // TODO: - 이미 선택된 버튼 눌렀을 때 네트워크 통신 안하도록 개선
     @objc func sortButtonTapped(sender: UIButton) {
+        // 이미 선택된 버튼을 누르면 패스
+        if sender.backgroundColor == MyColor.darkgray { return }
+        
         // 1. 선택된 정렬 기준으로 재검색
         sortOption = SortOption.allCases[sender.tag]
         start = 1
