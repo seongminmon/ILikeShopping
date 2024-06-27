@@ -48,11 +48,7 @@ class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkManager.callRequest(
-            query: query ?? "",
-            start: start,
-            sortOption: sortOption
-        ) { result in
+        networkManager.callRequest(api: .search(query: query ?? "", start: start, sortOption: sortOption)) { result in
             switch result {
             case .success(let value):
                 self.successAction(value: value)
@@ -153,11 +149,7 @@ class SearchViewController: BaseViewController {
         // 1. 선택된 정렬 기준으로 재검색
         sortOption = SortOption.allCases[sender.tag]
         start = 1
-        networkManager.callRequest(
-            query: query ?? "",
-            start: start,
-            sortOption: sortOption
-        ) { result in
+        networkManager.callRequest(api: .search(query: query ?? "", start: start, sortOption: sortOption)) { result in
             switch result {
             case .success(let value):
                 self.successAction(value: value)
@@ -257,12 +249,8 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
             if indexPath.item == shoppingData.items.count - 8 &&
                 shoppingData.items.count < shoppingData.total &&
                 start <= 1000 {
-                start += networkManager.display
-                networkManager.callRequest(
-                    query: query,
-                    start: start,
-                    sortOption: sortOption
-                ) { result in
+                start += NetworkRequest.display
+                networkManager.callRequest(api: .search(query: query, start: start, sortOption: sortOption)) { result in
                     switch result {
                     case .success(let value):
                         self.successAction(value: value)

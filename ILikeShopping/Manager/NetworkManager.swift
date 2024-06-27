@@ -14,32 +14,17 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    let display = 30 // 30으로 고정
-    
     func callRequest(
-        query: String,
-        start: Int,
-        sortOption: SortOption,
+        api: NetworkRequest,
         completionHandler: @escaping (Result<ShoppingResponse, Error>) -> ()
     ) {
-        let url = APIURL.shoppingURL
-        let param: Parameters = [
-            "query" : query,
-            "display" : display,
-            "start" : start,
-            "sort" : sortOption,
-        ]
-        let headers: HTTPHeaders = [
-            "X-Naver-Client-Id" : APIKey.clientID,
-            "X-Naver-Client-Secret" : APIKey.clientSecret,
-        ]
-        
-        AF.request(
-            url,
-            method: .get,
-            parameters: param,
-            headers: headers
-        ).responseDecodable(of: ShoppingResponse.self) { response in
+        AF.request(api.endpoint,
+                   method: api.method,
+                   parameters: api.parameters,
+                   encoding: api.encoding,
+                   headers: api.headers)
+        .validate(statusCode: 200..<500)
+        .responseDecodable(of: ShoppingResponse.self) { response in
             switch response.result {
             case .success(let value):
                 print("SUCCESS")
