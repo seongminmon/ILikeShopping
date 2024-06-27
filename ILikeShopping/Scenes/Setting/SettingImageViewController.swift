@@ -24,6 +24,7 @@ class SettingImageViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // 이전 화면(닉네임 화면)에 데이터 전달
+        // TODO: - 클로저, 델리게이트가 더 좋은지
         let popVc = navigationController?.viewControllers.last! as? SettingNicknameViewController
         popVc?.imageIndex = selectedIndex
     }
@@ -90,7 +91,9 @@ extension SettingImageViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileImageCollectionViewCell.identifier, for: indexPath) as! ProfileImageCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileImageCollectionViewCell.identifier, for: indexPath) as? ProfileImageCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         cell.configureCell(index: indexPath.item, selectedIndex: selectedIndex)
         return cell
     }

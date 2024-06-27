@@ -46,6 +46,7 @@
 		24356B092C2AC280000D2DF1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */; };
 		24356B0B2C2AC391000D2DF1 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356B0A2C2AC391000D2DF1 /* BaseCollectionViewCell.swift */; };
 		24356B1A2C2CEB50000D2DF1 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356B192C2CEB50000D2DF1 /* NetworkRequest.swift */; };
+		24356B1C2C2D284E000D2DF1 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356B1B2C2D284E000D2DF1 /* UIImage+.swift */; };
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
 		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
 		2435E6E02C27FF9E00B5393A /* StarViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */; };
@@ -89,6 +90,7 @@
 		24356B082C2AC280000D2DF1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		24356B0A2C2AC391000D2DF1 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		24356B192C2CEB50000D2DF1 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		24356B1B2C2D284E000D2DF1 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewConroller.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				2426F6152C1AFEAA005350A9 /* UIColor+.swift */,
 				2426F63D2C1C4937005350A9 /* Sequence+.swift */,
 				2426F6432C1C5BB5005350A9 /* String+.swift */,
+				24356B1B2C2D284E000D2DF1 /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				2426F62F2C1BF426005350A9 /* SettingViewController.swift in Sources */,
 				2426F6102C1AFB42005350A9 /* SettingNicknameViewController.swift in Sources */,
 				2426F6422C1C4B1B005350A9 /* SortButton.swift in Sources */,
+				24356B1C2C2D284E000D2DF1 /* UIImage+.swift in Sources */,
 				2426F6442C1C5BB5005350A9 /* String+.swift in Sources */,
 				2426F6122C1AFB54005350A9 /* SettingImageViewController.swift in Sources */,
 			);

@@ -149,7 +149,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchWordTableViewCell.identifier, for: indexPath) as! SearchWordTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchWordTableViewCell.identifier, for: indexPath) as? SearchWordTableViewCell else {
+            return UITableViewCell()
+        }
         let data = ud.searchWordList[indexPath.row]
         cell.configureCell(text: data)
         cell.deleteButton.tag = indexPath.row

@@ -204,7 +204,9 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         let data = shoppingData?.items[indexPath.item]
         cell.configureCell(data: data, query: query ?? "")
         cell.configureButton(isSelected: ud.starIdList.contains(data?.productId ?? ""))
