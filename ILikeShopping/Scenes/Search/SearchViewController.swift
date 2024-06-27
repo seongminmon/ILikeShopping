@@ -25,7 +25,7 @@ enum SortOption: String, CaseIterable {
 }
 
 class SearchViewController: BaseViewController {
-
+    
     let totalCountLabel = UILabel()
     let simButton = SortButton(option: .sim)
     let dateButton = SortButton(option: .date)
@@ -56,7 +56,7 @@ class SearchViewController: BaseViewController {
                 self.failureAction(message: error.localizedDescription)
             }
         }
-
+        
         configureCollectionView()
     }
     
@@ -244,7 +244,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let vc = DetailViewController()
         let data = shoppingData?.items[indexPath.item]
         vc.data = data
-        navigationController?.pushViewController(vc, animated: true)
+        navigate(vc: vc)
     }
 }
 

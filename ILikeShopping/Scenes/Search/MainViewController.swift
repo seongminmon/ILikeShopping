@@ -138,7 +138,7 @@ class MainViewController: BaseViewController {
         // 검색 화면으로 이동, 데이터 전달
         let vc = SearchViewController()
         vc.query = query
-        navigationController?.pushViewController(vc, animated: true)
+        navigate(vc: vc)
     }
     
 }

@@ -146,7 +146,7 @@ class SettingViewController: BaseViewController {
         let vc = SettingNicknameViewController()
         // 수정으로 설정
         vc.settingOption = .edit
-        navigationController?.pushViewController(vc, animated: true)
+        navigate(vc: vc)
     }
 }
 
@@ -176,7 +176,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch cellTitle {
         case .shoppingList: // 나의 장바구니 목록
             let vc = StarViewConroller()
-            navigationController?.pushViewController(vc, animated: true)
+            navigate(vc: vc)
             
         case .delete: // 탈퇴하기
             showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?", actionTitle: "확인") { _ in

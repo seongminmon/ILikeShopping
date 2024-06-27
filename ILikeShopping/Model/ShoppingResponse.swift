@@ -18,7 +18,7 @@ struct ShoppingResponse: Decodable {
     }
 }
 
-struct Shopping: Decodable {
+struct Shopping: Codable {
     // 셀에 표시
     let image: String
     let mallName: String

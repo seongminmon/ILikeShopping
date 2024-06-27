@@ -176,9 +176,7 @@
 		2426F6192C1B0248005350A9 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				2426F61B2C1B0299005350A9 /* MyColor.swift */,
-				2426F61D2C1B06E3005350A9 /* MyFont.swift */,
-				2426F6132C1AFDDF005350A9 /* MyImage.swift */,
+				24B3BD242C2D93710088CDB7 /* DesignSystem */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -252,6 +250,16 @@
 				2435E6A72C25669300B5393A /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		24B3BD242C2D93710088CDB7 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				2426F61B2C1B0299005350A9 /* MyColor.swift */,
+				2426F61D2C1B06E3005350A9 /* MyFont.swift */,
+				2426F6132C1AFDDF005350A9 /* MyImage.swift */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

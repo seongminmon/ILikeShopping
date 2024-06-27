@@ -58,6 +58,6 @@ class OnBoardingViewController: BaseViewController {
     
     @objc func startButtonTapped() {
         let vc = SettingNicknameViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        navigate(vc: vc)
     }
 }

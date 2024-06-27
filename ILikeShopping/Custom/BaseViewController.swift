@@ -42,4 +42,8 @@ class BaseViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    func navigate(vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }

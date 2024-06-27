@@ -150,7 +150,7 @@ class SettingNicknameViewController: BaseViewController {
         vc.selectedIndex = imageIndex
         // (1) delegate
         vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        navigate(vc: vc)
         
         // (2) 클로저
 //        vc.completionHandler = { index in

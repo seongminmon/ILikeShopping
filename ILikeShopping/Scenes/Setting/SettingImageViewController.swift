@@ -32,10 +32,9 @@ class SettingImageViewController: BaseViewController {
 //    override func viewWillDisappear(_ animated: Bool) {
 //        super.viewWillDisappear(animated)
 //        print(#function)
-//        
 //        // 이전 화면(닉네임 화면)에 데이터 전달
-//        let popVc = navigationController?.viewControllers.last! as? SettingNicknameViewController
-//        popVc?.imageIndex = selectedIndex
+////        let popVc = navigationController?.viewControllers.last! as? SettingNicknameViewController
+////        popVc?.imageIndex = selectedIndex
 //        
 //        // MARK: - viewWillDisappear는 실제로 이전 화면으로 돌아가지 않더라도 호출될 수 있음
 //        // => 역값전달의 시점은 viewWillDisappear보다 viewDidDisappear가 더 적절해보임.
@@ -45,9 +44,6 @@ class SettingImageViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print(#function)
-        
-        // TODO: - 다른 방식(클로저, delegate, notification center)으로 데이터 전달해보기
         // 1. delegate
         delegate?.recieveData(data: selectedIndex)
         // 2. 클로저

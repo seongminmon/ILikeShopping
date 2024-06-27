@@ -99,6 +99,6 @@ extension StarViewConroller: UICollectionViewDelegate, UICollectionViewDataSourc
         let vc = DetailViewController()
         let data = ud.starList[indexPath.item]
         vc.data = data
-        navigationController?.pushViewController(vc, animated: true)
+        navigate(vc: vc)
     }
 }
