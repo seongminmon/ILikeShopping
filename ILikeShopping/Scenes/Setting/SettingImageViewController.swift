@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SendDataDelegate {
+    func recieveData(data: Int) -> Void
+}
+
 class SettingImageViewController: BaseViewController {
     
     let selectedImageView = ProfileImageView(frame: .zero)
@@ -15,18 +19,39 @@ class SettingImageViewController: BaseViewController {
     
     var settingOption: SettingOption = .setting
     var selectedIndex: Int = 0
+    // (1) 이전 화면에 데이터를 전달하기 위한 delegate
+    var delegate: SendDataDelegate?
+    // (2) 클로저
+//    var completionHandler: ((Int) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        // 이전 화면(닉네임 화면)에 데이터 전달
-        // TODO: - 클로저, 델리게이트가 더 좋은지
-        let popVc = navigationController?.viewControllers.last! as? SettingNicknameViewController
-        popVc?.imageIndex = selectedIndex
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        print(#function)
+//        
+//        // 이전 화면(닉네임 화면)에 데이터 전달
+//        let popVc = navigationController?.viewControllers.last! as? SettingNicknameViewController
+//        popVc?.imageIndex = selectedIndex
+//        
+//        // MARK: - viewWillDisappear는 실제로 이전 화면으로 돌아가지 않더라도 호출될 수 있음
+//        // => 역값전달의 시점은 viewWillDisappear보다 viewDidDisappear가 더 적절해보임.
+//        // 단, navigationController?.viewControllers.last!의 방식으로는 전달할 수 없음
+//        // => navigationController가 nil이기 때문!
+//    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(#function)
+        
+        // TODO: - 다른 방식(클로저, delegate, notification center)으로 데이터 전달해보기
+        // 1. delegate
+        delegate?.recieveData(data: selectedIndex)
+        // 2. 클로저
+//        completionHandler!(selectedIndex)
     }
     
     override func configureNavigationBar() {
@@ -57,6 +82,7 @@ class SettingImageViewController: BaseViewController {
         }
     }
     
+    // TODO: - 어디로 옮길까?
     func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
@@ -91,7 +117,10 @@ extension SettingImageViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileImageCollectionViewCell.identifier, for: indexPath) as? ProfileImageCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: ProfileImageCollectionViewCell.identifier,
+            for: indexPath
+        ) as? ProfileImageCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.configureCell(index: indexPath.item, selectedIndex: selectedIndex)

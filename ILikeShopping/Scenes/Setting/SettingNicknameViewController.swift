@@ -38,17 +38,11 @@ class SettingNicknameViewController: BaseViewController {
     
     let ud = UserDefaultsManager.shared
     var settingOption: SettingOption = .setting
-    var nicknameValidation: NicknameValidationError?
+    var nicknameValidationError: NicknameValidationError?
     lazy var imageIndex: Int = ud.profileImageIndex
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // 이미지 선택 뷰에서 선택한 이미지 보이기
-        profileImageView.image = MyImage.profileImageList[imageIndex]
     }
     
     override func configureNavigationBar() {
@@ -154,14 +148,23 @@ class SettingNicknameViewController: BaseViewController {
         // settingOption 동기화
         vc.settingOption = settingOption
         vc.selectedIndex = imageIndex
+        // (1) delegate
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+        
+        // (2) 클로저
+//        vc.completionHandler = { index in
+//            self.imageIndex = index
+//            self.profileImageView.image = MyImage.profileImageList[self.imageIndex]
+//        }
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - UD에 저장하는 시점 == 완료버튼이나 저장버튼을 누를 때
     
     @objc func completeButtonTapped() {
         // 닉네임 조건 검사
-        if nicknameValidation == nil {
+        if nicknameValidationError == nil {
             // 값 저장
             ud.nickname = nicknameTextField.text ?? ""
             ud.profileImageIndex = imageIndex
@@ -179,7 +182,7 @@ class SettingNicknameViewController: BaseViewController {
     
     @objc func saveButtonTapped() {
         // 닉네임 조건 검사
-        if nicknameValidation == nil {
+        if nicknameValidationError == nil {
             // 값 저장
             ud.nickname = nicknameTextField.text ?? ""
             ud.profileImageIndex = imageIndex
@@ -190,18 +193,17 @@ class SettingNicknameViewController: BaseViewController {
     }
     
     // MARK: - 닉네임 조건 검사
-    
-    // 1. Error Handling - throw
+    // Error Handling
     // textField text 값이 변할 때마다 유효성 검사
     @objc func textFieldDidChange() {
         do {
             if try checkNickname(nicknameTextField.text ?? "") {
-                nicknameValidation = nil
+                nicknameValidationError = nil
                 descriptionLabel.text = "사용할 수 있는 닉네임이에요"
             }
         } catch let error as NicknameValidationError {
-            nicknameValidation = error
-            descriptionLabel.text = nicknameValidation?.errorDescription
+            nicknameValidationError = error
+            descriptionLabel.text = nicknameValidationError?.errorDescription
         } catch {
             print("알 수 없는 에러!")
         }
@@ -224,35 +226,13 @@ class SettingNicknameViewController: BaseViewController {
         return true
     }
     
-    // 2.
-//    @objc func textFieldDidChange() {
-//        checkNickname(nicknameTextField.text ?? "")
-//        switch nicknameValidation {
-//        case nil:
-//            descriptionLabel.text = "사용할 수 있는 닉네임이에요"
-//        default:
-//            descriptionLabel.text = nicknameValidation?.errorDescription
-//        }
-//    }
-    
-//    func checkNickname(_ text: String) {
-//        // 1) 2글자 이상 10글자 미만
-//        guard text.count >= 2 && text.count < 10 else {
-//            nicknameValidation = .length
-//            return
-//        }
-//        // 2) @, #, $, % 사용 불가
-//        let invalidCharacters = "@#$%"
-//        guard text.filter({ invalidCharacters.contains($0) }).isEmpty else {
-//            nicknameValidation = .invalidCharacter
-//            return
-//        }
-//        // 3) 숫자 사용 불가
-//        guard text.filter({ $0.isNumber }).isEmpty else {
-//            nicknameValidation = .number
-//            return
-//        }
-//        nicknameValidation = nil
-//    }
-    
+}
+
+// (2) delegate
+extension SettingNicknameViewController: SendDataDelegate {
+    func recieveData(data: Int) {
+        // 이미지 선택 뷰에서 선택한 이미지 보이기
+        imageIndex = data
+        profileImageView.image = MyImage.profileImageList[imageIndex]
+    }
 }
