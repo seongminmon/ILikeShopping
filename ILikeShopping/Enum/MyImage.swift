@@ -9,9 +9,11 @@ import UIKit
 
 enum MyImage {
     static let profileImageList: [UIImage] = [
-        UIImage(named: "profile_0")!,
-        UIImage(named: "profile_1")!,
+        
+        UIImage.bindingImage("profile_0"),
+        UIImage(named: "profile_1") ?? UIImage(),
         UIImage(named: "profile_2")!,
+        
         UIImage(named: "profile_3")!,
         UIImage(named: "profile_4")!,
         UIImage(named: "profile_5")!,
