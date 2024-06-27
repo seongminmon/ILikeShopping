@@ -37,6 +37,7 @@ class SettingViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // TODO: - 불필요한 갱신이 발생할 수 있음(좋아요 상태가 달라지지 않았거나, 닉네임, 프로필이미지가 변경되지 않았을 때도 갱신이 일어남) -> 데이터가 변경되는 시점으로 옮기기
         reloadData()
         tableView.reloadData()
     }
@@ -116,6 +117,7 @@ class SettingViewController: BaseViewController {
         
         separator.backgroundColor = MyColor.black
         
+        detailButton.setImage(MyImage.right, for: .normal)
         detailButton.tintColor = MyColor.gray
     }
     
@@ -137,7 +139,6 @@ class SettingViewController: BaseViewController {
         profileImageView.configureImageView(image: ud.profileImage, isSelect: true)
         nameLabel.text = ud.nickname
         dateLabel.text = ud.signUpDateString
-        detailButton.setImage(MyImage.right, for: .normal)
     }
     
     @objc func containerButtonTapped() {

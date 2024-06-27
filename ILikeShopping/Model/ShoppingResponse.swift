@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct ShoppingResponse: Codable {
+struct ShoppingResponse: Decodable {
     let total: Int
     let start: Int
     let display: Int
@@ -18,7 +18,7 @@ struct ShoppingResponse: Codable {
     }
 }
 
-struct Shopping: Codable {
+struct Shopping: Decodable {
     // 셀에 표시
     let image: String
     let mallName: String

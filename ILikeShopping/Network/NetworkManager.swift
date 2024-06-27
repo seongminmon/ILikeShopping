@@ -7,7 +7,10 @@
 
 import Foundation
 import Alamofire
+import Network
 
+// TODO: - 상태코드에 따라 열거형으로 오류 처리하기
+// TODO: - NWPathMonitor로 네트워크 감지하기
 class NetworkManager {
     
     // 싱글톤으로 생성
