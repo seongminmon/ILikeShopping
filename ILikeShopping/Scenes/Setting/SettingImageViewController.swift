@@ -15,7 +15,7 @@ class SettingImageViewController: BaseViewController {
     
     let selectedImageView = ProfileImageView(frame: .zero)
     let cameraImageView = CameraImageView(frame: .zero)
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewDesign.collectionViewLayout(sectionSpacing: 10, cellSpacing: 10, cellCount: 2))
     
     var settingOption: SettingOption = .setting
     var selectedIndex: Int = 0
@@ -76,24 +76,6 @@ class SettingImageViewController: BaseViewController {
             make.top.equalTo(selectedImageView.snp.bottom).offset(40)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-    }
-    
-    // TODO: - 어디로 옮길까?
-    func collectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        
-        let sectionSpacing: CGFloat = 10
-        let cellSpacing: CGFloat = 10
-        let cellCount: CGFloat = 4
-        
-        let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
-        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount)
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = cellSpacing
-        layout.minimumLineSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
-        
-        return layout
     }
     
     override func configureView() {

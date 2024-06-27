@@ -34,7 +34,7 @@ class SearchViewController: BaseViewController {
     lazy var buttons = [simButton, dateButton, dscButton, ascButton]
     lazy var buttonStackView = UIStackView(arrangedSubviews: [simButton, dateButton, dscButton, ascButton, UIView()])
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewDesign.collectionViewLayout(sectionSpacing: 10, cellSpacing: 10, cellCount: 2))
     
     let ud = UserDefaultsManager.shared
     let networkManager = NetworkManager.shared
@@ -108,24 +108,6 @@ class SearchViewController: BaseViewController {
             make.top.equalTo(buttonStackView.snp.bottom).offset(16)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-    }
-    
-    // TODO: - 어디로 옮길까?
-    func collectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        
-        let sectionSpacing: CGFloat = 10
-        let cellSpacing: CGFloat = 10
-        let cellCount: CGFloat = 2
-        
-        let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
-        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.6)
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = cellSpacing
-        layout.minimumLineSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
-        
-        return layout
     }
     
     override func configureView() {

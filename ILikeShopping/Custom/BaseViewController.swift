@@ -45,5 +45,4 @@ class BaseViewController: UIViewController {
     func navigate(vc: UIViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }

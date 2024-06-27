@@ -50,6 +50,7 @@
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
 		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
 		2435E6E02C27FF9E00B5393A /* StarViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */; };
+		24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewConroller.swift; sourceTree = "<group>"; };
+		24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDesign.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				24B3BD242C2D93710088CDB7 /* DesignSystem */,
+				24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				24356B092C2AC280000D2DF1 /* BaseTableViewCell.swift in Sources */,
 				2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */,
 				2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */,
+				24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
 				2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */,

@@ -157,7 +157,6 @@ class SettingNicknameViewController: BaseViewController {
 //            self.imageIndex = index
 //            self.profileImageView.image = MyImage.profileImageList[self.imageIndex]
 //        }
-//        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - UD에 저장하는 시점 == 완료버튼이나 저장버튼을 누를 때
