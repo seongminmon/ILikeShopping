@@ -45,7 +45,6 @@ class SearchViewController: BaseViewController {
     )
     
     let ud = UserDefaultsManager.shared
-    let networkManager = NetworkManager.shared
     
     var query: String?  // 이전 화면에서 전달
     var shoppingData: ShoppingResponse? // 네트워크
@@ -55,15 +54,7 @@ class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        networkManager.callRequest(api: .search(query: query ?? "", start: start, sortOption: sortOption)) { result in
-            switch result {
-            case .success(let value):
-                self.successAction(value: value)
-            case .failure(let error):
-                self.failureAction(message: error.rawValue)
-            }
-        }
+        callRequest()
         configureCollectionView()
     }
     
@@ -143,14 +134,7 @@ class SearchViewController: BaseViewController {
         // 1. 선택된 정렬 기준으로 재검색
         sortOption = SortOption.allCases[sender.tag]
         start = 1
-        networkManager.callRequest(api: .search(query: query ?? "", start: start, sortOption: sortOption)) { result in
-            switch result {
-            case .success(let value):
-                self.successAction(value: value)
-            case .failure(let error):
-                self.failureAction(message: error.rawValue)
-            }
-        }
+        callRequest()
         
         // 2. 선택된 버튼 UI 변경
         buttons.forEach { button in
@@ -165,21 +149,33 @@ class SearchViewController: BaseViewController {
         collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
     }
     
-    // MARK: - 네트워크 성공/실패 시 실행할 함수
+    // MARK: - 네트워크
     
-    func successAction(value: ShoppingResponse) {
+    func callRequest() {
+        guard let query = query else { return }
+        NetworkManager.shared.request(api: .search(query: query, start: start, sortOption: sortOption), model: ShoppingResponse.self) { result in
+            switch result {
+            case .success(let data):
+                self.successAction(data: data)
+            case .failure(let error):
+                self.failureAction(message: error.rawValue)
+            }
+        }
+    }
+    
+    func successAction(data: ShoppingResponse) {
         if start == 1 {
             // 첫 검색이라면 데이터 교체
-            shoppingData = value
+            shoppingData = data
         } else {
             // 페이지네이션이라면 데이터 추가
-            shoppingData?.items.append(contentsOf: value.items)
+            shoppingData?.items.append(contentsOf: data.items)
         }
         
         totalCountLabel.text = shoppingData?.totalCountText
         collectionView.reloadData()
         
-        if start == 1 && value.total > 0 {
+        if start == 1 && data.total > 0 {
             // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
@@ -204,6 +200,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         ) as? SearchCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
         let data = shoppingData?.items[indexPath.item]
         cell.configureCell(data: data, query: query ?? "")
         cell.configureButton(isSelected: ud.starIdList.contains(data?.productId ?? ""))
@@ -241,24 +238,14 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         // 페이지 네이션
-        guard let shoppingData,
-              let query else { return }
-        
+        guard let shoppingData else { return }
         indexPaths.forEach { indexPath in
             if indexPath.item == shoppingData.items.count - 8 &&
                 shoppingData.items.count < shoppingData.total &&
                 start <= 1000 {
                 start += NetworkRequest.display
-                networkManager.callRequest(api: .search(query: query, start: start, sortOption: sortOption)) { result in
-                    switch result {
-                    case .success(let value):
-                        self.successAction(value: value)
-                    case .failure(let error):
-                        self.failureAction(message: error.rawValue)
-                    }
-                }
+                callRequest()
             }
         }
     }
-    
 }

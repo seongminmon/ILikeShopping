@@ -30,9 +30,12 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-//    func callRequest(
+    // Alamofire
+//    func request<T: Decodable>(
 //        api: NetworkRequest,
-//        completionHandler: @escaping (Result<ShoppingResponse, APIError>) -> Void
+//        model: T.Type,
+//        completionHandler: @escaping (
+//            Result<T, APIError>) -> Void
 //    ) {
 //        AF.request(api.endpoint,
 //                   method: api.method,
@@ -40,7 +43,7 @@ class NetworkManager {
 //                   encoding: api.encoding,
 //                   headers: api.headers)
 //        .validate(statusCode: 200..<500)
-//        .responseDecodable(of: ShoppingResponse.self) { response in
+//        .responseDecodable(of: T.self) { response in
 //            switch response.result {
 //            case .success(let value):
 //                print("SUCCESS")
@@ -54,10 +57,11 @@ class NetworkManager {
 //    }
     
     // URLSession
-    func callRequest(
+    func request<T: Decodable>(
         api: NetworkRequest,
+        model: T.Type,
         completionHandler: @escaping (
-            Result<ShoppingResponse, APIError>) -> Void
+            Result<T, APIError>) -> Void
     ) {
         // 1. URLComponent
         var component = URLComponents(url: api.endpoint, resolvingAgainstBaseURL: false)!
@@ -97,7 +101,7 @@ class NetworkManager {
                 }
                 
                 do {
-                    let result = try JSONDecoder().decode(ShoppingResponse.self, from: data)
+                    let result = try JSONDecoder().decode(T.self, from: data)
                     print("SUCCESS")
                     completionHandler(.success(result))
                 } catch {
