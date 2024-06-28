@@ -34,7 +34,7 @@ class SearchViewController: BaseViewController {
     lazy var buttons = [simButton, dateButton, dscButton, ascButton]
     lazy var buttonStackView = UIStackView(arrangedSubviews: [simButton, dateButton, dscButton, ascButton, UIView()])
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewDesign.collectionViewLayout(sectionSpacing: 10, cellSpacing: 10, cellCount: 2))
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewDesign.collectionViewLayout(sectionSpacing: 10, cellSpacing: 10, cellCount: 2, aspectRatio: 1.7))
     
     let ud = UserDefaultsManager.shared
     let networkManager = NetworkManager.shared
@@ -62,6 +62,7 @@ class SearchViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // TODO: - 셀 하나만 업데이트 하도록 변경하기
         // 좋아요 동기화
         collectionView.reloadData()
     }

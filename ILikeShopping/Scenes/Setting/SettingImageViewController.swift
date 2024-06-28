@@ -15,7 +15,7 @@ class SettingImageViewController: BaseViewController {
     
     let selectedImageView = ProfileImageView(frame: .zero)
     let cameraImageView = CameraImageView(frame: .zero)
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewDesign.collectionViewLayout(sectionSpacing: 10, cellSpacing: 10, cellCount: 2))
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewDesign.collectionViewLayout(sectionSpacing: 10, cellSpacing: 10, cellCount: 2, aspectRatio: 1.7))
     
     var settingOption: SettingOption = .setting
     var selectedIndex: Int = 0

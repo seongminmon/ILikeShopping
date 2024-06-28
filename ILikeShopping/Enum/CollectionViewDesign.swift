@@ -9,10 +9,10 @@ import UIKit
 
 enum CollectionViewDesign {
     
-    static func collectionViewLayout(sectionSpacing: CGFloat, cellSpacing: CGFloat, cellCount: CGFloat) -> UICollectionViewLayout {
+    static func collectionViewLayout(sectionSpacing: CGFloat, cellSpacing: CGFloat, cellCount: CGFloat, aspectRatio: CGFloat) -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
-        let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
-        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount)
+        let width = UIScreen.main.bounds.width - (2 * sectionSpacing) - ((cellCount-1) * cellSpacing)
+        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * aspectRatio)
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = cellSpacing
         layout.minimumLineSpacing = cellSpacing
