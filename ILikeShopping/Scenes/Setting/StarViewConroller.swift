@@ -11,7 +11,15 @@ import SnapKit
 class StarViewConroller: BaseViewController {
     
     let totalCountLabel = UILabel()
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    let collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: CollectionViewDesign.collectionViewLayout(
+            sectionSpacing: 10,
+            cellSpacing: 10,
+            cellCount: 2,
+            aspectRatio: 1.6
+        )
+    )
     
     let ud = UserDefaultsManager.shared
     
@@ -45,23 +53,6 @@ class StarViewConroller: BaseViewController {
             make.top.equalTo(totalCountLabel.snp.bottom).offset(16)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-    }
-    
-    func collectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        
-        let sectionSpacing: CGFloat = 10
-        let cellSpacing: CGFloat = 10
-        let cellCount: CGFloat = 2
-        
-        let width = UIScreen.main.bounds.width - 2 * sectionSpacing - (cellCount-1) * cellSpacing
-        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.6)
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = cellSpacing
-        layout.minimumLineSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
-        
-        return layout
     }
     
     override func configureView() {

@@ -34,7 +34,15 @@ class SearchViewController: BaseViewController {
     lazy var buttons = [simButton, dateButton, dscButton, ascButton]
     lazy var buttonStackView = UIStackView(arrangedSubviews: [simButton, dateButton, dscButton, ascButton, UIView()])
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewDesign.collectionViewLayout(sectionSpacing: 10, cellSpacing: 10, cellCount: 2, aspectRatio: 1.7))
+    let collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: CollectionViewDesign.collectionViewLayout(
+            sectionSpacing: 10,
+            cellSpacing: 10,
+            cellCount: 2,
+            aspectRatio: 1.6
+        )
+    )
     
     let ud = UserDefaultsManager.shared
     let networkManager = NetworkManager.shared
