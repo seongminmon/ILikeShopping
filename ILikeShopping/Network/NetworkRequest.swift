@@ -46,7 +46,7 @@ enum NetworkRequest {
     
     var headers: HTTPHeaders {
         switch self {
-        case .search(let query, let start, let sortOption):
+        case .search:
             return [
                 "X-Naver-Client-Id" : APIKey.clientID,
                 "X-Naver-Client-Secret" : APIKey.clientSecret,

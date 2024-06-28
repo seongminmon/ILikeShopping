@@ -53,10 +53,9 @@ class SearchViewController: BaseViewController {
             case .success(let value):
                 self.successAction(value: value)
             case .failure(let error):
-                self.failureAction(message: error.localizedDescription)
+                self.failureAction(message: error.rawValue)
             }
         }
-        
         configureCollectionView()
     }
     
@@ -141,7 +140,7 @@ class SearchViewController: BaseViewController {
             case .success(let value):
                 self.successAction(value: value)
             case .failure(let error):
-                self.failureAction(message: error.localizedDescription)
+                self.failureAction(message: error.rawValue)
             }
         }
         
@@ -247,7 +246,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
                     case .success(let value):
                         self.successAction(value: value)
                     case .failure(let error):
-                        self.failureAction(message: error.localizedDescription)
+                        self.failureAction(message: error.rawValue)
                     }
                 }
             }
