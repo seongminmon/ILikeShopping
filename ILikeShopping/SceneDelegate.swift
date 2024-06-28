@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         // 가입 여부에 따른 분기 처리
-        if UserDefaultsManager.shared.isSignIn {
+        if UserDefaultsManager.shared.signUpDate != nil {
             let tab = BaseTabBarController()
             window?.rootViewController = tab
         } else {

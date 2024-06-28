@@ -16,14 +16,9 @@ class UserDefaultsManager {
     
     // UserDefaults 전체 삭제
     func removeAll() {
-        Key.allCases.forEach {
-            ud.removeObject(forKey: $0.rawValue)
+        ud.dictionaryRepresentation().keys.forEach {
+            ud.removeObject(forKey: $0)
         }
-        
-        // (다른 방법)
-//        ud.dictionaryRepresentation().keys.forEach {
-//            ud.removeObject(forKey: $0)
-//        }
     }
     
     enum Key: String, CaseIterable {
@@ -66,22 +61,8 @@ class UserDefaultsManager {
         }
     }
     
-    // TODO: - 적절한 위치로 옮기기
-    
     var profileImage: UIImage {
         return MyImage.profileImageList[profileImageIndex]
-    }
-    
-    var signUpDateString: String? {
-        guard let signUpDate else { return nil }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy. MM. dd"
-        let str = formatter.string(from: signUpDate)
-        return "\(str) 가입"
-    }
-    
-    var isSignIn: Bool {
-        return signUpDate != nil
     }
     
     // MARK: - Shopping

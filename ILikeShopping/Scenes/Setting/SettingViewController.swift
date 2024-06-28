@@ -138,7 +138,7 @@ class SettingViewController: BaseViewController {
     func reloadData() {
         profileImageView.configureImageView(image: ud.profileImage, isSelect: true)
         nameLabel.text = ud.nickname
-        dateLabel.text = ud.signUpDateString
+        dateLabel.text = signUpDateString(ud.signUpDate)
     }
     
     @objc func containerButtonTapped() {
@@ -147,6 +147,14 @@ class SettingViewController: BaseViewController {
         // 수정으로 설정
         vc.settingOption = .edit
         navigate(vc: vc)
+    }
+    
+    func signUpDateString(_ date: Date?) -> String? {
+        guard let date else { return nil }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy. MM. dd"
+        let str = formatter.string(from: date)
+        return "\(str) 가입"
     }
 }
 
