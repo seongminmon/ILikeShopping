@@ -60,7 +60,6 @@ class SearchViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // TODO: - 셀 하나만 업데이트 하도록 변경하기
         // 좋아요 동기화
         collectionView.reloadData()
     }

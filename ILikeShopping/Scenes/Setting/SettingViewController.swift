@@ -32,12 +32,10 @@ class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-//        reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // TODO: - 불필요한 갱신이 발생할 수 있음(좋아요 상태가 달라지지 않았거나, 닉네임, 프로필이미지가 변경되지 않았을 때도 갱신이 일어남) -> 데이터가 변경되는 시점으로 옮기기
         reloadData()
         tableView.reloadData()
     }
