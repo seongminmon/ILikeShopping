@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ReuseIdentifierProtocol: AnyObject {
+private protocol ReuseIdentifierProtocol: AnyObject {
     static var identifier: String { get }
 }
 

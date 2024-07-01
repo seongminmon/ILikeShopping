@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SearchWordTableViewCell: BaseTableViewCell {
+final class SearchWordTableViewCell: BaseTableViewCell {
 
     let clockImageView = UIImageView()
     let mainLabel = UILabel()

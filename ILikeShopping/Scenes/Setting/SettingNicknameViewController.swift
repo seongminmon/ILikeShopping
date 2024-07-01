@@ -26,7 +26,7 @@ enum NicknameValidationError: Error, LocalizedError {
     }
 }
 
-class SettingNicknameViewController: BaseViewController {
+final class SettingNicknameViewController: BaseViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
     let profileImageButton = UIButton()

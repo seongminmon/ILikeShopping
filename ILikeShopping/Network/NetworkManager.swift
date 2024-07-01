@@ -24,7 +24,7 @@ enum APIError: String, Error {
     case invalidData = "검색어와 일치하는 상품이 없습니다."
 }
 
-class NetworkManager {
+final class NetworkManager {
     
     // 싱글톤으로 생성
     static let shared = NetworkManager()

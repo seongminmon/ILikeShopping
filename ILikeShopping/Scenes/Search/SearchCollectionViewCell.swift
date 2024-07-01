@@ -6,10 +6,9 @@
 //
 
 import UIKit
-//import Kingfisher
 import SnapKit
 
-class SearchCollectionViewCell: BaseCollectionViewCell {
+final class SearchCollectionViewCell: BaseCollectionViewCell {
     
     let mainImageView = UIImageView()
     let likeButton = UIButton()

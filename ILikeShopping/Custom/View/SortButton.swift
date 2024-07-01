@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SortButton: UIButton {
+final class SortButton: UIButton {
     
     init(option: SortOption) {
         super.init(frame: .zero)

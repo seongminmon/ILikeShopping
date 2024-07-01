@@ -24,7 +24,7 @@ enum SortOption: String, CaseIterable {
     }
 }
 
-class SearchViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
     
     let totalCountLabel = UILabel()
     let simButton = SortButton(option: .sim)

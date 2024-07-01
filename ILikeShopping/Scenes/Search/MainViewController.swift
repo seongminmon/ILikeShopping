@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MainViewController: BaseViewController {
+final class MainViewController: BaseViewController {
     
     let searchBar = UISearchBar()
     

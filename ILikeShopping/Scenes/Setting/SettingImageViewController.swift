@@ -11,7 +11,7 @@ protocol SendDataDelegate {
     func recieveData(data: Int) -> Void
 }
 
-class SettingImageViewController: BaseViewController {
+final class SettingImageViewController: BaseViewController {
     
     let selectedImageView = ProfileImageView(frame: .zero)
     let cameraImageView = CameraImageView(frame: .zero)

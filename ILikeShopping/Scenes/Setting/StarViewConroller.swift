@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class StarViewConroller: BaseViewController {
+final class StarViewConroller: BaseViewController {
     
     let totalCountLabel = UILabel()
     let collectionView = UICollectionView(
