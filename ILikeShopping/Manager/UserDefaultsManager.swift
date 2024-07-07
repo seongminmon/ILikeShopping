@@ -88,6 +88,7 @@ final class UserDefaultsManager {
         }
     }
     
+    // TODO: 장바구니 목록 Realm으로 바꾸기
     var starList: [Shopping] {
         get {
             guard let data = ud.object(forKey: Key.starList.rawValue) as? Data,

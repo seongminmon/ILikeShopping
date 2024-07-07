@@ -50,8 +50,25 @@
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
 		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
 		2435E6E02C27FF9E00B5393A /* StarViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */; };
+		24AF66382C3A8C0800CCAAF4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24AF66372C3A8C0800CCAAF4 /* RealmSwift */; };
+		24AF66392C3A8C3E00CCAAF4 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 24AF66372C3A8C0800CCAAF4 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		24AF663C2C3A8CB900CCAAF4 /* shoppingBasket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF663B2C3A8CB900CCAAF4 /* shoppingBasket.swift */; };
 		24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		24AF663A2C3A8C3E00CCAAF4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				24AF66392C3A8C3E00CCAAF4 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2426F5E82C1AF267005350A9 /* ILikeShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ILikeShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +112,7 @@
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewConroller.swift; sourceTree = "<group>"; };
+		24AF663B2C3A8CB900CCAAF4 /* shoppingBasket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoppingBasket.swift; sourceTree = "<group>"; };
 		24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDesign.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +124,7 @@
 				2426F60E2C1AF87B005350A9 /* Kingfisher in Frameworks */,
 				2426F6342C1C10AB005350A9 /* IQKeyboardManagerSwift in Frameworks */,
 				2426F6082C1AF85A005350A9 /* SnapKit in Frameworks */,
+				24AF66382C3A8C0800CCAAF4 /* RealmSwift in Frameworks */,
 				2426F60B2C1AF86A005350A9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,7 +220,6 @@
 			children = (
 				2426F62E2C1BF426005350A9 /* SettingViewController.swift */,
 				2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */,
-				2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */,
 				2426F60F2C1AFB42005350A9 /* SettingNicknameViewController.swift */,
 				2426F6112C1AFB54005350A9 /* SettingImageViewController.swift */,
 				2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */,
@@ -214,6 +232,7 @@
 			children = (
 				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
 				2408B8A42C217DC0001D96A3 /* Search */,
+				24AF66352C3A4C7E00CCAAF4 /* Like */,
 				2426F61F2C1B17EE005350A9 /* Setting */,
 			);
 			path = Scenes;
@@ -231,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				2426F6372C1C356F005350A9 /* ShoppingResponse.swift */,
+				24AF663B2C3A8CB900CCAAF4 /* shoppingBasket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +275,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		24AF66352C3A4C7E00CCAAF4 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				2435E6DF2C27FF9E00B5393A /* StarViewConroller.swift */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
 		24B3BD242C2D93710088CDB7 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +303,7 @@
 				2426F5E42C1AF267005350A9 /* Sources */,
 				2426F5E52C1AF267005350A9 /* Frameworks */,
 				2426F5E62C1AF267005350A9 /* Resources */,
+				24AF663A2C3A8C3E00CCAAF4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,6 +315,7 @@
 				2426F60A2C1AF86A005350A9 /* Alamofire */,
 				2426F60D2C1AF87B005350A9 /* Kingfisher */,
 				2426F6332C1C10AB005350A9 /* IQKeyboardManagerSwift */,
+				24AF66372C3A8C0800CCAAF4 /* RealmSwift */,
 			);
 			productName = ILikeShopping;
 			productReference = 2426F5E82C1AF267005350A9 /* ILikeShopping.app */;
@@ -320,6 +350,7 @@
 				2426F6092C1AF86A005350A9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2426F60C2C1AF87B005350A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				2426F6322C1C10AB005350A9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				24AF66362C3A8C0800CCAAF4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 2426F5E92C1AF267005350A9 /* Products */;
 			projectDirPath = "";
@@ -355,6 +386,7 @@
 				2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */,
 				2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */,
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
+				24AF663C2C3A8CB900CCAAF4 /* shoppingBasket.swift in Sources */,
 				24356B0B2C2AC391000D2DF1 /* BaseCollectionViewCell.swift in Sources */,
 				2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */,
 				2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */,
@@ -643,6 +675,14 @@
 				minimumVersion = 7.0.3;
 			};
 		};
+		24AF66362C3A8C0800CCAAF4 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.52.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -665,6 +705,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2426F6322C1C10AB005350A9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		24AF66372C3A8C0800CCAAF4 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24AF66362C3A8C0800CCAAF4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
