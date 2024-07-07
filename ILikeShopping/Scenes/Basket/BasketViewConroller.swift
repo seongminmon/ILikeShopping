@@ -1,14 +1,15 @@
 //
-//  StarViewConroller.swift
+//  BasketViewConroller.swift
 //  ILikeShopping
 //
 //  Created by 김성민 on 6/23/24.
 //
 
 import UIKit
+import Kingfisher
 import SnapKit
 
-final class StarViewConroller: BaseViewController {
+final class BasketViewConroller: BaseViewController {
     
     let totalCountLabel = UILabel()
     let collectionView = UICollectionView(
@@ -22,6 +23,9 @@ final class StarViewConroller: BaseViewController {
     )
     
     let ud = UserDefaultsManager.shared
+    let repository = RealmRepository()
+    
+    var list: [Basket] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +34,8 @@ final class StarViewConroller: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        totalCountLabel.text = "\(ud.starList.count.formatted())개의 쇼핑 리스트"
+        list = repository.fetchAll()
+        totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
         collectionView.reloadData()
     }
     
@@ -67,9 +72,9 @@ final class StarViewConroller: BaseViewController {
     }
 }
 
-extension StarViewConroller: UICollectionViewDelegate, UICollectionViewDataSource {
+extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ud.starList.count
+        return list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,16 +84,36 @@ extension StarViewConroller: UICollectionViewDelegate, UICollectionViewDataSourc
         ) as? SearchCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let data = ud.starList[indexPath.item]
-        cell.configureCell(data: data, query: "")
-        cell.likeButton.isHidden = true
+        let data = list[indexPath.item]
+        cell.configureCell(data: data)
+        cell.configureButton(isSelected: true)
+        
+        cell.likeButton.tag = indexPath.item
+        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func likeButtonTapped(sender: UIButton) {
+        // 장바구니 화면에서는 삭제만 가능
+        let data = list[sender.tag]
+        if let index = ud.starIdList.firstIndex(of: data.productId) {
+            // ud 삭제
+            ud.starIdList.remove(at: index)
+            // list 삭제
+            list.remove(at: sender.tag)
+            // Realm 삭제
+            repository.deleteItem(data.productId)
+            // 뷰 업데이트
+            totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
+            collectionView.reloadData()
+        }
     }
     
     // 웹뷰로 이동
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        let data = ud.starList[indexPath.item]
+        let item = list[indexPath.item]
+        let data = Shopping(image: item.image, mallName: item.mallName, title: item.title, lprice: item.lprice, link: item.link, productId: item.productId)
         vc.data = data
         navigate(vc: vc)
     }

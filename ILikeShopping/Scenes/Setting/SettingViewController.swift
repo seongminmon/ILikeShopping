@@ -23,11 +23,11 @@ final class SettingViewController: BaseViewController {
     let detailButton = UIButton()
     let containerView = UIView()
     let containerButton = UIButton()
-    
     let separator = UIView()
     let tableView = UITableView()
     
     let ud = UserDefaultsManager.shared
+    let repository = RealmRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,14 +180,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellTitle = SettingCellTitle.allCases[indexPath.row]
         switch cellTitle {
-//        case .shoppingList: // 나의 장바구니 목록
-//            let vc = StarViewConroller()
-//            navigate(vc: vc)
-            
         case .delete: // 탈퇴하기
-            showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?", actionTitle: "확인") { _ in
+            showAlert(
+                title: "탈퇴하기",
+                message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?",
+                actionTitle: "확인"
+            ) { _ in
                 // 모든 데이터 초기화
                 self.ud.removeAll()
+                // Realm 초기화
+                self.repository.deleteAll()
                 
                 // 온보딩 화면으로 window 전환
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene

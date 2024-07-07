@@ -19,7 +19,7 @@ class BaseTabBarController: UITabBarController {
         let nav1 = BaseNavigationController(rootViewController: main)
         nav1.tabBarItem = UITabBarItem(title: "검색", image: MyImage.magnifyingglass, tag: 0)
         
-        let star = StarViewConroller()
+        let star = BasketViewConroller()
         let nav2 = BaseNavigationController(rootViewController: star)
         nav2.tabBarItem = UITabBarItem(title: "장바구니", image: MyImage.unselected, tag: 1)
         

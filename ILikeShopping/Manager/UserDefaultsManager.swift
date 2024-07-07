@@ -87,20 +87,4 @@ final class UserDefaultsManager {
             ud.set(newValue.uniqued(), forKey: Key.starIdList.rawValue)
         }
     }
-    
-    // TODO: 장바구니 목록 Realm으로 바꾸기
-    var starList: [Shopping] {
-        get {
-            guard let data = ud.object(forKey: Key.starList.rawValue) as? Data,
-                  let value = try? JSONDecoder().decode([Shopping].self, from: data) else {
-                return []
-            }
-            return value
-        }
-        set {
-            let data = try? JSONEncoder().encode(newValue)
-            ud.set(data, forKey: Key.starList.rawValue)
-        }
-    }
-    
 }

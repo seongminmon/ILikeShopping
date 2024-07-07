@@ -45,6 +45,7 @@ final class SearchViewController: BaseViewController {
     )
     
     let ud = UserDefaultsManager.shared
+    let repository = RealmRepository()
     
     var query: String?  // 이전 화면에서 전달
     var shoppingData: ShoppingResponse? // 네트워크
@@ -209,6 +210,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
+    // 좋아요 토글
     @objc func likeButtonTapped(sender: UIButton) {
         guard let shoppingData else { return }
         let id = shoppingData.items[sender.tag].productId
@@ -216,16 +218,24 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let data = shoppingData.items[sender.tag]
         if let index = ud.starIdList.firstIndex(of: id) {
+            // ud 삭제
             ud.starIdList.remove(at: index)
-            ud.starList.remove(at: index)
+            // Realm 삭제
+            repository.deleteItem(data.productId)
+            // 뷰 업데이트
             cell.configureButton(isSelected: false)
         } else {
+            // ud 추가
             ud.starIdList.append(id)
-            ud.starList.append(data)
+            // Realm 추가
+            let item = Basket(image: data.image, mallName: data.mallName, title: data.title, lprice: data.lprice, link: data.link, productId: data.productId)
+            repository.addItem(item)
+            // 뷰 업데이트
             cell.configureButton(isSelected: true)
         }
     }
     
+    // 웹뷰로 이동
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
         let data = shoppingData?.items[indexPath.item]

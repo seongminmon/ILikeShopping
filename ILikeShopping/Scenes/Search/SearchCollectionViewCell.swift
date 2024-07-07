@@ -72,12 +72,12 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
         priceLabel.textColor = MyColor.black
     }
     
+    // 검색 결과일 때 데이터 세팅
     func configureCell(data: Shopping?, query: String) {
         guard let data else { return }
         
         // MARK: - Kingfisher -> Data(contentsOf) 방식으로 교체해보기
 //        mainImageView.kf.setImage(with: data.imageUrl)
-        
         DispatchQueue.global().async {
             do {
                 let imageData = try Data(contentsOf: data.imageUrl!)
@@ -95,6 +95,22 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
         let fullText = titleLabel.text ?? ""
         let attribtuedString = NSMutableAttributedString(string: fullText)
         let range = (fullText as NSString).range(of: query)
+        attribtuedString.addAttribute(.backgroundColor, value: MyColor.orange, range: range)
+        titleLabel.attributedText = attribtuedString
+        
+        priceLabel.text = data.price
+    }
+    
+    // 장바구니 목록일 때 데이터 세팅
+    func configureCell(data: Basket) {
+        mainImageView.kf.setImage(with: data.imageUrl)
+        
+        mallLabel.text = data.mallName
+        
+        titleLabel.text = data.encodedString
+        let fullText = titleLabel.text ?? ""
+        let attribtuedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: "")
         attribtuedString.addAttribute(.backgroundColor, value: MyColor.orange, range: range)
         titleLabel.attributedText = attribtuedString
         

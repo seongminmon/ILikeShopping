@@ -16,6 +16,7 @@ final class DetailViewController: BaseViewController {
     
     let ud = UserDefaultsManager.shared
     var data: Shopping?
+    let repository = RealmRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +34,19 @@ final class DetailViewController: BaseViewController {
         // 좋아요 토글
         guard let data else { return }
         if let index = ud.starIdList.firstIndex(of: data.productId) {
+            // ud 삭제
             ud.starIdList.remove(at: index)
-            ud.starList.remove(at: index)
+            // Realm 삭제
+            repository.deleteItem(data.productId)
+            // 뷰 업데이트
             sender.image = MyImage.unselected
         } else {
+            // ud 추가
             ud.starIdList.append(data.productId)
-            ud.starList.append(data)
+            // Realm에 추가
+            let item = Basket(image: data.image, mallName: data.mallName, title: data.title, lprice: data.lprice, link: data.link, productId: data.productId)
+            repository.addItem(item)
+            // 뷰 업데이트
             sender.image = MyImage.selected
         }
     }
