@@ -54,6 +54,8 @@
 		24AF66392C3A8C3E00CCAAF4 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 24AF66372C3A8C0800CCAAF4 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		24AF663C2C3A8CB900CCAAF4 /* Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF663B2C3A8CB900CCAAF4 /* Basket.swift */; };
 		24AF663E2C3A8DBB00CCAAF4 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF663D2C3A8DBB00CCAAF4 /* RealmRepository.swift */; };
+		24AF66452C3BE44500CCAAF4 /* BasketSearchViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */; };
+		24AF66472C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF66462C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift */; };
 		24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,8 @@
 		2435E6DF2C27FF9E00B5393A /* BasketViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewConroller.swift; sourceTree = "<group>"; };
 		24AF663B2C3A8CB900CCAAF4 /* Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basket.swift; sourceTree = "<group>"; };
 		24AF663D2C3A8DBB00CCAAF4 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSearchViewConroller.swift; sourceTree = "<group>"; };
+		24AF66462C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSearchTableViewCell.swift; sourceTree = "<group>"; };
 		24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDesign.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				2435E6DF2C27FF9E00B5393A /* BasketViewConroller.swift */,
+				24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */,
+				24AF66462C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				2426F63A2C1C3707005350A9 /* SearchViewController.swift in Sources */,
 				24356B092C2AC280000D2DF1 /* BaseTableViewCell.swift in Sources */,
 				2426F62B2C1BE92E005350A9 /* ReuseIdentifier.swift in Sources */,
+				24AF66452C3BE44500CCAAF4 /* BasketSearchViewConroller.swift in Sources */,
 				2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */,
 				24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
@@ -412,6 +419,7 @@
 				2426F63E2C1C4937005350A9 /* Sequence+.swift in Sources */,
 				2426F6362C1C30CF005350A9 /* SearchWordTableViewCell.swift in Sources */,
 				2435E6E02C27FF9E00B5393A /* BasketViewConroller.swift in Sources */,
+				24AF66472C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift in Sources */,
 				2426F61E2C1B06E3005350A9 /* MyFont.swift in Sources */,
 				2426F6052C1AF7A6005350A9 /* OrangeButton.swift in Sources */,
 				2426F6402C1C4A7F005350A9 /* SearchCollectionViewCell.swift in Sources */,

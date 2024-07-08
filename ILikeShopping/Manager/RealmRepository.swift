@@ -91,7 +91,7 @@ final class RealmRepository {
     }
     
     // MARK: - Delete
-    // TODO: - 필터링 말고, productId를 기본키로 바꿔보기
+    // TODO: - productId를 기본키로 바꿔보기
     func deleteItem(_ productId: String) {
         let item = realm.objects(Basket.self).where {
             $0.productId == productId

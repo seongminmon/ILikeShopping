@@ -58,6 +58,13 @@ final class BasketViewConroller: BaseViewController {
     
     override func configureNavigationBar() {
         navigationItem.title = "\(ud.nickname)'s Shopping List"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: MyImage.magnifyingglass, style: .plain, target: self, action: #selector(searchButtonTapped))
+    }
+    
+    @objc func searchButtonTapped() {
+        let vc = BasketSearchViewConroller()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func addSubviews() {
