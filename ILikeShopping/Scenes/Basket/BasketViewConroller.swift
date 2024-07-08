@@ -129,6 +129,7 @@ final class BasketViewConroller: BaseViewController {
         }
         totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
         collectionView.reloadData()
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         
         // 2. 선택된 버튼 UI 변경
         buttons.forEach { button in
