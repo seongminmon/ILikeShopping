@@ -14,10 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let config = Realm.Configuration(schemaVersion: 1) { migration, oldSchemaVersion in
+        let config = Realm.Configuration(schemaVersion: 2) { migration, oldSchemaVersion in
             if oldSchemaVersion < 1 {
                 // Folder 테이블 추가
                 // Folder name 컬럼 추가
+            }
+            if oldSchemaVersion < 2 {
+                // Basket 기본키 변경 (id -> productId)
             }
         }
         Realm.Configuration.defaultConfiguration = config

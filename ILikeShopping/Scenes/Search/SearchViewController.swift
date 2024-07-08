@@ -204,8 +204,9 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let data = shoppingData?.items[indexPath.item]
         cell.configureCell(data: data, query: query ?? "")
         
-        // TODO: - ud에서 starIdList 삭제하기 -> ud에서 비교하지 않고, Realm에서 비교해보기
-        cell.configureButton(isSelected: ud.starIdList.contains(data?.productId ?? ""))
+        if let data = data {
+            cell.configureButton(isSelected: repository.isBasket(data.productId))
+        }
         
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
@@ -219,16 +220,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.cellForItem(at: IndexPath(item: sender.tag, section: 0)) as! SearchCollectionViewCell
         
         let data = shoppingData.items[sender.tag]
-        if let index = ud.starIdList.firstIndex(of: id) {
-            // ud 삭제
-            ud.starIdList.remove(at: index)
+        if repository.isBasket(data.productId) {
             // Realm 삭제
             repository.deleteItem(data.productId)
             // 뷰 업데이트
             cell.configureButton(isSelected: false)
         } else {
-            // ud 추가
-            ud.starIdList.append(id)
             // Realm 추가
             let item = Basket(image: data.image, mallName: data.mallName, title: data.title, lprice: data.lprice, link: data.link, productId: data.productId)
             repository.addItem(item)

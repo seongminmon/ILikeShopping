@@ -87,6 +87,11 @@ final class RealmRepository {
         return Array(value)
     }
     
+    func isBasket(_ productId: String) -> Bool {
+        let value = realm.object(ofType: Basket.self, forPrimaryKey: productId)
+        return value != nil
+    }
+    
     func fetchSearched(_ text: String) -> [Basket] {
         let value = realm.objects(Basket.self)
             .where { $0.title.contains(text, options: .caseInsensitive) }

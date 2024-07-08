@@ -115,8 +115,6 @@ final class BasketViewConroller: BaseViewController {
     }
     
     @objc func priceButtonTapped(sender: UIButton) {
-        print(#function, sender.tag)
-        
         // 이미 선택된 버튼을 누르면 패스
         if sender.backgroundColor == MyColor.orange { return }
         
@@ -168,20 +166,18 @@ extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSou
     @objc func likeButtonTapped(sender: UIButton) {
         // 장바구니 화면에서는 삭제만 가능
         let data = list[sender.tag]
-        if let index = ud.starIdList.firstIndex(of: data.productId) {
-            // ud 삭제
-            ud.starIdList.remove(at: index)
-            // list 삭제
-            list.remove(at: sender.tag)
-            // Realm 삭제
-            repository.deleteItem(data.productId)
-            // 뷰 업데이트
-            totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
-            collectionView.reloadData()
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-            }
+        
+        // list 삭제
+        list.remove(at: sender.tag)
+        // Realm 삭제
+        repository.deleteItem(data.productId)
+        // 뷰 업데이트
+        totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
+        collectionView.reloadData()
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
+        
     }
     
     // 웹뷰로 이동

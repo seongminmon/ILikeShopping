@@ -27,8 +27,6 @@ final class UserDefaultsManager {
         case signUpDate
         
         case searchWordList
-        case starIdList
-        case starList
     }
     
     // MARK: - SignIn
@@ -74,17 +72,6 @@ final class UserDefaultsManager {
         }
         set {
             ud.set(newValue.uniqued(), forKey: Key.searchWordList.rawValue)
-        }
-    }
-    
-    // productId 저장하여 관리
-    var starIdList: [String] {
-        get {
-            let storedStarIdList = ud.object(forKey: Key.starIdList.rawValue) as? [String]
-            return storedStarIdList ?? []
-        }
-        set {
-            ud.set(newValue.uniqued(), forKey: Key.starIdList.rawValue)
         }
     }
 }

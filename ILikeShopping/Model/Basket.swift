@@ -26,7 +26,8 @@ class Folder: Object {
 }
 
 class Basket: Object {
-    @Persisted(primaryKey: true) var id: ObjectId
+    // 좋아요 관리
+    @Persisted(primaryKey: true) var productId: String
     @Persisted var date: Date
     
     // 셀에 표시
@@ -36,8 +37,6 @@ class Basket: Object {
     @Persisted var lprice: String
     // 웹뷰
     @Persisted var link: String
-    // 좋아요 관리
-    @Persisted var productId: String
     
     // 역관계를 위한 컬럼
     @Persisted(originProperty: "baskets") var main: LinkingObjects<Folder>

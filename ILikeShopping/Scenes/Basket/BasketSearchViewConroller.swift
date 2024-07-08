@@ -74,10 +74,6 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = searchedList[indexPath.row]
-            // ud 삭제
-            if let index = UserDefaultsManager.shared.starIdList.firstIndex(of: item.productId) {
-                UserDefaultsManager.shared.starIdList.remove(at: index)
-            }
             // searchedList 삭제
             searchedList.remove(at: indexPath.row)
             // realm에서 삭제 (자식)

@@ -170,7 +170,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let option = SettingCellTitle.allCases[indexPath.row]
         if option == .shoppingList {
-            cell.configureCell(title: option.rawValue, count: ud.starIdList.count)
+            cell.configureCell(title: option.rawValue, count: repository.fetchAll().count)
         } else {
             cell.configureCell(title: option.rawValue, count: nil)
         }
