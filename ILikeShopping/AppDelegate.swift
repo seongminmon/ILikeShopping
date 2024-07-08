@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 import IQKeyboardManagerSwift
 
 @main
@@ -13,12 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+//        let config = Realm.Configuration(schemaVersion: 1) { migration, oldSchemaVersion in
+//            if oldSchemaVersion < 1 {
+//                // Folder 테이블 추가
+//            }
+//        }
+//        Realm.Configuration.defaultConfiguration = config
+        
         // IQKeyboardManager 세팅
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.resignOnTouchOutside = true
         
         // LaunchScreen 2초간 보이기
-        sleep(2)
+//        sleep(2)
         
         return true
     }

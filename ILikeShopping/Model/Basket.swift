@@ -8,6 +8,15 @@
 import Foundation
 import RealmSwift
 
+// 가격대별로 폴더링 (10만원 이하, 10~100만원, 100만원 초과)
+class Folder: Object {
+    @Persisted var price: Int
+    @Persisted var baskets: List<Basket>
+    
+    @Persisted var date: Date
+    @Persisted(primaryKey: true) var id: ObjectId
+}
+
 class Basket: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var date: Date
@@ -21,6 +30,9 @@ class Basket: Object {
     @Persisted var link: String
     // 좋아요 관리
     @Persisted var productId: String
+    
+    // 역관계를 위한 컬럼
+//    @Persisted(originProperty: "baskets") var main: LinkingObjects<Folder>
     
     var imageUrl: URL? {
         return URL(string: image)

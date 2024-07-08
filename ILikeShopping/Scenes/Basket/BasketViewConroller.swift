@@ -30,6 +30,7 @@ final class BasketViewConroller: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        print(repository.fileURL!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +107,9 @@ extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSou
             // 뷰 업데이트
             totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
             collectionView.reloadData()
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
         }
     }
     

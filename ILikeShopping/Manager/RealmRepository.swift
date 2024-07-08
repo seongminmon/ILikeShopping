@@ -27,8 +27,25 @@ final class RealmRepository {
     
     // MARK: - Create
     func addItem(_ item: Basket) {
+        // Folder에 맞게 추가하기
         try! realm.write {
-            realm.add(item)
+            let price = Int(item.lprice)!
+            if price <= 100_000 {
+                let folder = realm.objects(Folder.self)
+                    .where { $0.price == 100_000 }
+                    .first!
+                folder.baskets.append(item)
+            } else if price <= 1_000_000 {
+                let folder = realm.objects(Folder.self)
+                    .where { $0.price == 1_000_000 }	
+                    .first!
+                folder.baskets.append(item)
+            } else {
+                let folder = realm.objects(Folder.self)
+                    .where { $0.price == -1 }
+                    .first!
+                folder.baskets.append(item)
+            }
             print("Realm Create!")
         }
     }
@@ -58,8 +75,11 @@ final class RealmRepository {
     }
     
     func deleteAll() {
+        // 탈퇴하기 시 장바구니 전체 삭제
+        // Folder는 삭제 X
         try! realm.write {
-            realm.deleteAll()
+            let baskets = realm.objects(Basket.self)
+            realm.delete(baskets)
             print("Realm Delete All!")
         }
     }
