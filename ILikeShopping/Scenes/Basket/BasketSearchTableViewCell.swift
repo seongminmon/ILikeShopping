@@ -20,18 +20,30 @@ final class BasketSearchTableViewCell: BaseTableViewCell {
     
     override func configureLayout() {
         mainLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.verticalEdges.equalToSuperview().inset(8)
             make.leading.equalToSuperview().inset(16)
+            make.trailing.equalTo(subLabel.snp.leading).offset(-8)
         }
         
         subLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+            make.width.equalTo(120)
         }
     }
     
     override func configureView() {
-        mainLabel.text = "메인라벨"
-        subLabel.text = "서브라벨"
+        mainLabel.numberOfLines = 0
+        subLabel.clipsToBounds = true
+        subLabel.layer.cornerRadius = 20
+        subLabel.backgroundColor = MyColor.orange
+        subLabel.textAlignment = .center
+    }
+    
+    func configureCell(_ data: Basket) {
+        mainLabel.text = data.encodedString
+        // 역관계 이용해서 접근하기
+        subLabel.text = "\(data.main.first!.name)"
     }
 }

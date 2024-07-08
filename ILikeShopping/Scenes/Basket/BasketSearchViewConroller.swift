@@ -13,6 +13,15 @@ final class BasketSearchViewConroller: BaseViewController {
     
     let tableView = UITableView()
     
+    let repository = RealmRepository()
+    var searchedList: [Basket] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // 초기값은 전체 장바구니
+        searchedList = repository.fetchAll()
+    }
+    
     override func configureNavigationBar() {
         navigationItem.title = "장바구니 검색"
         
@@ -38,14 +47,14 @@ final class BasketSearchViewConroller: BaseViewController {
     override func configureView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 50
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(BasketSearchTableViewCell.self, forCellReuseIdentifier: BasketSearchTableViewCell.identifier)
     }
 }
 
 extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return searchedList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,19 +65,22 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
             return UITableViewCell()
         }
         
-        
+        let data = searchedList[indexPath.row]
+        cell.configureCell(data)
         return cell
     }
 }
 
 extension BasketSearchViewConroller: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        print(#function, searchController.searchBar.text)
+        print(#function, searchController.searchBar.text!)
         
         if let text = searchController.searchBar.text, !text.isEmpty {
-            //
+            // 검색어가 있으면 검색
+            searchedList = repository.fetchSearched(text)
         } else {
-            //
+            // 검색어가 없으면 전체 불러오기
+            searchedList = repository.fetchAll()
         }
         tableView.reloadData()
     }

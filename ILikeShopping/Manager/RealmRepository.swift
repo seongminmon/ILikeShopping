@@ -13,6 +13,15 @@ enum FolderOption: Int, CaseIterable {
     case row
     case medium
     case high
+    
+    var title: String {
+        switch self {
+        case .total: return " 전체 "
+        case .row: return "~ 10만원"
+        case .medium: return "10 ~ 100만원"
+        case .high: return "100만원 ~"
+        }
+    }
 }
 
 final class RealmRepository {
@@ -64,13 +73,20 @@ final class RealmRepository {
         return Array(value)
     }
     
+    func fetchSearched(_ text: String) -> [Basket] {
+        let value = realm.objects(Basket.self)
+            .where { $0.title.contains(text, options: .caseInsensitive) }
+            .sorted(byKeyPath: "date", ascending: true)
+        return Array(value)
+    }
+    
     func fetchFolder() -> [Folder] {
         let value = realm.objects(Folder.self)
             .sorted(byKeyPath: "date", ascending: true)
         return Array(value)
     }
     
-    func filteredFolder(_ option: FolderOption) -> Folder? {
+    func fetchFilteredFolder(_ option: FolderOption) -> Folder? {
         let folders = realm.objects(Folder.self)
             .sorted(byKeyPath: "date", ascending: true)
         switch option {

@@ -14,12 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        let config = Realm.Configuration(schemaVersion: 1) { migration, oldSchemaVersion in
-//            if oldSchemaVersion < 1 {
-//                // Folder 테이블 추가
-//            }
-//        }
-//        Realm.Configuration.defaultConfiguration = config
+        let config = Realm.Configuration(schemaVersion: 1) { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+                // Folder 테이블 추가
+                // Folder name 컬럼 추가
+            }
+        }
+        Realm.Configuration.defaultConfiguration = config
         
         // IQKeyboardManager 세팅
         IQKeyboardManager.shared.enable = true

@@ -11,10 +11,10 @@ import SnapKit
 
 final class BasketViewConroller: BaseViewController {
     
-    let button0 = OrangeButton(title: " 전체 ")
-    let button1 = OrangeButton(title: "~ 10만원")
-    let button2 = OrangeButton(title: "10 ~ 100만원")
-    let button3 = OrangeButton(title: "100만원 ~")
+    let button0 = OrangeButton(title: FolderOption.total.title)
+    let button1 = OrangeButton(title: FolderOption.row.title)
+    let button2 = OrangeButton(title: FolderOption.medium.title)
+    let button3 = OrangeButton(title: FolderOption.high.title)
     lazy var buttons = [button0, button1, button2, button3]
     lazy var buttonStackView = UIStackView(arrangedSubviews: buttons)
     
@@ -39,7 +39,7 @@ final class BasketViewConroller: BaseViewController {
         super.viewDidLoad()
         print(repository.fileURL!)
         
-        folder = repository.filteredFolder(option)
+        folder = repository.fetchFilteredFolder(option)
         // 처음엔 전체 가져오기
         list = repository.fetchAll()
         configureCollectionView()
@@ -123,7 +123,7 @@ final class BasketViewConroller: BaseViewController {
         // 1. Folder에 따라 list 변경하기
         // list는 폴더에 담겨있는 baskets 중 하나이거나 전체 basket(folder = nil일 때)
         option = FolderOption.allCases[sender.tag]
-        folder = repository.filteredFolder(option)
+        folder = repository.fetchFilteredFolder(option)
         if let folder = folder {
             list = Array(folder.baskets)
         } else {
