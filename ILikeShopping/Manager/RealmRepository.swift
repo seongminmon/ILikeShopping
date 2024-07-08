@@ -8,6 +8,13 @@
 import Foundation
 import RealmSwift
 
+enum FolderOption: Int, CaseIterable {
+    case total
+    case row
+    case medium
+    case high
+}
+
 final class RealmRepository {
     
     private let realm = try! Realm()
@@ -55,6 +62,27 @@ final class RealmRepository {
         let value = realm.objects(Basket.self)
             .sorted(byKeyPath: "date", ascending: true)
         return Array(value)
+    }
+    
+    func fetchFolder() -> [Folder] {
+        let value = realm.objects(Folder.self)
+            .sorted(byKeyPath: "date", ascending: true)
+        return Array(value)
+    }
+    
+    func filteredFolder(_ option: FolderOption) -> Folder? {
+        let folders = realm.objects(Folder.self)
+            .sorted(byKeyPath: "date", ascending: true)
+        switch option {
+        case .total:
+            return nil
+        case .row:
+            return folders.where { $0.price == 100_000 }.first
+        case .medium:
+            return folders.where { $0.price == 1_000_000 }.first
+        case .high:
+            return folders.where { $0.price == -1 }.first
+        }
     }
     
     // MARK: - Update

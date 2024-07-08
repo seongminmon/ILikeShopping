@@ -203,6 +203,8 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let data = shoppingData?.items[indexPath.item]
         cell.configureCell(data: data, query: query ?? "")
+        
+        // TODO: - ud에서 starIdList 삭제하기 -> ud에서 비교하지 않고, Realm에서 비교해보기
         cell.configureButton(isSelected: ud.starIdList.contains(data?.productId ?? ""))
         
         cell.likeButton.tag = indexPath.item

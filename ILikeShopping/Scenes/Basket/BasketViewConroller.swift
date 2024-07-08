@@ -31,17 +31,27 @@ final class BasketViewConroller: BaseViewController {
     
     let ud = UserDefaultsManager.shared
     let repository = RealmRepository()
+    var folder: Folder?
     var list: [Basket] = []
+    var option = FolderOption.total
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
         print(repository.fileURL!)
+        
+        folder = repository.filteredFolder(option)
+        // 처음엔 전체 가져오기
+        list = repository.fetchAll()
+        configureCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        list = repository.fetchAll()
+        if let folder = folder {
+            list = Array(folder.baskets)
+        } else {
+            list = repository.fetchAll()
+        }
         totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
         collectionView.reloadData()
     }
@@ -101,10 +111,19 @@ final class BasketViewConroller: BaseViewController {
         print(#function, sender.tag)
         
         // 이미 선택된 버튼을 누르면 패스
-        if sender.backgroundColor == MyColor.darkgray { return }
+        if sender.backgroundColor == MyColor.orange { return }
         
         // 1. Folder에 따라 list 변경하기
-        
+        // list는 폴더에 담겨있는 baskets 중 하나이거나 전체 basket(folder = nil일 때)
+        option = FolderOption.allCases[sender.tag]
+        folder = repository.filteredFolder(option)
+        if let folder = folder {
+            list = Array(folder.baskets)
+        } else {
+            list = repository.fetchAll()
+        }
+        totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
+        collectionView.reloadData()
         
         // 2. 선택된 버튼 UI 변경
         buttons.forEach { button in
