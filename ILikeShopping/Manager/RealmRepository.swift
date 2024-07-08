@@ -41,6 +41,20 @@ final class RealmRepository {
         }
     }
     
+    // 첫 실행 때 Folder 없으면 Folder 3개 만들어주기
+    func makeInitialFolder() {
+        try! realm.write {
+            let folder1 = Folder(price: 100_000, name: "~ 10만원")
+            realm.add(folder1)
+            
+            let folder2 = Folder(price: 1_000_000, name: "10 ~ 100만원")
+            realm.add(folder2)
+            
+            let folder3 = Folder(price: -1, name: "100만원 ~")
+            realm.add(folder3)
+        }
+    }
+    
     // MARK: - Create
     func addItem(_ item: Basket) {
         // Folder에 맞게 추가하기

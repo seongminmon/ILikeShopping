@@ -22,6 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Realm.Configuration.defaultConfiguration = config
         
+        let repository = RealmRepository()
+        if repository.fetchFolder().isEmpty {
+            repository.makeInitialFolder()
+        }
+        
+        
         // IQKeyboardManager 세팅
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.resignOnTouchOutside = true

@@ -16,6 +16,13 @@ class Folder: Object {
     
     @Persisted var date: Date
     @Persisted(primaryKey: true) var id: ObjectId
+    
+    convenience init(price: Int, name: String) {
+        self.init()
+        self.price = price
+        self.name = name
+        self.date = Date()
+    }
 }
 
 class Basket: Object {
