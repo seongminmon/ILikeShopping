@@ -87,9 +87,12 @@ final class RealmRepository {
         return Array(value)
     }
     
+    func fetchBasket(_ productId: String) -> Basket? {
+        return realm.object(ofType: Basket.self, forPrimaryKey: productId)
+    }
+    
     func isBasket(_ productId: String) -> Bool {
-        let value = realm.object(ofType: Basket.self, forPrimaryKey: productId)
-        return value != nil
+        return fetchBasket(productId) != nil
     }
     
     func fetchSearched(_ text: String) -> [Basket] {
@@ -126,14 +129,12 @@ final class RealmRepository {
     }
     
     // MARK: - Delete
-    // TODO: - productId를 기본키로 바꿔보기
     func deleteItem(_ productId: String) {
-        let item = realm.objects(Basket.self).where {
-            $0.productId == productId
-        }
-        try! realm.write {
-            realm.delete(item)
-            print("Realm Delete!")
+        if let item = fetchBasket(productId) {
+            try! realm.write {
+                realm.delete(item)
+                print("Realm Delete!")
+            }
         }
     }
     
