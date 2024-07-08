@@ -11,6 +11,13 @@ import SnapKit
 
 final class BasketViewConroller: BaseViewController {
     
+    let button0 = OrangeButton(title: " 전체 ")
+    let button1 = OrangeButton(title: "~ 10만원")
+    let button2 = OrangeButton(title: "10 ~ 100만원")
+    let button3 = OrangeButton(title: "100만원 ~")
+    lazy var buttons = [button0, button1, button2, button3]
+    lazy var buttonStackView = UIStackView(arrangedSubviews: buttons)
+    
     let totalCountLabel = UILabel()
     let collectionView = UICollectionView(
         frame: .zero,
@@ -24,7 +31,6 @@ final class BasketViewConroller: BaseViewController {
     
     let ud = UserDefaultsManager.shared
     let repository = RealmRepository()
-    
     var list: [Basket] = []
     
     override func viewDidLoad() {
@@ -45,13 +51,20 @@ final class BasketViewConroller: BaseViewController {
     }
     
     override func addSubviews() {
+        view.addSubview(buttonStackView)
         view.addSubview(totalCountLabel)
         view.addSubview(collectionView)
     }
     
     override func configureLayout() {
-        totalCountLabel.snp.makeConstraints { make in
+        buttonStackView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(40)
+        }
+        
+        totalCountLabel.snp.makeConstraints { make in
+            make.top.equalTo(buttonStackView.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(30)
         }
 
@@ -62,6 +75,18 @@ final class BasketViewConroller: BaseViewController {
     }
     
     override func configureView() {
+        for i in 0..<buttons.count {
+            buttons[i].tag = i
+            buttons[i].addTarget(self, action: #selector(priceButtonTapped), for: .touchUpInside)
+            buttons[i].backgroundColor = MyColor.lightgray
+        }
+        button0.backgroundColor = MyColor.orange
+        
+        buttonStackView.axis = .horizontal
+        buttonStackView.alignment = .fill
+        buttonStackView.distribution = .fillProportionally
+        buttonStackView.spacing = 8
+        
         totalCountLabel.font = MyFont.bold15
         totalCountLabel.textColor = MyColor.orange
     }
@@ -71,6 +96,26 @@ final class BasketViewConroller: BaseViewController {
         collectionView.dataSource = self
         collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
     }
+    
+    @objc func priceButtonTapped(sender: UIButton) {
+        print(#function, sender.tag)
+        
+        // 이미 선택된 버튼을 누르면 패스
+        if sender.backgroundColor == MyColor.darkgray { return }
+        
+        // 1. Folder에 따라 list 변경하기
+        
+        
+        // 2. 선택된 버튼 UI 변경
+        buttons.forEach { button in
+            if button == sender {
+                button.backgroundColor = MyColor.orange
+            } else {
+                button.backgroundColor = MyColor.lightgray
+            }
+        }
+    }
+    
 }
 
 extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSource {
