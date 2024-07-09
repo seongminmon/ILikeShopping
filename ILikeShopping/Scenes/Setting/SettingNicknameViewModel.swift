@@ -23,26 +23,58 @@ enum NicknameValidationError: Error, LocalizedError {
 
 final class SettingNicknameViewModel {
     
-//    let ud = UserDefaultsManager.shared
+    var imageIndex: Int = UserDefaultsManager.shared.profileImageIndex
+    
     var nicknameValidationError: NicknameValidationError?
-//    lazy var imageIndex: Int = ud.profileImageIndex
     
     // MARK: - Input
     // 닉네임 텍스트 필드에 글자 입력
-    var inputNicknameTextfieldChange: Observable<String?> = Observable("")
+    var inputNicknameTextfieldChange: Observable<String?> = Observable(UserDefaultsManager.shared.nickname)
     // 완료 버튼 탭
+    var inputcompleteButtonTapped: Observable<String?> = Observable(nil)
     // 저장 버튼 탭
+    var inputsaveButtonTapped: Observable<String?> = Observable(nil)
     
     // MARK: - Output
     // descriptionLabel에 닉네임 유효성 검사 결과 알려주기
     var outputNicknameValidation: Observable<String?> = Observable("")
     
     init() {
-        inputNicknameTextfieldChange.bind { text in
-            self.nicknameValidationResult(text)
+        inputNicknameTextfieldChange.bind { value in
+            self.nicknameValidationResult(value)
+        }
+        inputcompleteButtonTapped.bind { value in
+            self.completeButtonTapped(value)
+        }
+        inputsaveButtonTapped.bind { value in
+            self.saveButtonTapped(value)
         }
     }
     
+    private func completeButtonTapped(_ nickname: String?) {
+        guard let nickname = nickname else { return }
+        // 닉네임 조건 검사
+        if nicknameValidationError == nil {
+            // 값 저장
+            UserDefaultsManager.shared.nickname = nickname
+            UserDefaultsManager.shared.profileImageIndex = imageIndex
+            UserDefaultsManager.shared.signUpDate = Date()
+        }
+    }
+    
+    private func saveButtonTapped(_ nickname: String?) {
+        guard let nickname = nickname else { return }
+        // 닉네임 조건 검사
+        if nicknameValidationError == nil {
+            // 값 저장
+            UserDefaultsManager.shared.nickname = nickname
+            UserDefaultsManager.shared.profileImageIndex = imageIndex
+        }
+    }
+    
+    // MARK: - 닉네임 조건 검사
+    // Error Handling
+    // textField text 값이 변할 때마다 유효성 검사
     private func nicknameValidationResult(_ text: String?) {
         guard let text = text else { return }
         do {

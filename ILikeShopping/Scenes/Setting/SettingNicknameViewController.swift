@@ -22,10 +22,8 @@ final class SettingNicknameViewController: BaseViewController {
     let descriptionLabel = UILabel()
     let completeButton = OrangeButton(title: "완료")
     
-    var settingOption: SettingOption = .setting     // 이전 화면에서 전달
-    
-    let ud = UserDefaultsManager.shared
-    lazy var imageIndex: Int = ud.profileImageIndex
+    // 이전 화면에서 전달
+    var settingOption: SettingOption = .setting
 
     let viewModel = SettingNicknameViewModel()
     
@@ -109,15 +107,15 @@ final class SettingNicknameViewController: BaseViewController {
         switch settingOption {
         case .setting:
             // 초기 설정일 땐 랜덤으로 설정
-            imageIndex = Int.random(in: 0..<MyImage.profileImageList.count)
-            profileImageView.configureImageView(image: MyImage.profileImageList[imageIndex], isSelect: true)
+            viewModel.imageIndex = Int.random(in: 0..<MyImage.profileImageList.count)
+            profileImageView.configureImageView(image: MyImage.profileImageList[viewModel.imageIndex], isSelect: true)
             
             descriptionLabel.textColor = MyColor.orange
         case .edit:
             // 수정일 땐 기존 선택된 이미지로 설정
-            profileImageView.configureImageView(image: ud.profileImage, isSelect: true)
+            profileImageView.configureImageView(image: UserDefaultsManager.shared.profileImage, isSelect: true)
             
-            nicknameTextField.text = ud.nickname
+            nicknameTextField.text = UserDefaultsManager.shared.nickname
             nicknameTextField.becomeFirstResponder()
             
             descriptionLabel.textColor = MyColor.black
@@ -131,7 +129,6 @@ final class SettingNicknameViewController: BaseViewController {
         
         separator.backgroundColor = MyColor.black
         
-        textFieldDidChange()
         descriptionLabel.font = MyFont.regular13
         
         completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
@@ -142,7 +139,7 @@ final class SettingNicknameViewController: BaseViewController {
         let vc = SettingImageViewController()
         // settingOption 동기화
         vc.settingOption = settingOption
-        vc.selectedIndex = imageIndex
+        vc.selectedIndex = viewModel.imageIndex
         // (1) delegate
         vc.delegate = self
         navigate(vc: vc)
@@ -154,16 +151,17 @@ final class SettingNicknameViewController: BaseViewController {
 //        }
     }
     
+    @objc func textFieldDidChange() {
+        viewModel.inputNicknameTextfieldChange.value = nicknameTextField.text
+    }
+    
     // MARK: - UD에 저장하는 시점 == 완료버튼이나 저장버튼을 누를 때
     
     @objc func completeButtonTapped() {
+        viewModel.inputcompleteButtonTapped.value = nicknameTextField.text
+        
         // 닉네임 조건 검사
         if viewModel.nicknameValidationError == nil {
-            // 값 저장
-            ud.nickname = nicknameTextField.text ?? ""
-            ud.profileImageIndex = imageIndex
-            ud.signUpDate = Date()
-            
             // 메인 화면으로 window 전환
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
@@ -175,22 +173,13 @@ final class SettingNicknameViewController: BaseViewController {
     }
     
     @objc func saveButtonTapped() {
+        viewModel.inputsaveButtonTapped.value = nicknameTextField.text
+        
         // 닉네임 조건 검사
         if viewModel.nicknameValidationError == nil {
-            // 값 저장
-            ud.nickname = nicknameTextField.text ?? ""
-            ud.profileImageIndex = imageIndex
-            
             // 이전 화면으로 돌아가기 (설정 화면)
             navigationController?.popViewController(animated: true)
         }
-    }
-    
-    // MARK: - 닉네임 조건 검사
-    // Error Handling
-    // textField text 값이 변할 때마다 유효성 검사
-    @objc func textFieldDidChange() {
-        viewModel.inputNicknameTextfieldChange.value = nicknameTextField.text
     }
 }
 
@@ -198,7 +187,7 @@ final class SettingNicknameViewController: BaseViewController {
 extension SettingNicknameViewController: SendDataDelegate {
     func recieveData(data: Int) {
         // 이미지 선택 뷰에서 선택한 이미지 보이기
-        imageIndex = data
-        profileImageView.image = MyImage.profileImageList[imageIndex]
+        viewModel.imageIndex = data
+        profileImageView.image = MyImage.profileImageList[viewModel.imageIndex]
     }
 }
