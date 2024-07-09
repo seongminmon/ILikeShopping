@@ -41,6 +41,8 @@ final class SettingNicknameViewController: BaseViewController {
     var nicknameValidationError: NicknameValidationError?
     lazy var imageIndex: Int = ud.profileImageIndex
 
+    let viewModel = SettingNicknameViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

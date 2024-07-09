@@ -87,7 +87,7 @@ final class RealmRepository {
         return Array(value)
     }
     
-    func fetchBasket(_ productId: String) -> Basket? {
+    private func fetchBasket(_ productId: String) -> Basket? {
         return realm.object(ofType: Basket.self, forPrimaryKey: productId)
     }
     
