@@ -53,6 +53,8 @@ final class SearchViewController: BaseViewController {
     var start = 1       // 페이지네이션 위한 변수
     var sortOption: SortOption = .sim
     
+    let viewModel = SearchViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         callRequest()

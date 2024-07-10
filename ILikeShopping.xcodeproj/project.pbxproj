@@ -60,6 +60,7 @@
 		24B515572C3D1B4700DF89AA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515562C3D1B4700DF89AA /* Observable.swift */; };
 		24B515592C3D1BDE00DF89AA /* SettingNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */; };
 		24B515762C3EA70600DF89AA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515752C3EA70600DF89AA /* MainViewModel.swift */; };
+		24B515782C3ED35B00DF89AA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515772C3ED35B00DF89AA /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -126,6 +127,7 @@
 		24B515562C3D1B4700DF89AA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNicknameViewModel.swift; sourceTree = "<group>"; };
 		24B515752C3EA70600DF89AA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		24B515772C3ED35B00DF89AA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				24B515752C3EA70600DF89AA /* MainViewModel.swift */,
 				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
 				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
+				24B515772C3ED35B00DF89AA /* SearchViewModel.swift */,
 				2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */,
 				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
 			);
@@ -403,6 +406,7 @@
 				2426F62D2C1BF3D5005350A9 /* BaseTabBarController.swift in Sources */,
 				2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */,
 				2426F61C2C1B0299005350A9 /* MyColor.swift in Sources */,
+				24B515782C3ED35B00DF89AA /* SearchViewModel.swift in Sources */,
 				2426F6162C1AFEAA005350A9 /* UIColor+.swift in Sources */,
 				24AF663C2C3A8CB900CCAAF4 /* Basket.swift in Sources */,
 				24356B0B2C2AC391000D2DF1 /* BaseCollectionViewCell.swift in Sources */,
