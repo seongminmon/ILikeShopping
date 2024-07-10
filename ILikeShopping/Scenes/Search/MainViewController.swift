@@ -19,21 +19,28 @@ final class MainViewController: BaseViewController {
     let deleteAllButton = UIButton()
     let tableView = UITableView()
     
-    let ud = UserDefaultsManager.shared
+    let viewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         toggleHideView()
-        tableView.reloadData()
+    }
+    
+    func bindData() {
+        viewModel.outputList.bind { _ in
+            self.tableView.reloadData()
+            self.toggleHideView()
+        }
     }
     
     override func configureNavigationBar() {
-        navigationItem.title = "\(ud.nickname)'s ILikeShopping"
+        navigationItem.title = viewModel.naviTitle
     }
     
     override func addSubviews() {
@@ -114,7 +121,7 @@ final class MainViewController: BaseViewController {
     }
     
     func toggleHideView() {
-        if ud.searchWordList.isEmpty {
+        if viewModel.outputList.value.isEmpty {
             emptyImageView.isHidden = false
             emptyLabel.isHidden = false
             recentLabel.isHidden = true
@@ -130,8 +137,7 @@ final class MainViewController: BaseViewController {
     }
     
     @objc func deleteAllButtonTapped() {
-        ud.searchWordList.removeAll()
-        toggleHideView()
+        viewModel.inputDeleteAllButtonTapped.value = ()
     }
     
     func search(_ query: String) {
@@ -145,7 +151,7 @@ final class MainViewController: BaseViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ud.searchWordList.count
+        return viewModel.outputList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -155,7 +161,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         ) as? SearchWordTableViewCell else {
             return UITableViewCell()
         }
-        let data = ud.searchWordList[indexPath.row]
+        let data = viewModel.outputList.value[indexPath.row]
         cell.configureCell(text: data)
         cell.deleteButton.tag = indexPath.row
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
@@ -163,24 +169,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func deleteButtonTapped(sender: UIButton) {
-        // 선택한 row 지우기
-        ud.searchWordList.remove(at: sender.tag)
-        tableView.reloadData()
+        viewModel.inputDeleteButtonTapped.value = sender.tag
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let query = ud.searchWordList[indexPath.row]
-        // 최근 검색어 앞에 오도록 순서 변경하기
-        ud.searchWordList.remove(at: indexPath.row)
-        ud.searchWordList.insert(query, at: 0)
-        search(query)
+        search(viewModel.outputList.value[indexPath.row])
+        viewModel.inputCellSelected.value = indexPath.row
     }
 }
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text, query != "" else { return }
-        ud.searchWordList.insert(query, at: 0)
-        search(query)
+        viewModel.inputSearchButtonClicked.value = searchBar.text
+        search(searchBar.text ?? "")
     }
 }

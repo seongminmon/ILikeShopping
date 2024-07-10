@@ -59,6 +59,7 @@
 		24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */; };
 		24B515572C3D1B4700DF89AA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515562C3D1B4700DF89AA /* Observable.swift */; };
 		24B515592C3D1BDE00DF89AA /* SettingNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */; };
+		24B515762C3EA70600DF89AA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515752C3EA70600DF89AA /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,6 +125,7 @@
 		24B3BD252C2D9C640088CDB7 /* CollectionViewDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDesign.swift; sourceTree = "<group>"; };
 		24B515562C3D1B4700DF89AA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNicknameViewModel.swift; sourceTree = "<group>"; };
+		24B515752C3EA70600DF89AA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
+				24B515752C3EA70600DF89AA /* MainViewModel.swift */,
 				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
 				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
 				2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */,
@@ -437,6 +440,7 @@
 				24356B1C2C2D284E000D2DF1 /* UIImage+.swift in Sources */,
 				2426F6442C1C5BB5005350A9 /* String+.swift in Sources */,
 				2426F6122C1AFB54005350A9 /* SettingImageViewController.swift in Sources */,
+				24B515762C3EA70600DF89AA /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
