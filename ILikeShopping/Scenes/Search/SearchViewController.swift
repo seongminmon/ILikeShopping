@@ -44,31 +44,45 @@ final class SearchViewController: BaseViewController {
         )
     )
     
-    let ud = UserDefaultsManager.shared
-    let repository = RealmRepository()
-    
-    var query: String?  // 이전 화면에서 전달
-    var shoppingData: ShoppingResponse? // 네트워크
-    
-    var start = 1       // 페이지네이션 위한 변수
-    var sortOption: SortOption = .sim
-    
-    let viewModel = SearchViewModel()
+    var viewModel: SearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        callRequest()
         configureCollectionView()
+        bindData()
     }
     
+    // TODO: - 웹뷰에서 좋아요 누른 경우 뷰 업데이트 -> 좋아요 누른 것만 리로드하도록 개선하기
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // 좋아요 동기화
         collectionView.reloadData()
     }
     
+    func bindData() {
+        viewModel.inputNetworkTrigger.value = ()
+        
+        viewModel.outputList.bind { [weak self] value in
+            guard let self else { return }
+            self.totalCountLabel.text = value?.totalCountText
+            self.collectionView.reloadData()
+        }
+        
+        viewModel.outputScrollToTop.bind { [weak self] value in
+            guard let self, let value else { return }
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        }
+        
+        viewModel.outputFailureAlert.bind { [weak self] message in
+            guard let self else { return }
+            guard let message else { return }
+            self.showAlert(title: "오류", message: message, actionTitle: "확인") { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
     override func configureNavigationBar() {
-        navigationItem.title = query
+        navigationItem.title = viewModel.query
     }
     
     override func addSubviews() {
@@ -124,7 +138,7 @@ final class SearchViewController: BaseViewController {
             let button = buttons[i]
             button.tag = i
             let buttonOption = SortOption.allCases[button.tag]
-            button.configureButton(isSelect: buttonOption == sortOption)
+            button.configureButton(isSelect: buttonOption == viewModel.sortOption)
             button.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
         }
     }
@@ -134,9 +148,10 @@ final class SearchViewController: BaseViewController {
         if sender.backgroundColor == MyColor.darkgray { return }
         
         // 1. 선택된 정렬 기준으로 재검색
-        sortOption = SortOption.allCases[sender.tag]
-        start = 1
-        callRequest()
+        viewModel.sortOption = SortOption.allCases[sender.tag]
+        viewModel.start = 1
+        // 네트워크 요청
+        viewModel.inputNetworkTrigger.value = ()
         
         // 2. 선택된 버튼 UI 변경
         buttons.forEach { button in
@@ -150,65 +165,26 @@ final class SearchViewController: BaseViewController {
         collectionView.prefetchDataSource = self
         collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
     }
-    
-    // MARK: - 네트워크
-    
-    func callRequest() {
-        guard let query = query else { return }
-        NetworkManager.shared.request(api: .search(query: query, start: start, sortOption: sortOption), model: ShoppingResponse.self) { result in
-            switch result {
-            case .success(let data):
-                self.successAction(data: data)
-            case .failure(let error):
-                self.failureAction(message: error.rawValue)
-            }
-        }
-    }
-    
-    func successAction(data: ShoppingResponse) {
-        if start == 1 {
-            // 첫 검색이라면 데이터 교체
-            shoppingData = data
-        } else {
-            // 페이지네이션이라면 데이터 추가
-            shoppingData?.items.append(contentsOf: data.items)
-        }
-        
-        totalCountLabel.text = shoppingData?.totalCountText
-        collectionView.reloadData()
-        
-        if start == 1 && data.total > 0 {
-            // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
-            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-        }
-    }
-    
-    func failureAction(message: String) {
-        showAlert(title: "오류", message: message, actionTitle: "확인") { _ in
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shoppingData?.items.count ?? 0
+        return viewModel.outputList.value?.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: SearchCollectionViewCell.identifier,
             for: indexPath
-        ) as? SearchCollectionViewCell else {
+        ) as? SearchCollectionViewCell,
+              let data = viewModel.outputList.value?.items[indexPath.item] else {
             return UICollectionViewCell()
         }
         
-        let data = shoppingData?.items[indexPath.item]
-        cell.configureCell(data: data, query: query ?? "")
+        cell.configureCell(data: data, query: viewModel.query ?? "")
         
-        if let data = data {
-            cell.configureButton(isSelected: repository.isBasket(data.productId))
-        }
+        viewModel.inputCellForItemAt.value = data.productId
+        cell.configureButton(isSelected: viewModel.outputIsBasket.value ?? false)
         
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
@@ -217,29 +193,17 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     // 좋아요 토글
     @objc func likeButtonTapped(sender: UIButton) {
-        guard let shoppingData else { return }
-        let id = shoppingData.items[sender.tag].productId
+        guard let data = viewModel.outputList.value?.items[sender.tag] else { return }
         let cell = collectionView.cellForItem(at: IndexPath(item: sender.tag, section: 0)) as! SearchCollectionViewCell
         
-        let data = shoppingData.items[sender.tag]
-        if repository.isBasket(data.productId) {
-            // Realm 삭제
-            repository.deleteItem(data.productId)
-            // 뷰 업데이트
-            cell.configureButton(isSelected: false)
-        } else {
-            // Realm 추가
-            let item = Basket(image: data.image, mallName: data.mallName, title: data.title, lprice: data.lprice, link: data.link, productId: data.productId)
-            repository.addItem(item)
-            // 뷰 업데이트
-            cell.configureButton(isSelected: true)
-        }
+        viewModel.inputCellLikeButtonClicked.value = data
+        cell.configureButton(isSelected: viewModel.outputIsBasket.value ?? false)
     }
     
     // 웹뷰로 이동
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        let data = shoppingData?.items[indexPath.item]
+        let data = viewModel.outputList.value?.items[indexPath.item]
         vc.data = data
         navigate(vc: vc)
     }
@@ -248,14 +212,8 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         // 페이지 네이션
-        guard let shoppingData else { return }
         indexPaths.forEach { indexPath in
-            if indexPath.item == shoppingData.items.count - 8 &&
-                shoppingData.items.count < shoppingData.total &&
-                start <= 1000 {
-                start += NetworkRequest.display
-                callRequest()
-            }
+            viewModel.inputPagenationTrigger.value = indexPath.item
         }
     }
 }

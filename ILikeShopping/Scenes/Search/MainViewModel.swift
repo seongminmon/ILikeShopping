@@ -9,11 +9,12 @@ import Foundation
 
 final class MainViewModel {
     
-    let ud = UserDefaultsManager.shared
+    private let ud = UserDefaultsManager.shared
     let naviTitle = "\(UserDefaultsManager.shared.nickname)'s ILikeShopping"
+//    let searchBarPlaceHolder = "브랜드, 상품 등을 입력하세요."
     
     // Input
-    // 서치버튼 입력
+    // 서치 버튼
     var inputSearchButtonClicked: Observable<String?> = Observable(nil)
     // 셀 선택
     var inputCellSelected: Observable<Int?> = Observable(nil)
@@ -36,7 +37,6 @@ final class MainViewModel {
             self.deleteItem(value)
         }
         inputDeleteAllButtonTapped.bind { _ in
-            print("deleteAll")
             self.deleteAll()
         }
     }
@@ -64,6 +64,7 @@ final class MainViewModel {
     }
     
     private func deleteAll() {
+        guard inputDeleteAllButtonTapped.value != nil else { return }
         ud.searchWordList.removeAll()
         outputList.value = ud.searchWordList
     }

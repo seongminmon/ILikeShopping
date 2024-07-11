@@ -27,11 +27,6 @@ final class MainViewController: BaseViewController {
         bindData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        toggleHideView()
-    }
-    
     func bindData() {
         viewModel.outputList.bind { _ in
             self.tableView.reloadData()
@@ -142,8 +137,10 @@ final class MainViewController: BaseViewController {
     
     func search(_ query: String) {
         // 검색 화면으로 이동, 데이터 전달
+        let vm = SearchViewModel()
+        vm.query = query
         let vc = SearchViewController()
-        vc.query = query
+        vc.viewModel = vm
         navigate(vc: vc)
     }
     
