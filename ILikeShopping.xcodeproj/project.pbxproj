@@ -61,6 +61,7 @@
 		24B515592C3D1BDE00DF89AA /* SettingNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */; };
 		24B515762C3EA70600DF89AA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515752C3EA70600DF89AA /* MainViewModel.swift */; };
 		24B515782C3ED35B00DF89AA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515772C3ED35B00DF89AA /* SearchViewModel.swift */; };
+		24B515872C40124A00DF89AA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515862C40124A00DF89AA /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -128,6 +129,7 @@
 		24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNicknameViewModel.swift; sourceTree = "<group>"; };
 		24B515752C3EA70600DF89AA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		24B515772C3ED35B00DF89AA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		24B515862C40124A00DF89AA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				24B515772C3ED35B00DF89AA /* SearchViewModel.swift */,
 				2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */,
 				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
+				24B515862C40124A00DF89AA /* DetailViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				24AF663C2C3A8CB900CCAAF4 /* Basket.swift in Sources */,
 				24356B0B2C2AC391000D2DF1 /* BaseCollectionViewCell.swift in Sources */,
 				2426F6312C1C06F4005350A9 /* SettingTableViewCell.swift in Sources */,
+				24B515872C40124A00DF89AA /* DetailViewModel.swift in Sources */,
 				24B515572C3D1B4700DF89AA /* Observable.swift in Sources */,
 				2426F6212C1B1BD3005350A9 /* CameraImageView.swift in Sources */,
 				2426F6382C1C356F005350A9 /* ShoppingResponse.swift in Sources */,

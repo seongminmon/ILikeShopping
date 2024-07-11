@@ -18,6 +18,8 @@ final class DetailViewController: BaseViewController {
     var data: Shopping?
     let repository = RealmRepository()
     
+    let viewModel = DetailViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
