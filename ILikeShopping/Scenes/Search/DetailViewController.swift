@@ -14,9 +14,8 @@ final class DetailViewController: BaseViewController {
     let webView = WKWebView()
     let indicator = UIActivityIndicatorView()
     
-    let ud = UserDefaultsManager.shared
-    var data: Shopping?
     let repository = RealmRepository()
+    var data: Shopping?     // 이전 화면에서 전달
     
     let viewModel = DetailViewModel()
     
@@ -36,18 +35,10 @@ final class DetailViewController: BaseViewController {
         // 좋아요 토글
         guard let data else { return }
         
-        if repository.isBasket(data.productId) {
-            // Realm 삭제
-            repository.deleteItem(data.productId)
-            // 뷰 업데이트
-            sender.image = MyImage.unselected
-        } else {
-            // Realm에 추가
-            let item = Basket(image: data.image, mallName: data.mallName, title: data.title, lprice: data.lprice, link: data.link, productId: data.productId)
-            repository.addItem(item)
-            // 뷰 업데이트
-            sender.image = MyImage.selected
-        }
+        viewModel.inputLikeButtonTapped.value = data
+        
+        // 뷰 업데이트
+        sender.image = viewModel.outputIsBasket.value ?? false ? MyImage.selected : MyImage.unselected
     }
     
     override func addSubviews() {
