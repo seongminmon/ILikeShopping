@@ -13,8 +13,6 @@ final class BasketSearchViewConroller: BaseViewController {
     
     let tableView = UITableView()
     
-    let repository = RealmRepository()
-    
     let viewModel = BasketSearchViewModel()
     
     override func viewDidLoad() {
@@ -23,9 +21,16 @@ final class BasketSearchViewConroller: BaseViewController {
     }
     
     func bindData() {
-        viewModel.outputList.bind { [weak self] list in
-            guard let self else { return }
+        viewModel.outputUpdateSearchResults.bind {
+            [weak self] value in
+            guard let self, let value else { return }
             tableView.reloadData()
+        }
+        
+        viewModel.outputSwipeToDelete.bind {
+            [weak self] value in
+            guard let self, let value else { return }
+            tableView.deleteRows(at: [value], with: .fade)
         }
     }
     
@@ -61,7 +66,7 @@ final class BasketSearchViewConroller: BaseViewController {
 
 extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.outputList.value.count
+        return viewModel.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,8 +76,7 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
         ) as? BasketSearchTableViewCell else {
             return UITableViewCell()
         }
-        
-        let data = viewModel.outputList.value[indexPath.row]
+        let data = viewModel.list[indexPath.row]
         cell.configureCell(data)
         return cell
     }
@@ -80,13 +84,7 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
     // 스와이프로 삭제하기
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let item = viewModel.outputList.value[indexPath.row]
-            // searchedList 삭제
-            viewModel.outputList.value.remove(at: indexPath.row)
-            // realm에서 삭제 (자식)
-            repository.deleteItem(item.productId)
-            // 뷰 업데이트
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            viewModel.inputSwipeToDelete.value = indexPath
         }
     }
 }
