@@ -23,13 +23,14 @@ final class BasketSearchTableViewCell: BaseTableViewCell {
             make.verticalEdges.equalToSuperview().inset(8)
             make.leading.equalToSuperview().inset(16)
             make.trailing.equalTo(subLabel.snp.leading).offset(-8)
+            make.height.greaterThanOrEqualTo(subLabel)
         }
         
         subLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(40)
             make.width.equalTo(120)
+            make.height.equalTo(40)
         }
     }
     
