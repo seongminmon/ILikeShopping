@@ -16,6 +16,8 @@ final class BasketSearchViewConroller: BaseViewController {
     let repository = RealmRepository()
     var searchedList: [Basket] = []
     
+    let viewModel = BasketSearchViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 초기값은 전체 장바구니

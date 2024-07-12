@@ -63,6 +63,7 @@
 		24B515782C3ED35B00DF89AA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515772C3ED35B00DF89AA /* SearchViewModel.swift */; };
 		24B515872C40124A00DF89AA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515862C40124A00DF89AA /* DetailViewModel.swift */; };
 		24B515892C40D45F00DF89AA /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515882C40D45E00DF89AA /* BasketViewModel.swift */; };
+		24B5158B2C40FB4000DF89AA /* BasketSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5158A2C40FB4000DF89AA /* BasketSearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -132,6 +133,7 @@
 		24B515772C3ED35B00DF89AA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		24B515862C40124A00DF89AA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		24B515882C40D45E00DF89AA /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
+		24B5158A2C40FB4000DF89AA /* BasketSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +307,7 @@
 				2435E6DF2C27FF9E00B5393A /* BasketViewConroller.swift */,
 				24B515882C40D45E00DF89AA /* BasketViewModel.swift */,
 				24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */,
+				24B5158A2C40FB4000DF89AA /* BasketSearchViewModel.swift */,
 				24AF66462C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift */,
 			);
 			path = Basket;
@@ -408,6 +411,7 @@
 			files = (
 				2426F5F02C1AF267005350A9 /* OnBoardingViewController.swift in Sources */,
 				2426F6142C1AFDDF005350A9 /* MyImage.swift in Sources */,
+				24B5158B2C40FB4000DF89AA /* BasketSearchViewModel.swift in Sources */,
 				2426F6182C1B011D005350A9 /* ProfileImageView.swift in Sources */,
 				2426F62D2C1BF3D5005350A9 /* BaseTabBarController.swift in Sources */,
 				2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */,
