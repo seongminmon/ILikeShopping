@@ -62,6 +62,7 @@
 		24B515762C3EA70600DF89AA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515752C3EA70600DF89AA /* MainViewModel.swift */; };
 		24B515782C3ED35B00DF89AA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515772C3ED35B00DF89AA /* SearchViewModel.swift */; };
 		24B515872C40124A00DF89AA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515862C40124A00DF89AA /* DetailViewModel.swift */; };
+		24B515892C40D45F00DF89AA /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B515882C40D45E00DF89AA /* BasketViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -130,6 +131,7 @@
 		24B515752C3EA70600DF89AA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		24B515772C3ED35B00DF89AA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		24B515862C40124A00DF89AA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		24B515882C40D45E00DF89AA /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				2435E6DF2C27FF9E00B5393A /* BasketViewConroller.swift */,
+				24B515882C40D45E00DF89AA /* BasketViewModel.swift */,
 				24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */,
 				24AF66462C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift */,
 			);
@@ -431,6 +434,7 @@
 				24B515592C3D1BDE00DF89AA /* SettingNicknameViewModel.swift in Sources */,
 				2426F63C2C1C370F005350A9 /* DetailViewController.swift in Sources */,
 				24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */,
+				24B515892C40D45F00DF89AA /* BasketViewModel.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
 				2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */,

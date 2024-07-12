@@ -35,6 +35,8 @@ final class BasketViewConroller: BaseViewController {
     var list: [Basket] = []
     var option = FolderOption.total
     
+    let viewModel = BasketViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(repository.fileURL!)
