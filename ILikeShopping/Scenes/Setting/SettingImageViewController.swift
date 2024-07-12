@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol SendDataDelegate {
-    func recieveData(data: Int) -> Void
-}
-
 final class SettingImageViewController: BaseViewController {
     
     let selectedImageView = ProfileImageView(frame: .zero)
@@ -25,43 +21,39 @@ final class SettingImageViewController: BaseViewController {
         )
     )
     
-    var settingOption: SettingOption = .setting
-    var selectedIndex: Int = 0
     // (1) 이전 화면에 데이터를 전달하기 위한 delegate
-    var delegate: SendDataDelegate?
+//    var delegate: SendDataDelegate?
     // (2) 클로저
 //    var completionHandler: ((Int) -> Void)?
     
-    let viewModel = SettingImageViewModel()
+    var viewModel: SettingImageViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        bindData()
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        print(#function)
-//        // 이전 화면(닉네임 화면)에 데이터 전달
-////        let popVc = navigationController?.viewControllers.last! as? SettingNicknameViewController
-////        popVc?.imageIndex = selectedIndex
-//        
-//        // MARK: - viewWillDisappear는 실제로 이전 화면으로 돌아가지 않더라도 호출될 수 있음
-//        // => 역값전달의 시점은 viewWillDisappear보다 viewDidDisappear가 더 적절해보임.
-//        // 단, navigationController?.viewControllers.last!의 방식으로는 전달할 수 없음
-//        // => navigationController가 nil이기 때문!
-//    }
+    func bindData() {
+        viewModel.outputSelectedIndex.bind { [weak self] _ in
+            guard let self else { return }
+            configureView()
+            collectionView.reloadData()
+        }
+    }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.inputViewWillDisappear.value = ()
+        
         // 1. delegate
-        delegate?.recieveData(data: selectedIndex)
+//        delegate?.recieveData(data: selectedIndex)
         // 2. 클로저
 //        completionHandler!(selectedIndex)
     }
     
     override func configureNavigationBar() {
-        navigationItem.title = settingOption.rawValue
+        navigationItem.title = viewModel.settingOption.rawValue
     }
     
     override func addSubviews() {
@@ -89,13 +81,20 @@ final class SettingImageViewController: BaseViewController {
     }
     
     override func configureView() {
-        selectedImageView.configureImageView(image: MyImage.profileImageList[selectedIndex], isSelect: true)
+        guard let index = viewModel.outputSelectedIndex.value else { return }
+        selectedImageView.configureImageView(
+            image: MyImage.profileImageList[index],
+            isSelect: true
+        )
     }
     
     func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(ProfileImageCollectionViewCell.self, forCellWithReuseIdentifier: ProfileImageCollectionViewCell.identifier)
+        collectionView.register(
+            ProfileImageCollectionViewCell.self,
+            forCellWithReuseIdentifier: ProfileImageCollectionViewCell.identifier
+        )
     }
 }
 
@@ -108,7 +107,8 @@ extension SettingImageViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: ProfileImageCollectionViewCell.identifier,
             for: indexPath
-        ) as? ProfileImageCollectionViewCell else {
+        ) as? ProfileImageCollectionViewCell,
+              let selectedIndex = viewModel.outputSelectedIndex.value else {
             return UICollectionViewCell()
         }
         cell.configureCell(index: indexPath.item, selectedIndex: selectedIndex)
@@ -116,8 +116,6 @@ extension SettingImageViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndex = indexPath.item
-        configureView()
-        collectionView.reloadData()
+        viewModel.inputCellSelected.value = indexPath.item
     }
 }

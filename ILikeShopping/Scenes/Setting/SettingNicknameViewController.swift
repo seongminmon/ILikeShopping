@@ -139,13 +139,21 @@ final class SettingNicknameViewController: BaseViewController {
     
     @objc func profileImageButtonTapped() {
         // 이미지 선택 뷰로 이동
+        let vm = SettingImageViewModel()
+        vm.settingOption = settingOption
+        vm.outputSelectedIndex.value = viewModel.imageIndex
+        vm.delegate = self
         let vc = SettingImageViewController()
-        // settingOption 동기화
-        vc.settingOption = settingOption
-        vc.selectedIndex = viewModel.imageIndex
-        // (1) delegate
-        vc.delegate = self
+        vc.viewModel = vm
         navigate(vc: vc)
+        
+//        let vc = SettingImageViewController()
+//        // settingOption 동기화
+//        vc.settingOption = settingOption
+//        vc.selectedIndex = viewModel.imageIndex
+//        // (1) delegate
+//        vc.delegate = self
+//        navigate(vc: vc)
         
         // (2) 클로저
 //        vc.completionHandler = { index in
