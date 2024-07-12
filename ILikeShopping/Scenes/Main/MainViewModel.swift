@@ -11,7 +11,6 @@ final class MainViewModel {
     
     private let ud = UserDefaultsManager.shared
     let naviTitle = "\(UserDefaultsManager.shared.nickname)'s ILikeShopping"
-//    let searchBarPlaceHolder = "브랜드, 상품 등을 입력하세요."
     
     // Input
     // 서치 버튼

@@ -9,13 +9,13 @@ import Foundation
 
 final class SearchViewModel {
     
-    let ud = UserDefaultsManager.shared
-    let repository = RealmRepository()
+    private let ud = UserDefaultsManager.shared
+    private let repository = RealmRepository()
     
     var query: String?  // 이전 화면에서 전달
     
-    var start = 1       // 페이지네이션 위한 변수
     var sortOption: SortOption = .sim
+    private var start = 1       // 페이지네이션 위한 변수
     
     // Input
     // 네트워크 통신 처음인 경우: viewDidLoad 시점, 정렬 버튼 눌렀을 때
@@ -35,21 +35,28 @@ final class SearchViewModel {
     var outputIsBasket: Observable<Bool?> = Observable(nil)
     
     init() {
+        transform()
+    }
+    
+    private func transform() {
         inputNetworkTrigger.bind { [weak self] value in
-            print("inputNetworkTrigger")
             guard let self, value != nil else { return }
-            self.callRequest()
+            
+            // start 초기화 후 네트워크 요청
+            start = 1
+            callRequest()
         }
         
         inputPagenationTrigger.bind { [weak self] index in
-            print("inputPagenationTrigger")
             guard let self, let index,
                   let list = outputList.value else { return }
             
             if index == list.items.count - 8 &&
                 list.items.count < list.total &&
                 start <= 1000 {
-                self.callRequest()
+                // start 증가 후 네트워크 요청
+                start += NetworkRequest.display
+                callRequest()
             }
         }
         
@@ -60,16 +67,20 @@ final class SearchViewModel {
         
         inputCellLikeButtonClicked.bind { [weak self] data in
             guard let self, let data else { return }
-            if repository.isBasket(data.productId) {
-                // Realm 삭제
-                repository.deleteItem(data.productId)
-            } else {
-                // Realm 추가
-                let item = Basket(image: data.image, mallName: data.mallName, title: data.title, lprice: data.lprice, link: data.link, productId: data.productId)
-                repository.addItem(item)
-            }
-            outputIsBasket.value = repository.isBasket(data.productId)
+            toggleItem(data)
         }
+    }
+    
+    private func toggleItem(_ data: Shopping) {
+        if repository.isBasket(data.productId) {
+            // Realm 삭제
+            repository.deleteItem(data.productId)
+        } else {
+            // Realm 추가
+            let item = Basket(image: data.image, mallName: data.mallName, title: data.title, lprice: data.lprice, link: data.link, productId: data.productId)
+            repository.addItem(item)
+        }
+        outputIsBasket.value = repository.isBasket(data.productId)
     }
     
     // MARK: - 네트워크
@@ -100,8 +111,6 @@ final class SearchViewModel {
             outputList.value?.items.append(contentsOf: data.items)
         }
         
-        start += NetworkRequest.display
-
         if start == 1 && data.total > 0 {
             // 첫 검색일 때 스크롤 맨 위로 올려주기 (reloadData 이후)
             outputScrollToTop.value = ()

@@ -68,7 +68,7 @@ final class SearchViewController: BaseViewController {
         }
         
         viewModel.outputScrollToTop.bind { [weak self] value in
-            guard let self, let value else { return }
+            guard let self, value != nil else { return }
             self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
         
@@ -149,7 +149,6 @@ final class SearchViewController: BaseViewController {
         
         // 1. 선택된 정렬 기준으로 재검색
         viewModel.sortOption = SortOption.allCases[sender.tag]
-        viewModel.start = 1
         // 네트워크 요청
         viewModel.inputNetworkTrigger.value = ()
         
