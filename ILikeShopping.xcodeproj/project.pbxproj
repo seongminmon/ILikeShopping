@@ -157,14 +157,9 @@
 		2408B8A42C217DC0001D96A3 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
-				24B515752C3EA70600DF89AA /* MainViewModel.swift */,
-				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
 				2426F6392C1C3707005350A9 /* SearchViewController.swift */,
 				24B515772C3ED35B00DF89AA /* SearchViewModel.swift */,
 				2426F63F2C1C4A7F005350A9 /* SearchCollectionViewCell.swift */,
-				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
-				24B515862C40124A00DF89AA /* DetailViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -209,6 +204,7 @@
 		2426F6032C1AF796005350A9 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				24B515562C3D1B4700DF89AA /* Observable.swift */,
 				2426F62C2C1BF3D5005350A9 /* BaseTabBarController.swift */,
 				2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */,
 				2435E6D32C25ADD600B5393A /* BaseViewController.swift */,
@@ -245,11 +241,8 @@
 			children = (
 				2426F62E2C1BF426005350A9 /* SettingViewController.swift */,
 				2426F6302C1C06F4005350A9 /* SettingTableViewCell.swift */,
-				2426F60F2C1AFB42005350A9 /* SettingNicknameViewController.swift */,
-				24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */,
-				2426F6112C1AFB54005350A9 /* SettingImageViewController.swift */,
-				2466E3372C4117D800D675B2 /* SettingImageViewModel.swift */,
-				2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */,
+				2466E33E2C41299F00D675B2 /* SettingNickname */,
+				2466E33D2C41299100D675B2 /* SettingImage */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -257,11 +250,10 @@
 		2426F6242C1B1CB7005350A9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
-				2408B8A42C217DC0001D96A3 /* Search */,
+				2466E33A2C41291700D675B2 /* OnBoarding */,
+				2466E3392C41290900D675B2 /* Main */,
 				24AF66352C3A4C7E00CCAAF4 /* Basket */,
 				2426F61F2C1B17EE005350A9 /* Setting */,
-				24B515562C3D1B4700DF89AA /* Observable.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -304,14 +296,70 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		2466E3392C41290900D675B2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2426F6222C1B1C36005350A9 /* MainViewController.swift */,
+				24B515752C3EA70600DF89AA /* MainViewModel.swift */,
+				2426F6352C1C30CF005350A9 /* SearchWordTableViewCell.swift */,
+				2408B8A42C217DC0001D96A3 /* Search */,
+				2466E33B2C41293A00D675B2 /* Detail */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2466E33A2C41291700D675B2 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				2426F5EF2C1AF267005350A9 /* OnBoardingViewController.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		2466E33B2C41293A00D675B2 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				2426F63B2C1C370F005350A9 /* DetailViewController.swift */,
+				24B515862C40124A00DF89AA /* DetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		2466E33C2C41295800D675B2 /* BasketSearch */ = {
+			isa = PBXGroup;
+			children = (
+				24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */,
+				24B5158A2C40FB4000DF89AA /* BasketSearchViewModel.swift */,
+				24AF66462C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift */,
+			);
+			path = BasketSearch;
+			sourceTree = "<group>";
+		};
+		2466E33D2C41299100D675B2 /* SettingImage */ = {
+			isa = PBXGroup;
+			children = (
+				2426F6112C1AFB54005350A9 /* SettingImageViewController.swift */,
+				2466E3372C4117D800D675B2 /* SettingImageViewModel.swift */,
+				2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */,
+			);
+			path = SettingImage;
+			sourceTree = "<group>";
+		};
+		2466E33E2C41299F00D675B2 /* SettingNickname */ = {
+			isa = PBXGroup;
+			children = (
+				2426F60F2C1AFB42005350A9 /* SettingNicknameViewController.swift */,
+				24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */,
+			);
+			path = SettingNickname;
+			sourceTree = "<group>";
+		};
 		24AF66352C3A4C7E00CCAAF4 /* Basket */ = {
 			isa = PBXGroup;
 			children = (
 				2435E6DF2C27FF9E00B5393A /* BasketViewConroller.swift */,
 				24B515882C40D45E00DF89AA /* BasketViewModel.swift */,
-				24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */,
-				24B5158A2C40FB4000DF89AA /* BasketSearchViewModel.swift */,
-				24AF66462C3BEA0E00CCAAF4 /* BasketSearchTableViewCell.swift */,
+				2466E33C2C41295800D675B2 /* BasketSearch */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
