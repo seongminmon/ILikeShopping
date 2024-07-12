@@ -14,14 +14,19 @@ final class BasketSearchViewConroller: BaseViewController {
     let tableView = UITableView()
     
     let repository = RealmRepository()
-    var searchedList: [Basket] = []
     
     let viewModel = BasketSearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 초기값은 전체 장바구니
-        searchedList = repository.fetchAll()
+        bindData()
+    }
+    
+    func bindData() {
+        viewModel.outputList.bind { [weak self] list in
+            guard let self else { return }
+            tableView.reloadData()
+        }
     }
     
     override func configureNavigationBar() {
@@ -56,7 +61,7 @@ final class BasketSearchViewConroller: BaseViewController {
 
 extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchedList.count
+        return viewModel.outputList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +72,7 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
             return UITableViewCell()
         }
         
-        let data = searchedList[indexPath.row]
+        let data = viewModel.outputList.value[indexPath.row]
         cell.configureCell(data)
         return cell
     }
@@ -75,9 +80,9 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
     // 스와이프로 삭제하기
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let item = searchedList[indexPath.row]
+            let item = viewModel.outputList.value[indexPath.row]
             // searchedList 삭제
-            searchedList.remove(at: indexPath.row)
+            viewModel.outputList.value.remove(at: indexPath.row)
             // realm에서 삭제 (자식)
             repository.deleteItem(item.productId)
             // 뷰 업데이트
@@ -89,14 +94,6 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
 extension BasketSearchViewConroller: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         print(#function, searchController.searchBar.text!)
-        
-        if let text = searchController.searchBar.text, !text.isEmpty {
-            // 검색어가 있으면 검색
-            searchedList = repository.fetchSearched(text)
-        } else {
-            // 검색어가 없으면 전체 불러오기
-            searchedList = repository.fetchAll()
-        }
-        tableView.reloadData()
+        viewModel.inputUpdateSearchResults.value = searchController.searchBar.text
     }
 }
