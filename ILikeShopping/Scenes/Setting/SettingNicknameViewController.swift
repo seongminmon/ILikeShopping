@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 enum SettingOption: String {
     case setting = "PROFILE SETTING"
@@ -33,8 +34,9 @@ final class SettingNicknameViewController: BaseViewController {
     }
     
     func bindingData() {
-        viewModel.outputNicknameValidation.bind { value in
-            self.descriptionLabel.text = value
+        viewModel.outputNicknameValidation.bind { [weak self] value in
+            guard let self else { return }
+            descriptionLabel.text = value
         }
     }
     
@@ -111,6 +113,7 @@ final class SettingNicknameViewController: BaseViewController {
             profileImageView.configureImageView(image: MyImage.profileImageList[viewModel.imageIndex], isSelect: true)
             
             descriptionLabel.textColor = MyColor.orange
+            
         case .edit:
             // 수정일 땐 기존 선택된 이미지로 설정
             profileImageView.configureImageView(image: UserDefaultsManager.shared.profileImage, isSelect: true)
@@ -158,7 +161,7 @@ final class SettingNicknameViewController: BaseViewController {
     // MARK: - UD에 저장하는 시점 == 완료버튼이나 저장버튼을 누를 때
     
     @objc func completeButtonTapped() {
-        viewModel.inputcompleteButtonTapped.value = nicknameTextField.text
+        viewModel.inputCompleteButtonTapped.value = nicknameTextField.text
         
         // 닉네임 조건 검사
         if viewModel.nicknameValidationError == nil {
@@ -173,7 +176,7 @@ final class SettingNicknameViewController: BaseViewController {
     }
     
     @objc func saveButtonTapped() {
-        viewModel.inputsaveButtonTapped.value = nicknameTextField.text
+        viewModel.inputSaveButtonTapped.value = nicknameTextField.text
         
         // 닉네임 조건 검사
         if viewModel.nicknameValidationError == nil {

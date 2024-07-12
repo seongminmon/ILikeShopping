@@ -31,44 +31,47 @@ final class SettingNicknameViewModel {
     // 닉네임 텍스트 필드에 글자 입력
     var inputNicknameTextfieldChange: Observable<String?> = Observable(UserDefaultsManager.shared.nickname)
     // 완료 버튼 탭
-    var inputcompleteButtonTapped: Observable<String?> = Observable(nil)
+    var inputCompleteButtonTapped: Observable<String?> = Observable(nil)
     // 저장 버튼 탭
-    var inputsaveButtonTapped: Observable<String?> = Observable(nil)
+    var inputSaveButtonTapped: Observable<String?> = Observable(nil)
     
     // MARK: - Output
     // descriptionLabel에 닉네임 유효성 검사 결과 알려주기
     var outputNicknameValidation: Observable<String?> = Observable("")
     
     init() {
-        inputNicknameTextfieldChange.bind { value in
-            self.nicknameValidationResult(value)
+        transform()
+    }
+    
+    private func transform() {
+        inputNicknameTextfieldChange.bind { [weak self] value in
+            guard let self else { return }
+            nicknameValidationResult(value)
         }
-        inputcompleteButtonTapped.bind { value in
-            self.completeButtonTapped(value)
+        
+        inputCompleteButtonTapped.bind { [weak self] value in
+            guard let self else { return }
+            saveData(value, isNew: true)
         }
-        inputsaveButtonTapped.bind { value in
-            self.saveButtonTapped(value)
+        
+        inputSaveButtonTapped.bind { [weak self] value in
+            guard let self else { return }
+            saveData(value, isNew: false)
         }
     }
     
-    private func completeButtonTapped(_ nickname: String?) {
+    private func saveData(_ nickname: String?, isNew: Bool) {
         guard let nickname = nickname else { return }
         // 닉네임 조건 검사
         if nicknameValidationError == nil {
             // 값 저장
             UserDefaultsManager.shared.nickname = nickname
             UserDefaultsManager.shared.profileImageIndex = imageIndex
-            UserDefaultsManager.shared.signUpDate = Date()
-        }
-    }
-    
-    private func saveButtonTapped(_ nickname: String?) {
-        guard let nickname = nickname else { return }
-        // 닉네임 조건 검사
-        if nicknameValidationError == nil {
-            // 값 저장
-            UserDefaultsManager.shared.nickname = nickname
-            UserDefaultsManager.shared.profileImageIndex = imageIndex
+            
+            // 새로 추가하는 것이면 현재 날짜도 저장
+            if isNew {
+                UserDefaultsManager.shared.signUpDate = Date()
+            }
         }
     }
     
