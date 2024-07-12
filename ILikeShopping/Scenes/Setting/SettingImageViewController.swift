@@ -31,6 +31,8 @@ final class SettingImageViewController: BaseViewController {
     var delegate: SendDataDelegate?
     // (2) 클로저
 //    var completionHandler: ((Int) -> Void)?
+    
+    let viewModel = SettingImageViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -50,6 +50,7 @@
 		2435E6A82C25669300B5393A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6A72C25669300B5393A /* NetworkManager.swift */; };
 		2435E6D42C25ADD600B5393A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6D32C25ADD600B5393A /* BaseViewController.swift */; };
 		2435E6E02C27FF9E00B5393A /* BasketViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435E6DF2C27FF9E00B5393A /* BasketViewConroller.swift */; };
+		2466E3382C4117D800D675B2 /* SettingImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466E3372C4117D800D675B2 /* SettingImageViewModel.swift */; };
 		24AF66382C3A8C0800CCAAF4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24AF66372C3A8C0800CCAAF4 /* RealmSwift */; };
 		24AF66392C3A8C3E00CCAAF4 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 24AF66372C3A8C0800CCAAF4 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		24AF663C2C3A8CB900CCAAF4 /* Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF663B2C3A8CB900CCAAF4 /* Basket.swift */; };
@@ -122,6 +123,7 @@
 		2435E6A72C25669300B5393A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2435E6D32C25ADD600B5393A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2435E6DF2C27FF9E00B5393A /* BasketViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewConroller.swift; sourceTree = "<group>"; };
+		2466E3372C4117D800D675B2 /* SettingImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingImageViewModel.swift; sourceTree = "<group>"; };
 		24AF663B2C3A8CB900CCAAF4 /* Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basket.swift; sourceTree = "<group>"; };
 		24AF663D2C3A8DBB00CCAAF4 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		24AF66442C3BE44500CCAAF4 /* BasketSearchViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSearchViewConroller.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				2426F60F2C1AFB42005350A9 /* SettingNicknameViewController.swift */,
 				24B515582C3D1BDE00DF89AA /* SettingNicknameViewModel.swift */,
 				2426F6112C1AFB54005350A9 /* SettingImageViewController.swift */,
+				2466E3372C4117D800D675B2 /* SettingImageViewModel.swift */,
 				2426F6282C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift */,
 			);
 			path = Setting;
@@ -440,6 +443,7 @@
 				24B3BD262C2D9C640088CDB7 /* CollectionViewDesign.swift in Sources */,
 				24B515892C40D45F00DF89AA /* BasketViewModel.swift in Sources */,
 				2426F6292C1BE7FD005350A9 /* ProfileImageCollectionViewCell.swift in Sources */,
+				2466E3382C4117D800D675B2 /* SettingImageViewModel.swift in Sources */,
 				2426F5EE2C1AF267005350A9 /* SceneDelegate.swift in Sources */,
 				2426F6492C1EC5C5005350A9 /* BaseNavigationController.swift in Sources */,
 				24AF663E2C3A8DBB00CCAAF4 /* RealmRepository.swift in Sources */,
