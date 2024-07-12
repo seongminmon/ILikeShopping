@@ -29,37 +29,35 @@ final class BasketViewConroller: BaseViewController {
         )
     )
     
-    let ud = UserDefaultsManager.shared
-    let repository = RealmRepository()
-    var folder: Folder?
-    var list: [Basket] = []
-    var option = FolderOption.total
-    
     let viewModel = BasketViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(repository.fileURL!)
-        
-        folder = repository.fetchFilteredFolder(option)
-        // 처음엔 전체 가져오기
-        list = repository.fetchAll()
+        // MARK: - 순서 중요! bindData() 먼저 하면 에러!
         configureCollectionView()
+        bindData()
+    }
+    
+    func bindData() {
+        viewModel.outputCountLabelText.bind { [weak self] value in
+            self?.totalCountLabel.text = value
+        }
+        
+        viewModel.outputList.bind { [weak self] list in
+            self?.collectionView.reloadData()
+            if list.count > 0 {
+                self?.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let folder = folder {
-            list = Array(folder.baskets)
-        } else {
-            list = repository.fetchAll()
-        }
-        totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
-        collectionView.reloadData()
+        viewModel.inputViewWillAppearTrigger.value = ()
     }
     
     override func configureNavigationBar() {
-        navigationItem.title = "\(ud.nickname)'s Shopping List"
+        navigationItem.title = viewModel.naviTitle
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: MyImage.magnifyingglass, style: .plain, target: self, action: #selector(searchButtonTapped))
     }
@@ -120,23 +118,9 @@ final class BasketViewConroller: BaseViewController {
         // 이미 선택된 버튼을 누르면 패스
         if sender.backgroundColor == MyColor.orange { return }
         
-        // 1. Folder에 따라 list 변경하기
-        // list는 폴더에 담겨있는 baskets 중 하나이거나 전체 basket(folder = nil일 때)
-        option = FolderOption.allCases[sender.tag]
-        folder = repository.fetchFilteredFolder(option)
-        if let folder = folder {
-            list = Array(folder.baskets)
-        } else {
-            list = repository.fetchAll()
-        }
-        totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
-        collectionView.reloadData()
+        viewModel.inputFolderButtonTapped.value = sender.tag
         
-        if list.count > 0 {
-            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-        }
-        
-        // 2. 선택된 버튼 UI 변경
+        // 선택된 버튼 UI 변경
         buttons.forEach { button in
             if button == sender {
                 button.backgroundColor = MyColor.orange
@@ -150,7 +134,7 @@ final class BasketViewConroller: BaseViewController {
 
 extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list.count
+        return viewModel.outputList.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -160,7 +144,8 @@ extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSou
         ) as? SearchCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let data = list[indexPath.item]
+        
+        let data = viewModel.outputList.value[indexPath.item]
         cell.configureCell(data: data)
         cell.configureButton(isSelected: true)
         
@@ -170,26 +155,17 @@ extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     @objc func likeButtonTapped(sender: UIButton) {
-        // 장바구니 화면에서는 삭제만 가능
-        let data = list[sender.tag]
-        
-        // list 삭제
-        list.remove(at: sender.tag)
-        // Realm 삭제
-        repository.deleteItem(data.productId)
-        // 뷰 업데이트
-        totalCountLabel.text = "\(list.count.formatted())개의 쇼핑 리스트"
-        collectionView.reloadData()
+        viewModel.inputCellButtonTapped.value = sender.tag
+        // 애니메이션 효과
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
-        
     }
     
     // 웹뷰로 이동
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        let item = list[indexPath.item]
+        let item = viewModel.outputList.value[indexPath.item]
         let data = Shopping(image: item.image, mallName: item.mallName, title: item.title, lprice: item.lprice, link: item.link, productId: item.productId)
         vc.data = data
         navigate(vc: vc)
