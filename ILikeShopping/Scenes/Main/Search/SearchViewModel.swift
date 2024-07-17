@@ -7,9 +7,30 @@
 
 import Foundation
 
+// TODO: - struct로 Input, Output 바꿔보기
+//protocol ViewModelProtocol {
+//    associatedtype Input
+//    associatedtype Output
+//    
+//    func transform(_ input: Input) -> Output
+//}
+
 final class SearchViewModel {
     
-    private let ud = UserDefaultsManager.shared
+//    struct Input {
+//        var networkTrigger: Observable<Void?> = Observable(nil)
+//        var pagenationTrigger: Observable<Int?> = Observable(nil)
+//        var cellForItemAt: Observable<String?> = Observable(nil)
+//        var cellLikeButtonClicked: Observable<Shopping?> = Observable(nil)
+//    }
+//
+//    struct Output {
+//        var list: Observable<ShoppingResponse?> = Observable(nil)
+//        var scrollToTop: Observable<Void?> = Observable(nil)
+//        var dailureAlert: Observable<String?> = Observable(nil)
+//        var isBasket: Observable<Bool?> = Observable(nil)
+//    }
+    
     private let repository = RealmRepository()
     
     var query: String?  // 이전 화면에서 전달

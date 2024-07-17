@@ -23,7 +23,7 @@ final class BasketSearchViewConroller: BaseViewController {
     func bindData() {
         viewModel.outputUpdateSearchResults.bind {
             [weak self] value in
-            guard let self, let value else { return }
+            guard let self, value != nil else { return }
             tableView.reloadData()
         }
         

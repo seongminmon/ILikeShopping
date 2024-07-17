@@ -187,6 +187,7 @@
 				2426F5EB2C1AF267005350A9 /* AppDelegate.swift */,
 				2426F5ED2C1AF267005350A9 /* SceneDelegate.swift */,
 				2426F6012C1AF3FB005350A9 /* APIKey.swift */,
+				24B515562C3D1B4700DF89AA /* Observable.swift */,
 				2426F6472C1D6640005350A9 /* Model */,
 				24356B1F2C2D4AA4000D2DF1 /* Network */,
 				2426F6272C1B2210005350A9 /* Manager */,
@@ -204,7 +205,6 @@
 		2426F6032C1AF796005350A9 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				24B515562C3D1B4700DF89AA /* Observable.swift */,
 				2426F62C2C1BF3D5005350A9 /* BaseTabBarController.swift */,
 				2426F6482C1EC5C5005350A9 /* BaseNavigationController.swift */,
 				2435E6D32C25ADD600B5393A /* BaseViewController.swift */,
