@@ -13,6 +13,17 @@ enum SettingOption: String {
     case edit = "EDIT PROFILE"
 }
 
+/* TODO: -
+ - 닉네임 설정 화면의 저장 기능
+     텍스트필드 키보드에서 enter를 쳤을 때 키보드 내리기
+ 
+ - 닉네임 빈값 설정 방지 ✅
+     
+ - 닉네임 textfield clear 버튼 활성화
+     
+ - 설정 조건 미충족시 저장버튼 비활성화 ✅
+ */
+
 final class SettingNicknameViewController: BaseViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
@@ -34,9 +45,17 @@ final class SettingNicknameViewController: BaseViewController {
     }
     
     func bindData() {
-        viewModel.outputNicknameValidation.bind { [weak self] value in
+        viewModel.outputNicknameValidation.bind { [weak self] error in
             guard let self else { return }
-            descriptionLabel.text = value
+            if let error {
+                descriptionLabel.text = error.errorDescription
+                completeButton.isEnabled = false
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            } else {
+                descriptionLabel.text = "사용할 수 있는 닉네임이에요"
+                completeButton.isEnabled = true
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            }
         }
     }
     
@@ -111,17 +130,12 @@ final class SettingNicknameViewController: BaseViewController {
             // 초기 설정일 땐 랜덤으로 설정
             viewModel.imageIndex = Int.random(in: 0..<MyImage.profileImageList.count)
             profileImageView.configureImageView(image: MyImage.profileImageList[viewModel.imageIndex], isSelect: true)
-            
-            descriptionLabel.textColor = MyColor.orange
-            
         case .edit:
             // 수정일 땐 기존 선택된 이미지로 설정
             profileImageView.configureImageView(image: UserDefaultsManager.shared.profileImage, isSelect: true)
             
             nicknameTextField.text = UserDefaultsManager.shared.nickname
             nicknameTextField.becomeFirstResponder()
-            
-            descriptionLabel.textColor = MyColor.black
         }
         
         profileImageButton.addTarget(self, action: #selector(profileImageButtonTapped), for: .touchUpInside)
@@ -133,6 +147,7 @@ final class SettingNicknameViewController: BaseViewController {
         separator.backgroundColor = MyColor.black
         
         descriptionLabel.font = MyFont.regular13
+        descriptionLabel.textColor = MyColor.orange
         
         completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
     }

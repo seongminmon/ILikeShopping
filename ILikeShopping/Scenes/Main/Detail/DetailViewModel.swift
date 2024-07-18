@@ -11,13 +11,12 @@ final class DetailViewModel {
     
     let repository = RealmRepository()
     
-    // Input
+    // MARK: - Input
     // 뒤로 가기 (네비게이션)
     // 좋아요 버튼 누르기
     var inputLikeButtonTapped: Observable<Shopping?> = Observable(nil)
     
-    // Output
-    // 뒤로 가기 ->
+    // MARK: - Output
     var outputIsBasket: Observable<Bool?> = Observable(nil)
     
     init() {

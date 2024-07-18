@@ -118,7 +118,7 @@ final class BasketViewConroller: BaseViewController {
     func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
+        collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.description())
     }
     
     @objc func priceButtonTapped(sender: UIButton) {
@@ -146,7 +146,7 @@ extension BasketViewConroller: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: SearchCollectionViewCell.identifier,
+            withReuseIdentifier: SearchCollectionViewCell.description(),
             for: indexPath
         ) as? SearchCollectionViewCell else {
             return UICollectionViewCell()

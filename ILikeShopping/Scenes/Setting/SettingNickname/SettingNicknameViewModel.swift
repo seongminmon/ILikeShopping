@@ -11,12 +11,14 @@ enum NicknameValidationError: Error, LocalizedError {
     case length
     case invalidCharacter
     case number
+    case whitespace
     
     var errorDescription: String? {
         switch self {
         case .length: "2글자 이상 10글자 미만으로 설정해주세요"
         case .invalidCharacter: "닉네임에 @, #, $, % 는 포함할 수 없어요"
         case .number: "닉네임에 숫자는 포함할 수 없어요"
+        case .whitespace: "닉네임에 공백은 포함할 수 없어요"
         }
     }
 }
@@ -37,7 +39,8 @@ final class SettingNicknameViewModel {
     
     // MARK: - Output
     // descriptionLabel에 닉네임 유효성 검사 결과 알려주기
-    var outputNicknameValidation: Observable<String?> = Observable("")
+    // MARK: - 초기값으로 nil을 줘도 되는 이유: inputNicknameTextfieldChange의 초기값으로 에러 처리가 가능함
+    var outputNicknameValidation: Observable<NicknameValidationError?> = Observable(nil)
     
     init() {
         transform()
@@ -83,11 +86,11 @@ final class SettingNicknameViewModel {
         do {
             if try checkNickname(text) {
                 nicknameValidationError = nil
-                outputNicknameValidation.value = "사용할 수 있는 닉네임이에요"
+                outputNicknameValidation.value = nil
             }
         } catch let error as NicknameValidationError {
             nicknameValidationError = error
-            outputNicknameValidation.value = nicknameValidationError?.errorDescription
+            outputNicknameValidation.value = nicknameValidationError
         } catch {
             print("알 수 없는 에러!")
         }
@@ -106,6 +109,10 @@ final class SettingNicknameViewModel {
         // 3) 숫자 사용 불가
         guard text.filter({ $0.isNumber }).isEmpty else {
             throw NicknameValidationError.number
+        }
+        // 4) 공백 사용 불가
+        guard text.filter({ $0.isWhitespace }).isEmpty else {
+            throw NicknameValidationError.whitespace
         }
         return true
     }

@@ -15,6 +15,14 @@ enum SettingCellTitle: String, CaseIterable {
     case delete = "탈퇴하기"
 }
 
+/* TODO: -
+ - 장바구니 목록의 역할
+    셀 선택 시 장바구니 탭으로 넘어가도록 구성하기
+     
+ - 준비중인 목록화면 선택 비활성화, 토스트 알림창 추가
+     자주묻는 질문, 1:1 문의, 알림설정란 선택 시 아직 다음 화면이 준비되지 않았다는 메세지 띄워주기
+ */
+
 final class SettingViewController: BaseViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
