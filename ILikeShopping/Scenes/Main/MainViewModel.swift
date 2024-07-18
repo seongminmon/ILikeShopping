@@ -26,17 +26,21 @@ final class MainViewModel {
     var outputList: Observable<[String]> = Observable(UserDefaultsManager.shared.searchWordList)
     
     init() {
-        inputSearchButtonClicked.bind { value in
-            self.searchButtonClicked(value)
+        inputSearchButtonClicked.bind { [weak self] value in
+            guard let self else { return }
+            searchButtonClicked(value)
         }
-        inputCellSelected.bind { value in
-            self.cellSelected(value)
+        inputCellSelected.bind { [weak self] value in
+            guard let self else { return }
+            cellSelected(value)
         }
-        inputDeleteButtonTapped.bind { value in
-            self.deleteItem(value)
+        inputDeleteButtonTapped.bind { [weak self] value in
+            guard let self else { return }
+            deleteItem(value)
         }
-        inputDeleteAllButtonTapped.bind { _ in
-            self.deleteAll()
+        inputDeleteAllButtonTapped.bind { [weak self] _ in
+            guard let self else { return }
+            deleteAll()
         }
     }
         

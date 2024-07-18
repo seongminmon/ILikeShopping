@@ -28,9 +28,10 @@ final class MainViewController: BaseViewController {
     }
     
     func bindData() {
-        viewModel.outputList.bind { _ in
-            self.tableView.reloadData()
-            self.toggleHideView()
+        viewModel.outputList.bind { [weak self] _ in
+            guard let self else { return }
+            tableView.reloadData()
+            toggleHideView()
         }
     }
     
