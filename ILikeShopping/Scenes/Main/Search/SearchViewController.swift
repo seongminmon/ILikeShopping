@@ -26,8 +26,6 @@ enum SortOption: String, CaseIterable {
 
 /*
 // TODO: -
-- 다시 검색페이지로 돌아왔을 때 공백이 되도록 설정하기
-
 - 빈 값 입력 시 알림창 팝업 - 검색 화면으로 돌아가는 확인 버튼만 남기기
 */
 

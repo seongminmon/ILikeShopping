@@ -27,6 +27,11 @@ final class MainViewController: BaseViewController {
         bindData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBar.text = nil
+    }
+    
     func bindData() {
         viewModel.outputList.bind { [weak self] _ in
             guard let self else { return }
