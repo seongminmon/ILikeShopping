@@ -30,10 +30,10 @@ final class SettingNicknameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindingData()
+        bindData()
     }
     
-    func bindingData() {
+    func bindData() {
         viewModel.outputNicknameValidation.bind { [weak self] value in
             guard let self else { return }
             descriptionLabel.text = value

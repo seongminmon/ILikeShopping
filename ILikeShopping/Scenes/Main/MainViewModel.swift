@@ -12,7 +12,7 @@ final class MainViewModel {
     private let ud = UserDefaultsManager.shared
     let naviTitle = "\(UserDefaultsManager.shared.nickname)'s ILikeShopping"
     
-    // Input
+    // MARK: - Input
     // 서치 버튼
     var inputSearchButtonClicked: Observable<String?> = Observable(nil)
     // 셀 선택
@@ -22,22 +22,29 @@ final class MainViewModel {
     // 모두 삭제 버튼
     var inputDeleteAllButtonTapped: Observable<Void?> = Observable(nil)
     
-    // Output
+    // MARK: - Output
     var outputList: Observable<[String]> = Observable(UserDefaultsManager.shared.searchWordList)
     
     init() {
+        transform()
+    }
+    
+    private func transform() {
         inputSearchButtonClicked.bind { [weak self] value in
             guard let self else { return }
             searchButtonClicked(value)
         }
+        
         inputCellSelected.bind { [weak self] value in
             guard let self else { return }
             cellSelected(value)
         }
+        
         inputDeleteButtonTapped.bind { [weak self] value in
             guard let self else { return }
             deleteItem(value)
         }
+        
         inputDeleteAllButtonTapped.bind { [weak self] _ in
             guard let self else { return }
             deleteAll()

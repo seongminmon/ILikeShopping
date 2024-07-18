@@ -38,7 +38,7 @@ final class SearchViewModel {
     var sortOption: SortOption = .sim
     private var start = 1       // 페이지네이션 위한 변수
     
-    // Input
+    // MARK: - Input
     // 네트워크 통신 처음인 경우: viewDidLoad 시점, 정렬 버튼 눌렀을 때
     var inputNetworkTrigger: Observable<Void?> = Observable(nil)
     // 네트워크 통신 페이지네이션인 경우: 스크롤 내렸을 때
@@ -48,7 +48,7 @@ final class SearchViewModel {
     // 셀의 좋아요 버튼 누르기
     var inputCellLikeButtonClicked: Observable<Shopping?> = Observable(nil)
     
-    // Output
+    // MARK: - Output
     // 네트워크 결과 받은 배열
     var outputList: Observable<ShoppingResponse?> = Observable(nil)
     var outputScrollToTop: Observable<Void?> = Observable(nil)

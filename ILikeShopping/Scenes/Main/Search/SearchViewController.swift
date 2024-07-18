@@ -63,19 +63,19 @@ final class SearchViewController: BaseViewController {
         
         viewModel.outputList.bind { [weak self] value in
             guard let self else { return }
-            self.totalCountLabel.text = value?.totalCountText
-            self.collectionView.reloadData()
+            totalCountLabel.text = value?.totalCountText
+            collectionView.reloadData()
         }
         
         viewModel.outputScrollToTop.bind { [weak self] value in
             guard let self, value != nil else { return }
-            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
         
         viewModel.outputFailureAlert.bind { [weak self] message in
             guard let self else { return }
             guard let message else { return }
-            self.showAlert(title: "오류", message: message, actionTitle: "확인") { _ in
+            showAlert(title: "오류", message: message, actionTitle: "확인") { _ in
                 self.navigationController?.popViewController(animated: true)
             }
         }

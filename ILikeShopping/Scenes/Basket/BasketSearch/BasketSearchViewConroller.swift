@@ -21,14 +21,12 @@ final class BasketSearchViewConroller: BaseViewController {
     }
     
     func bindData() {
-        viewModel.outputUpdateSearchResults.bind {
-            [weak self] value in
+        viewModel.outputUpdateSearchResults.bind { [weak self] value in
             guard let self, value != nil else { return }
             tableView.reloadData()
         }
         
-        viewModel.outputSwipeToDelete.bind {
-            [weak self] value in
+        viewModel.outputSwipeToDelete.bind { [weak self] value in
             guard let self, let value else { return }
             tableView.deleteRows(at: [value], with: .fade)
         }
@@ -76,6 +74,7 @@ extension BasketSearchViewConroller: UITableViewDelegate, UITableViewDataSource 
         ) as? BasketSearchTableViewCell else {
             return UITableViewCell()
         }
+        
         let data = viewModel.list[indexPath.row]
         cell.configureCell(data)
         return cell

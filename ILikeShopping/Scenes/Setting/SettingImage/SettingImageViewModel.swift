@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SendDataDelegate {
+protocol SendDataDelegate: AnyObject {
     func recieveData(data: Int) -> Void
 }
 
@@ -15,7 +15,7 @@ final class SettingImageViewModel {
     
     var settingOption: SettingOption = .setting
     // 이전 화면에 데이터를 전달하기 위한 delegate
-    var delegate: SendDataDelegate?
+    weak var delegate: SendDataDelegate?
     
     // MARK: - Input
     var inputViewWillDisappear: Observable<Void?> = Observable(nil)

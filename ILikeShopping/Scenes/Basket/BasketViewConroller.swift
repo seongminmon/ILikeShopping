@@ -40,13 +40,15 @@ final class BasketViewConroller: BaseViewController {
     
     func bindData() {
         viewModel.outputCountLabelText.bind { [weak self] value in
-            self?.totalCountLabel.text = value
+            guard let self else { return }
+            totalCountLabel.text = value
         }
         
         viewModel.outputList.bind { [weak self] list in
-            self?.collectionView.reloadData()
-            if list.count > 0 {
-                self?.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            guard let self else { return }
+            collectionView.reloadData()
+            if !list.isEmpty {
+                collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             }
         }
     }
@@ -59,7 +61,12 @@ final class BasketViewConroller: BaseViewController {
     override func configureNavigationBar() {
         navigationItem.title = viewModel.naviTitle
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: MyImage.magnifyingglass, style: .plain, target: self, action: #selector(searchButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: MyImage.magnifyingglass,
+            style: .plain,
+            target: self,
+            action: #selector(searchButtonTapped)
+        )
     }
     
     @objc func searchButtonTapped() {
