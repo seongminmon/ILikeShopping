@@ -13,17 +13,6 @@ enum SettingOption: String {
     case edit = "EDIT PROFILE"
 }
 
-/* TODO: -
- - 닉네임 설정 화면의 저장 기능
-     텍스트필드 키보드에서 enter를 쳤을 때 키보드 내리기
- 
- - 닉네임 빈값 설정 방지 ✅
-     
- - 닉네임 textfield clear 버튼 활성화
-     
- - 설정 조건 미충족시 저장버튼 비활성화 ✅
- */
-
 final class SettingNicknameViewController: BaseViewController {
     
     let profileImageView = ProfileImageView(frame: .zero)
@@ -142,7 +131,10 @@ final class SettingNicknameViewController: BaseViewController {
         
         nicknameTextField.placeholder = "닉네임을 입력해주세요 :)"
         nicknameTextField.font = MyFont.regular14
+        nicknameTextField.clearButtonMode = .whileEditing
+        nicknameTextField.delegate = self
         nicknameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
         
         separator.backgroundColor = MyColor.black
         
@@ -205,6 +197,18 @@ final class SettingNicknameViewController: BaseViewController {
         if viewModel.nicknameValidationError == nil {
             // 이전 화면으로 돌아가기 (설정 화면)
             navigationController?.popViewController(animated: true)
+        }
+    }
+}
+
+extension SettingNicknameViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // 닉네임 조건 통과 시 키보드 내리기
+        if let error = viewModel.outputNicknameValidation.value {
+            return false
+        } else {
+            view.endEditing(true)
+            return true
         }
     }
 }
