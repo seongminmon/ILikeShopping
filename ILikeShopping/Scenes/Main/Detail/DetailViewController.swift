@@ -82,13 +82,13 @@ extension DetailViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error) {
         indicator.stopAnimating()
         indicator.isHidden = true
-        showAlert(title: "에러", message: error.localizedDescription, actionTitle: "확인") { _ in
+        showAlert(title: "에러", message: error.localizedDescription, actionTitle: "확인", actionStyle: .default) { _ in
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error) {
-        showAlert(title: "에러", message: error.localizedDescription, actionTitle: "확인") { _ in 
+        showAlert(title: "에러", message: error.localizedDescription, actionTitle: "확인", actionStyle: .default) { _ in
             self.navigationController?.popViewController(animated: true)
         }
     }

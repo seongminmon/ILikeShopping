@@ -77,7 +77,6 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
         guard let data else { return }
         
         // MARK: - Kingfisher -> Data(contentsOf) 방식으로 교체해보기
-//        mainImageView.kf.setImage(with: data.imageUrl)
         DispatchQueue.global().async {
             do {
                 let imageData = try Data(contentsOf: data.imageUrl!)

@@ -18,9 +18,6 @@ enum SettingCellTitle: String, CaseIterable {
 /* TODO: -
  - 장바구니 목록의 역할
     셀 선택 시 장바구니 탭으로 넘어가도록 구성하기
-     
- - 준비중인 목록화면 선택 비활성화, 토스트 알림창 추가
-     자주묻는 질문, 1:1 문의, 알림설정란 선택 시 아직 다음 화면이 준비되지 않았다는 메세지 띄워주기
  */
 
 final class SettingViewController: BaseViewController {
@@ -192,7 +189,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             showAlert(
                 title: "탈퇴하기",
                 message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴하시겠습니까?",
-                actionTitle: "확인"
+                actionTitle: "확인", actionStyle: .destructive
             ) { _ in
                 // 모든 데이터 초기화
                 self.ud.removeAll()
@@ -210,7 +207,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
         default:
-            break
+            showSimpleAlert(title: "아직 준비 중이에요 :)", completionHandler: { _ in })
         }
     }
 }

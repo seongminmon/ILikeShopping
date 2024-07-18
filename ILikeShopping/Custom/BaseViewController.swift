@@ -28,6 +28,7 @@ class BaseViewController: UIViewController {
         title: String,
         message: String,
         actionTitle: String,
+        actionStyle: UIAlertAction.Style,
         completionHandler: @escaping (UIAlertAction) -> Void
     ) {
         let alert = UIAlertController(
@@ -35,7 +36,7 @@ class BaseViewController: UIViewController {
             message: message,
             preferredStyle: .alert
         )
-        let confirm = UIAlertAction(title: actionTitle, style: .default, handler: completionHandler)
+        let confirm = UIAlertAction(title: actionTitle, style: actionStyle, handler: completionHandler)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         alert.addAction(confirm)
         alert.addAction(cancel)

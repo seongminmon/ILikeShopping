@@ -24,11 +24,6 @@ enum SortOption: String, CaseIterable {
     }
 }
 
-/*
-// TODO: -
-- 빈 값 입력 시 알림창 팝업 - 검색 화면으로 돌아가는 확인 버튼만 남기기
-*/
-
 final class SearchViewController: BaseViewController {
     
     let totalCountLabel = UILabel()
@@ -80,7 +75,7 @@ final class SearchViewController: BaseViewController {
         viewModel.outputFailureAlert.bind { [weak self] message in
             guard let self else { return }
             guard let message else { return }
-            showAlert(title: "오류", message: message, actionTitle: "확인") { _ in
+            showSimpleAlert(title: "네트워크 오류") { _ in
                 self.navigationController?.popViewController(animated: true)
             }
         }
