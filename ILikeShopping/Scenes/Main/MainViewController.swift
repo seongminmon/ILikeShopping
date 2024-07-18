@@ -178,7 +178,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.inputSearchButtonClicked.value = searchBar.text
-        search(searchBar.text ?? "")
+        if let query = searchBar.text?.trimmingCharacters(in: .whitespaces), 
+            !query.isEmpty {
+            viewModel.inputSearchButtonClicked.value = query
+            search(query)
+        } else {
+            showSimpleAlert(title: "검색어를 입력해주세요", completionHandler: { _ in })
+        }
     }
 }

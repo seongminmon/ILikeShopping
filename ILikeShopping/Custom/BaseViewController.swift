@@ -42,6 +42,21 @@ class BaseViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // 확인 버튼만 있는 alert
+    func showSimpleAlert(
+        title: String,
+        completionHandler: @escaping (UIAlertAction) -> Void
+    ) {
+        let alert = UIAlertController(
+            title: title,
+            message: nil,
+            preferredStyle: .alert
+        )
+        let confirm = UIAlertAction(title: "확인", style: .default, handler: completionHandler)
+        alert.addAction(confirm)
+        present(alert, animated: true)
+    }
+    
     func navigate(vc: UIViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
